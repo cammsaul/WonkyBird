@@ -16,7 +16,7 @@
 - (id)init {
 	if (self = [super initWithTextureAtlasNamed:@"Clouds"]) {
 		srandom(time(nullptr));
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			[self createCloud];
 		}
 	}
@@ -39,15 +39,15 @@
 	
 	const int xPosition = screenSize.width + 1 + xOffset;
 	
-	const int yMin = (int)SCREEN_SIZE.height / 2;
+	const int yMin = (int)SCREEN_SIZE.height * 0.33f;
 	const int yMax = (int)SCREEN_SIZE.height;
 	const int yRange = yMax - yMin;
 	const int yPosition = (random() % yRange) + yMin;
 	
 	cloud.position = ccp(xPosition, yPosition);
 	
-	static const int MaxCloudMoveDuration = 10;
-	static const int MinCloudMoveDuration = 1;
+	static const int MaxCloudMoveDuration = 5;
+	static const int MinCloudMoveDuration = 2;
 	const int moveDuration = (random() % (MaxCloudMoveDuration - MinCloudMoveDuration)) + MinCloudMoveDuration;
 	
 	const float offscreenXPosition = (xOffset * -1) - 1;

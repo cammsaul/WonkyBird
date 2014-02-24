@@ -166,8 +166,8 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/8B48C7A1-4CBC-4E5A-B156-1B10F7E29BDF/wonky 2x/Cloud_1.png</filename>
-            <filename>../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/8B48C7A1-4CBC-4E5A-B156-1B10F7E29BDF/wonky 2x/Cloud_2.png</filename>
+            <filename>../../../Downloads/wonky 2x/Cloud_1.png</filename>
+            <filename>../../../Downloads/wonky 2x/Cloud_2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

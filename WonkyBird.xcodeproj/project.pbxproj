@@ -94,6 +94,8 @@
 		3243C70518BB2E5500542D7F /* Clouds@2x.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70318BB2E5500542D7F /* Clouds@2x.plist */; };
 		3243C70618BB2E5500542D7F /* Clouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70418BB2E5500542D7F /* Clouds@2x.png */; };
 		3243C70918BB2E7600542D7F /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C70818BB2E7600542D7F /* GameLayer.m */; };
+		3243C70C18BB448700542D7F /* HUD.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70A18BB448700542D7F /* HUD.plist */; };
+		3243C70D18BB448700542D7F /* HUD.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70B18BB448700542D7F /* HUD.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +267,8 @@
 		3243C70418BB2E5500542D7F /* Clouds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clouds@2x.png"; sourceTree = "<group>"; };
 		3243C70718BB2E7600542D7F /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		3243C70818BB2E7600542D7F /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
+		3243C70A18BB448700542D7F /* HUD.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HUD.plist; sourceTree = "<group>"; };
+		3243C70B18BB448700542D7F /* HUD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HUD.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -607,6 +611,8 @@
 		3243C6F818BB04F000542D7F /* TextureAtlases */ = {
 			isa = PBXGroup;
 			children = (
+				3243C70A18BB448700542D7F /* HUD.plist */,
+				3243C70B18BB448700542D7F /* HUD.png */,
 				3243C70318BB2E5500542D7F /* Clouds@2x.plist */,
 				3243C70418BB2E5500542D7F /* Clouds@2x.png */,
 				3243C6FF18BB0A8C00542D7F /* Textures@2x.plist */,
@@ -691,6 +697,8 @@
 				3243C39618BAD42500542D7F /* Default.png in Resources */,
 				3243C38D18BAD42500542D7F /* Icon-Small-50.png in Resources */,
 				3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */,
+				3243C70C18BB448700542D7F /* HUD.plist in Resources */,
+				3243C70D18BB448700542D7F /* HUD.png in Resources */,
 				3243C70518BB2E5500542D7F /* Clouds@2x.plist in Resources */,
 				3243C6F118BAFA9B00542D7F /* Background@2x.png in Resources */,
 				3243C38C18BAD42500542D7F /* Icon-72.png in Resources */,

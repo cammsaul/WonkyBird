@@ -24,7 +24,7 @@
 		}
 		self.flappingAnimation = [CCAnimation animationWithSpriteFrames:frames delay:0.04f];
 		
-		static const vector<unsigned> frameNums2 { 2, 3 };
+		static const vector<unsigned> frameNums2 { 1, 2 };
 		NSMutableArray *frames2 = [NSMutableArray arrayWithCapacity:frameNums.size()];
 		for (auto frameNum : frameNums2) {
 			[frames2 addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"Toucan_%d.png", frameNum]]];
@@ -49,12 +49,11 @@
 	switch (state) {
 		case ToucanStateIdle: {
 			NSLog(@"Toucan -> idle");
-			
+			self.displayFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Toucan_Dead.png"];
 		} break;
 		case ToucanStateDead: {
 			NSLog(@"Toucan -> dead.");
-			[self stopAllActions];
-			// TODO !
+			self.displayFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Toucan_Dead.png"];
 		} break;
 		case ToucanStateFlapping: {
 			NSLog(@"Toucan -> flapping");
@@ -64,7 +63,7 @@
 		case ToucanStateFalling: {
 			NSLog(@"Toucan -> falling");
 			[self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.fallingAnimation]]];
-			[self runAction:[CCRotateTo actionWithDuration:0.6f angle:90.0f]];
+			[self runAction:[CCRotateTo actionWithDuration:0.8f angle:45.0f]];
 		} break;
 		default: NSAssert(NO, @"Unhandled state for toucan: %d", state);
 	}

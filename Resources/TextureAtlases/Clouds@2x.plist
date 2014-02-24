@@ -40,7 +40,7 @@
             <key>size</key>
             <string>{512,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:00f805d146e926d15a54f1945f73d128:23df1d84b745ae704d5991bfa5443e4d:f3e98faa448ff6736f7d6721985e35f8$</string>
+            <string>$TexturePacker:SmartUpdate:4afda219bc44600872a0cf038e0fe202:23df1d84b745ae704d5991bfa5443e4d:f3e98faa448ff6736f7d6721985e35f8$</string>
             <key>textureFileName</key>
             <string>Clouds@2x.png</string>
         </dict>

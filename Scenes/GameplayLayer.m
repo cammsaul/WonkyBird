@@ -10,7 +10,7 @@
 #import "BasicSprite.h"
 #import "Toucan.h"
 
-static const int GroundHeight = 120;
+static const int GroundHeight = 90;
 
 @interface GameplayLayer ()
 @property (nonatomic, strong) Toucan *toucan;
@@ -65,21 +65,7 @@ static const int GroundHeight = 120;
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
 	if (self.toucan.state != ToucanStateDead) {
 		self.toucan.body->SetAwake(true);
-		// toucan force is 100  / distance from ground
-//		static const float ToucanConstForceBase = 80.0f; ///< minimum amount of force to apply to the toucan
-//		static const float ToucanVariableForceBase = 40.0f; ///< amount of extra force to apply to toucan when it is on the ground
-//		const float toucanMaxHeight = SCREEN_SIZE.height;
-//		const float toucanRange = toucanMaxHeight - GroundHeight;
-//		NSLog(@"self.toucan.position.y: %.1f", self.toucan.position.y);
-//		const float toucanYAmount = ((self.toucan.position.y / CC_CONTENT_SCALE_FACTOR()) - GroundHeight) / toucanRange; ///< 1.0 is top of screen, 0 is ground
-//		const float toucanForceMultiplier = 1.0 - toucanYAmount;
-//		if (toucanForceMultiplier > 0) {
-//			const float toucanForce = (ToucanVariableForceBase * toucanForceMultiplier) + ToucanConstForceBase;
-////			NSLog(@"toucanForceMultiplier: %.1f", toucanForceMultiplier);
-//			self.toucan.body->ApplyForceToCenter({0.0f, toucanForce}, true);
-//		}
-		self.toucan.body->ApplyForceToCenter({10.0f, 100}, true);
-		self.toucan.body->ApplyAngularImpulse(-100.0f, true);
+		self.toucan.body->ApplyForceToCenter({10.0f, 200}, true);
 	}
 	return YES;
 }
