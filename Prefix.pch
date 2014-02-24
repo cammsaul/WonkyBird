@@ -9,11 +9,28 @@
 #endif
 
 #ifdef __OBJC__
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
+	#ifdef __cplusplus
+		extern "C" {
+	#endif
+	
+	#import <UIKit/UIKit.h>
+	#import <Foundation/Foundation.h>
+	#import <cocos2d.h>
+	
+	#ifdef __cplusplus
+		}
 
-#import <cocos2d.h>
+		#include <Box2D/GLES-Render.h>
+	#endif
+#endif
+
+#ifdef __cplusplus
+	#include <functional>
+	#include <memory>
+
+	#include <Box2D/Box2D.h>
+
+	using namespace std;
+#endif
 
 #import "Constants.h"
-
-#endif

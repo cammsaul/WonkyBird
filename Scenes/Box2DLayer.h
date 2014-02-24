@@ -10,4 +10,7 @@
 
 @interface Box2DLayer : CCLayer
 
+@property (nonatomic, readonly) shared_ptr<b2World> world;
+@property (nonatomic, readonly) shared_ptr<GLESDebugDraw> debugDraw;
+
 @end
