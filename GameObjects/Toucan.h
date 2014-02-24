@@ -8,6 +8,15 @@
 
 #import "BasicSprite.h"
 
+typedef enum : unsigned {
+	ToucanStateIdle,
+	ToucanStateDead,
+	ToucanStateFalling,
+	ToucanStateFlapping,
+} ToucanState;
+
 @interface Toucan : BasicSprite
+
+@property (nonatomic) ToucanState state;
 
 @end

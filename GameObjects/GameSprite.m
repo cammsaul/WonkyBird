@@ -19,7 +19,7 @@
 	self.body = nullptr;
 	self.bodyDef = make_shared<b2BodyDef>();
 	
-	self.bodyDef->allowSleep = false; // don't fall asleep after movement has started (gravity will continue to affect body; accelerometer will move boxes)
+//	self.bodyDef->allowSleep = false; // don't fall asleep after movement has started (gravity will continue to affect body; accelerometer will move boxes)
 	self.bodyDef->type = b2_dynamicBody;
 }
 
@@ -55,6 +55,7 @@
 	self.bodyDef->position = self.positionForBox2D;
 	self.body = world->CreateBody(self.bodyDef.get());
 	self.body->SetUserData((__bridge void *)self);
+	self.body->SetActive(true);
 }
 
 - (b2Vec2)positionForBox2D {
@@ -65,6 +66,14 @@
 - (void)setPositionForBox2D:(b2Vec2)positionForBox2D {
 	self.position = CC_POINT_POINTS_TO_PIXELS(ccp(positionForBox2D.x * kPTMRatio, positionForBox2D.y * kPTMRatio));
 }
+
+//- (CGPoint)positionInPoints {
+//	return CC_POINT_PIXELS_TO_POINTS(self.position);
+//}
+//
+//- (void)setPositionInPoints:(CGPoint)positionInPoints {
+//	self.position = CC_POINT_POINTS_TO_PIXELS(positionInPoints);
+//}
 
 - (CGSize)contentSizeInPoints {
 	return CC_SIZE_PIXELS_TO_POINTS(self.contentSize);

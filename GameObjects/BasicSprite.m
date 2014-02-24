@@ -20,7 +20,6 @@
 
 - (void)addToWorld:(shared_ptr<b2World>)world {
 	[super addToWorld:world];
-	
 	self.body->CreateFixture(self.fixtureDef.get());
 }
 
