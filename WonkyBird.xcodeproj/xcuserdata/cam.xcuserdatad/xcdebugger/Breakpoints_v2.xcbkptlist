@@ -35,30 +35,58 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scenes/StaticBackgroundLayer.m"
-            timestampString = "414907203.585764"
+            filePath = "GameObjects/BasicSprite.m"
+            timestampString = "414908809.120239"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "-init"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "-addToWorld:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Scenes/StaticBackgroundLayer.m"
-            timestampString = "414907268.288151"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "-init"
-            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BasicSprite addToWorld:]"
+                  moduleName = "WonkyBird"
+                  urlString = "file:///Users/cam/WonkyBird/GameObjects/BasicSprite.m"
+                  timestampString = "414908639.680878"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BasicSprite addToWorld:]"
+                  moduleName = "WonkyBird"
+                  urlString = "file:///Users/cam/WonkyBird/GameObjects/BasicSprite.m"
+                  timestampString = "414908639.681151"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BasicSprite addToWorld:]"
+                  moduleName = "WonkyBird"
+                  urlString = "file:///Users/cam/WonkyBird/GameObjects/BasicSprite.m"
+                  timestampString = "414908639.681347"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "379">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

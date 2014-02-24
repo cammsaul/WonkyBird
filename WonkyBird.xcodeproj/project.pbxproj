@@ -86,7 +86,7 @@
 		3243C3B418BADF0C00542D7F /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3B318BADF0C00542D7F /* HUDLayer.m */; };
 		3243C3B718BADFE200542D7F /* Box2DLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3B618BADFE200542D7F /* Box2DLayer.m */; };
 		3243C57318BAE69700542D7F /* libCocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3243C3F118BAE60900542D7F /* libCocos2d.a */; };
-		3243C6E718BAF16400542D7F /* SquareSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C6E618BAF16400542D7F /* SquareSprite.m */; };
+		3243C6E718BAF16400542D7F /* BasicSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C6E618BAF16400542D7F /* BasicSprite.m */; };
 		3243C6F118BAFA9B00542D7F /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C6F018BAFA9B00542D7F /* Background@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -248,8 +248,8 @@
 		3243C3B618BADFE200542D7F /* Box2DLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Box2DLayer.m; sourceTree = "<group>"; };
 		3243C3B818BAE00100542D7F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		3243C3EB18BAE60900542D7F /* Cocos2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cocos2d.xcodeproj; path = Cocos2d/Cocos2d.xcodeproj; sourceTree = SOURCE_ROOT; };
-		3243C6E518BAF16400542D7F /* SquareSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareSprite.h; sourceTree = "<group>"; };
-		3243C6E618BAF16400542D7F /* SquareSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareSprite.m; sourceTree = "<group>"; };
+		3243C6E518BAF16400542D7F /* BasicSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicSprite.h; sourceTree = "<group>"; };
+		3243C6E618BAF16400542D7F /* BasicSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicSprite.m; sourceTree = "<group>"; };
 		3243C6F018BAFA9B00542D7F /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -544,8 +544,8 @@
 			children = (
 				3243C39918BAD49900542D7F /* GameSprite.h */,
 				3243C39A18BAD49900542D7F /* GameSprite.m */,
-				3243C6E518BAF16400542D7F /* SquareSprite.h */,
-				3243C6E618BAF16400542D7F /* SquareSprite.m */,
+				3243C6E518BAF16400542D7F /* BasicSprite.h */,
+				3243C6E618BAF16400542D7F /* BasicSprite.m */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -704,7 +704,7 @@
 				3243C3AE18BADEEA00542D7F /* ScrollingBackgroundLayer.m in Sources */,
 				3243C37C18BAD3D500542D7F /* main.m in Sources */,
 				3243C39B18BAD49900542D7F /* GameSprite.m in Sources */,
-				3243C6E718BAF16400542D7F /* SquareSprite.m in Sources */,
+				3243C6E718BAF16400542D7F /* BasicSprite.m in Sources */,
 				3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */,
 				3243C2EF18BAD3B600542D7F /* b2World.cpp in Sources */,
 				3243C2DC18BAD3B600542D7F /* b2CollidePolygon.cpp in Sources */,

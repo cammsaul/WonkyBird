@@ -21,4 +21,9 @@
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects; ///< Default behavior does nothing
 
+// **** "PROTECTED" ****//
+
+// Called during init/initWithFile/initWithFramename/etc methods. Subclasses can implement this method (and call [super setup]) to do additional customization
+- (void)setup;
+
 @end
