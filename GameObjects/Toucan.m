@@ -73,9 +73,9 @@
 	[super updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];
 	
 //	NSLog(@"y: %.3f", self.body->GetLinearVelocity().y);
-	if (!self.body->IsAwake() || (self.body->GetLinearVelocity().y == 0 && self.state == ToucanStateFalling)) {
+	if (!self.item.body->IsAwake() || (self.item.body->GetLinearVelocity().y == 0 && self.state == ToucanStateFalling)) {
 		self.state = ToucanStateIdle;
-	} else if (self.body->GetLinearVelocity().y <= 0) {
+	} else if (self.item.body->GetLinearVelocity().y <= 0) {
 		self.state = ToucanStateFalling;
 	} else {
 		self.state = ToucanStateFlapping;

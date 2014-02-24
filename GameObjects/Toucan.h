@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-#import "BasicSprite.h"
+#import "GameSprite.h"
 
 typedef enum : unsigned {
 	ToucanStateIdle,
@@ -15,7 +15,7 @@ typedef enum : unsigned {
 	ToucanStateFlapping,
 } ToucanState;
 
-@interface Toucan : BasicSprite
+@interface Toucan : GameSprite
 
 @property (nonatomic) ToucanState state;
 

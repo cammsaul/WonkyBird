@@ -35,12 +35,12 @@ using namespace std;
 }
 
 - (void)draw {
-//	ccGLEnableVertexAttribs(kCCVertexAttribFlag_Position);
-//	kmGLPushMatrix();
-//	
-//	self.world->DrawDebugData();
-//	
-//	kmGLPopMatrix();
+	ccGLEnableVertexAttribs(kCCVertexAttribFlag_Position);
+	kmGLPushMatrix();
+	
+	self.world->DrawDebugData();
+	
+	kmGLPopMatrix();
 }
 
 - (void)update:(ccTime)delta {
@@ -50,8 +50,8 @@ using namespace std;
 	
 	b2Body *body = self.world->GetBodyList();
 	while (body) {
-		GameSprite *gameSprite = (__bridge GameSprite *)body->GetUserData();
-		gameSprite.positionForBox2D = body->GetPosition();
+		id<Box2DItemOwner> gameSprite = (__bridge id<Box2DItemOwner>)body->GetUserData();
+		gameSprite.item.positionForBox2D = body->GetPosition();
 		body = body->GetNext();
 	}
 }

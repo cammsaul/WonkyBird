@@ -7,23 +7,12 @@
 //
 
 #import "CCSprite.h"
+#import "Box2DItem.h"
 
-@interface GameSprite : CCSprite
+@interface GameSprite : CCSprite <Box2DItemOwner>
 
-@property (nonatomic, readonly) b2Body *body;					///< nullptr until [GameSprite addToWorld:] is called
-@property (nonatomic, readonly) shared_ptr<b2BodyDef> bodyDef;
-
-@property (nonatomic) b2Vec2 positionForBox2D;					///< magic getter/setter; converts self.position <-> Box2D
-
-@property (nonatomic, readonly) b2Vec2 contentSizeForBox2D;		///< magic getter converts self.contentSize -> Box2D
-
-- (void)addToWorld:(shared_ptr<b2World>)world;					/// Subclasses should override this to add fixtures to body as needed
+@property (nonatomic, readonly) Box2DItem *item;
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects; ///< Default behavior does nothing
-
-// **** "PROTECTED" ****//
-
-// Called during init/initWithFile/initWithFramename/etc methods. Subclasses can implement this method (and call [super setup]) to do additional customization
-- (void)setup;
 
 @end

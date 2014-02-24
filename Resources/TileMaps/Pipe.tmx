@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="2" height="10" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Pipe" tilewidth="64" tileheight="64">
+  <image source="Pipe.png" width="128" height="192"/>
+ </tileset>
+ <layer name="Pipe_3" width="2" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAPMAIxExAzAzELELMCMRsQAwABMAAW
+  </data>
+ </layer>
+ <layer name="Pipe_2" width="2" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAMMAIxExCzAjEbEAMAALgADw==
+  </data>
+ </layer>
+ <layer name="Pipe_1" width="2" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAOYARiJiAGAABgAAQ=
+  </data>
+ </layer>
+ <layer name="Pipe_4" width="2" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCANMAIxExAzAzELEs0KxGxADAAB4AAd
+  </data>
+ </layer>
+ <layer name="Pipe_5" width="2" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAOMAIxExAzAzELFpoViNmAGAACyAAk
+  </data>
+ </layer>
+ <layer name="Pipe_6" width="2" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAPGIGYCYiZgZgFD80KxGxADAAD6AAr
+  </data>
+ </layer>
+</map>
