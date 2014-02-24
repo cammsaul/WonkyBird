@@ -6,9 +6,6 @@
 //  Copyright LuckyBird, Inc. 2014. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "cocos2d.h"
-
 // Added only for iOS 6 support
 @interface MyNavigationController : UINavigationController <CCDirectorDelegate>
 @end
