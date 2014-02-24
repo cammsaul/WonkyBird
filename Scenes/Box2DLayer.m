@@ -35,12 +35,12 @@ using namespace std;
 }
 
 - (void)draw {
-	ccGLEnableVertexAttribs(kCCVertexAttribFlag_Position);
-	kmGLPushMatrix();
-	
-	self.world->DrawDebugData();
-	
-	kmGLPopMatrix();
+//	ccGLEnableVertexAttribs(kCCVertexAttribFlag_Position);
+//	kmGLPushMatrix();
+//	
+//	self.world->DrawDebugData();
+//	
+//	kmGLPopMatrix();
 }
 
 - (void)update:(ccTime)delta {

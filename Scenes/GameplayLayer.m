@@ -46,6 +46,7 @@ static const int GroundHeight = 90;
 			wall.position = CGPointMake(x, y);
 			wall.contentSize = CGSizeMake(width, height);
 			wall.item.fixtureDef->density = 0.0f;
+			wall.item.fixtureDef->restitution = 0.4f;
 			[wall.item addToWorld:self.world];
 			[self.walls addObject:wall];
 		};
@@ -98,7 +99,17 @@ static const int GroundHeight = 90;
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
 	if (self.toucan.state != ToucanStateDead) {
 		self.toucan.item.body->SetAwake(true);
-		self.toucan.item.body->ApplyForceToCenter({SCREEN_SIZE.width/2 - self.toucan.position.x, 200}, true); // try to fly toucan towards center
+		
+		static const int XPositionValue = 0.5f;
+		const float xPositionAmount = (SCREEN_SIZE.width/2 - self.toucan.position.x) * XPositionValue;
+		
+		static const int XTouchValue = 0.4f;
+		const float xTouchAmount = ([touch locationInView:[[CCDirector sharedDirector] view]].x - SCREEN_SIZE.width/2) * XTouchValue;
+		
+		const float yVelocity = self.toucan.item.body->GetLinearVelocity().y;
+		const float YVelocityBase = 150 + rand() % 100;
+		const float yAmount = yVelocity > 1 ? (YVelocityBase / yVelocity) : YVelocityBase;
+		self.toucan.item.body->ApplyForceToCenter({xPositionAmount + xTouchAmount, yAmount}, true); // try to fly toucan towards center
 	}
 	return YES;
 }

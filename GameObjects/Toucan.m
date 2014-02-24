@@ -48,22 +48,22 @@
 	_state = state;
 	switch (state) {
 		case ToucanStateIdle: {
-			NSLog(@"Toucan -> idle");
+//			NSLog(@"Toucan -> idle");
 			self.displayFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Toucan_Dead.png"];
 		} break;
 		case ToucanStateDead: {
-			NSLog(@"Toucan -> dead.");
+//			NSLog(@"Toucan -> dead.");
 			self.displayFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Toucan_Dead.png"];
 		} break;
 		case ToucanStateFlapping: {
-			NSLog(@"Toucan -> flapping");
+//			NSLog(@"Toucan -> flapping");
 			[self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.flappingAnimation]]];
 			[self runAction:[CCRotateTo actionWithDuration:0.1f angle:-15.0f]];
 		} break;
 		case ToucanStateFalling: {
-			NSLog(@"Toucan -> falling");
+//			NSLog(@"Toucan -> falling");
 			[self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.fallingAnimation]]];
-			[self runAction:[CCRotateTo actionWithDuration:0.8f angle:45.0f]];
+			[self runAction:[CCRotateTo actionWithDuration:1.1f angle:45.0f]];
 		} break;
 		default: NSAssert(NO, @"Unhandled state for toucan: %d", state);
 	}
