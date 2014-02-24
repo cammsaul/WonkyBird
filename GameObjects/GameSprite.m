@@ -15,10 +15,16 @@
 
 @implementation GameSprite
 
++ (instancetype)alloc {
+	GameSprite *item = nil;
+	if ((item = [super alloc])) {
+		item.body = nullptr;
+		item.bodyDef = make_shared<b2BodyDef>();
+	}
+	return item;
+}
+
 - (void)setup {
-	self.body = nullptr;
-	self.bodyDef = make_shared<b2BodyDef>();
-	
 //	self.bodyDef->allowSleep = false; // don't fall asleep after movement has started (gravity will continue to affect body; accelerometer will move boxes)
 	self.bodyDef->type = b2_dynamicBody;
 }
@@ -59,33 +65,15 @@
 }
 
 - (b2Vec2)positionForBox2D {
-	auto converted = CC_POINT_PIXELS_TO_POINTS(self.position);
-	return {converted.x / kPTMRatio, converted.y / kPTMRatio};
+	return {self.position.x / kPTMRatio, self.position.y / kPTMRatio};
 }
 
 - (void)setPositionForBox2D:(b2Vec2)positionForBox2D {
-	self.position = CC_POINT_POINTS_TO_PIXELS(ccp(positionForBox2D.x * kPTMRatio, positionForBox2D.y * kPTMRatio));
-}
-
-//- (CGPoint)positionInPoints {
-//	return CC_POINT_PIXELS_TO_POINTS(self.position);
-//}
-//
-//- (void)setPositionInPoints:(CGPoint)positionInPoints {
-//	self.position = CC_POINT_POINTS_TO_PIXELS(positionInPoints);
-//}
-
-- (CGSize)contentSizeInPoints {
-	return CC_SIZE_PIXELS_TO_POINTS(self.contentSize);
-}
-
-- (void)setContentSizeInPoints:(CGSize)contentSizeInPoints {
-	self.contentSize = CC_SIZE_POINTS_TO_PIXELS(contentSizeInPoints);
+	self.position = ccp(positionForBox2D.x * kPTMRatio, positionForBox2D.y * kPTMRatio);
 }
 
 - (b2Vec2)contentSizeForBox2D {
-	auto convertedSize = self.contentSizeInPoints;
-	return { convertedSize.width / kPTMRatio, convertedSize.height / kPTMRatio };
+	return { self.contentSize.width / kPTMRatio, self.contentSize.height / kPTMRatio };
 }
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {}

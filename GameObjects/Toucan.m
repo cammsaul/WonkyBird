@@ -34,10 +34,6 @@
 	return self;
 }
 
-- (void)addToWorld:(shared_ptr<b2World>)world {
-	[super addToWorld:world];
-}
-
 - (void)setState:(ToucanState)state {
 	const ToucanState lastState = _state;
 	if (lastState == ToucanStateDead) {

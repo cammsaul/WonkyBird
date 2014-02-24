@@ -10,26 +10,24 @@
 
 @implementation BasicSprite
 
-- (void)setup {
-	[super setup];
-	self.shape = make_shared<b2PolygonShape>();
-	[self updateShape];
-	self.fixtureDef = make_shared<b2FixtureDef>();
-	self.fixtureDef->shape = self.shape.get();
++ (instancetype)alloc {
+	BasicSprite *item = nil;
+	if ((item = [super alloc])) {
+		item.shape = make_shared<b2PolygonShape>();
+		item.fixtureDef = make_shared<b2FixtureDef>();
+		item.fixtureDef->shape = item.shape.get();
+	}
+	return item;
 }
 
 - (void)addToWorld:(shared_ptr<b2World>)world {
+	[self updateShape];
 	[super addToWorld:world];
 	self.body->CreateFixture(self.fixtureDef.get());
 }
 
 - (void)updateShape {	
-	if (self.shape) self.shape->SetAsBox(self.contentSizeForBox2D.x / 2, self.contentSizeForBox2D.y / 2, self.positionForBox2D, 0);
-}
-
-- (void)setContentSize:(CGSize)contentSize {
-	[super setContentSize:contentSize];
-	[self updateShape];
+	self.shape->SetAsBox(self.contentSizeForBox2D.x / 2, self.contentSizeForBox2D.y / 2);
 }
 
 @end

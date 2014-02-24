@@ -18,14 +18,14 @@ using namespace std;
 
 @implementation Box2DLayer
 
-- (instancetype)init {
-	if (self = [super init]) {
+- (instancetype)initWithTextureAtlasNamed:(NSString *)textureAtlasName {
+	if (self = [super initWithTextureAtlasNamed:textureAtlasName]) {
 		// create world
 		b2Vec2 gravity { 0.0f, -10.0f };
 		self.world = make_shared<b2World>(gravity);
 		
 		// create debug draw
-		self.debugDraw = make_shared<GLESDebugDraw>(kPTMRatio * CC_CONTENT_SCALE_FACTOR());
+		self.debugDraw = make_shared<GLESDebugDraw>(kPTMRatio);
 		self.world->SetDebugDraw(self.debugDraw.get());
 		self.debugDraw->SetFlags(b2Draw::e_shapeBit);
 	

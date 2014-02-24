@@ -91,6 +91,9 @@
 		3243C6F718BB03A000542D7F /* Toucan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C6F618BB03A000542D7F /* Toucan.m */; };
 		3243C70118BB0A8C00542D7F /* Textures@2x.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C6FF18BB0A8C00542D7F /* Textures@2x.plist */; };
 		3243C70218BB0A8C00542D7F /* Textures@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70018BB0A8C00542D7F /* Textures@2x.png */; };
+		3243C70518BB2E5500542D7F /* Clouds@2x.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70318BB2E5500542D7F /* Clouds@2x.plist */; };
+		3243C70618BB2E5500542D7F /* Clouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70418BB2E5500542D7F /* Clouds@2x.png */; };
+		3243C70918BB2E7600542D7F /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C70818BB2E7600542D7F /* GameLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +261,10 @@
 		3243C6F618BB03A000542D7F /* Toucan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toucan.m; sourceTree = "<group>"; };
 		3243C6FF18BB0A8C00542D7F /* Textures@2x.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Textures@2x.plist"; sourceTree = "<group>"; };
 		3243C70018BB0A8C00542D7F /* Textures@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Textures@2x.png"; sourceTree = "<group>"; };
+		3243C70318BB2E5500542D7F /* Clouds@2x.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Clouds@2x.plist"; sourceTree = "<group>"; };
+		3243C70418BB2E5500542D7F /* Clouds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clouds@2x.png"; sourceTree = "<group>"; };
+		3243C70718BB2E7600542D7F /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
+		3243C70818BB2E7600542D7F /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -563,6 +570,8 @@
 		3243C3A218BAD87500542D7F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				3243C70718BB2E7600542D7F /* GameLayer.h */,
+				3243C70818BB2E7600542D7F /* GameLayer.m */,
 				3243C3B518BADFE200542D7F /* Box2DLayer.h */,
 				3243C3B618BADFE200542D7F /* Box2DLayer.m */,
 				3243C3A318BAD87500542D7F /* MainScene.h */,
@@ -598,6 +607,8 @@
 		3243C6F818BB04F000542D7F /* TextureAtlases */ = {
 			isa = PBXGroup;
 			children = (
+				3243C70318BB2E5500542D7F /* Clouds@2x.plist */,
+				3243C70418BB2E5500542D7F /* Clouds@2x.png */,
 				3243C6FF18BB0A8C00542D7F /* Textures@2x.plist */,
 				3243C70018BB0A8C00542D7F /* Textures@2x.png */,
 			);
@@ -676,9 +687,11 @@
 				3243C38F18BAD42500542D7F /* Icon-Small@2x.png in Resources */,
 				3243C70218BB0A8C00542D7F /* Textures@2x.png in Resources */,
 				3243C39518BAD42500542D7F /* Default-Landscape~ipad.png in Resources */,
+				3243C70618BB2E5500542D7F /* Clouds@2x.png in Resources */,
 				3243C39618BAD42500542D7F /* Default.png in Resources */,
 				3243C38D18BAD42500542D7F /* Icon-Small-50.png in Resources */,
 				3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */,
+				3243C70518BB2E5500542D7F /* Clouds@2x.plist in Resources */,
 				3243C6F118BAFA9B00542D7F /* Background@2x.png in Resources */,
 				3243C38C18BAD42500542D7F /* Icon-72.png in Resources */,
 				3243C39718BAD42500542D7F /* Default@2x.png in Resources */,
@@ -745,6 +758,7 @@
 				3243C30418BAD3B600542D7F /* b2WeldJoint.cpp in Sources */,
 				3243C30018BAD3B600542D7F /* b2PrismaticJoint.cpp in Sources */,
 				3243C2FC18BAD3B600542D7F /* b2GearJoint.cpp in Sources */,
+				3243C70918BB2E7600542D7F /* GameLayer.m in Sources */,
 				3243C2FD18BAD3B600542D7F /* b2Joint.cpp in Sources */,
 				3243C2E818BAD3B600542D7F /* b2Settings.cpp in Sources */,
 				3243C2F918BAD3B600542D7F /* b2PolygonContact.cpp in Sources */,

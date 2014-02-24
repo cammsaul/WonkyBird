@@ -16,35 +16,30 @@ static const int GroundHeight = 60;
 @property (nonatomic, strong) Toucan *toucan;
 @property (nonatomic, strong) BasicSprite *ground;
 @property (nonatomic, strong) BasicSprite *roof;
-@property (nonatomic, strong) CCSpriteBatchNode *sceneSpriteBatchNode;
 @end
 
 @implementation GameplayLayer
 
 - (instancetype)init {
-	if (self = [super init]) {
-		self.sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"Textures.png"];
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Textures.plist" texture:self.sceneSpriteBatchNode.texture];
-		
+	if (self = [super initWithTextureAtlasNamed:@"Textures"]) {
 		self.toucan = [[Toucan alloc] init];
 		self.toucan.position = ccp(SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f);
-		[self addChild:self.toucan];
-		
+		[self.sceneSpriteBatchNode addChild:self.toucan];
 		[self.toucan addToWorld:self.world];
 		
 		// add the ground
 		self.ground = [[BasicSprite alloc] init];
 		self.ground.bodyDef->type = b2_staticBody;
-		self.ground.position = CGPointMake(160, GroundHeight / 2);
-		self.ground.contentSizeInPoints = CGSizeMake(320, GroundHeight);
+		self.ground.position = CGPointMake(SCREEN_SIZE.width / 2.0f, GroundHeight / 2);
+		self.ground.contentSize = CGSizeMake(SCREEN_SIZE.width, GroundHeight);
 		self.ground.fixtureDef->density = 0.0f;
 		[self.ground addToWorld:self.world];
 		
 		// add the "roof"
 		self.roof = [[BasicSprite alloc] init];
 		self.roof.bodyDef->type = b2_staticBody;
-		self.roof.position = CGPointMake(160, (SCREEN_SIZE.height / 2) - 2);
-		self.roof.contentSizeInPoints = CGSizeMake(320, 4);
+		self.roof.position = CGPointMake(160, SCREEN_SIZE.height - 2);
+		self.roof.contentSize = CGSizeMake(320, 4);
 		self.roof.fixtureDef->density = 0.0f;
 		self.roof.fixtureDef->restitution = 0;
 		[self.roof addToWorld:self.world];
@@ -61,7 +56,7 @@ static const int GroundHeight = 60;
 - (void)update:(ccTime)delta {
 	[super update:delta];
 	
-	CCArray *gameObjects = self.children; // TODO - this should be iterated in a thread safe manner ?
+	CCArray *gameObjects = self.sceneSpriteBatchNode.children; // TODO - this should be iterated in a thread safe manner ?
 	for (GameSprite *sprite in gameObjects) {
 		[sprite updateStateWithDeltaTime:delta andListOfGameObjects:gameObjects];
 	}

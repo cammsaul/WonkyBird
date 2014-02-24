@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-#import "CCLayer.h"
+#import "GameLayer.h"
 
-@interface Box2DLayer : CCLayer
+@interface Box2DLayer : GameLayer
 
 @property (nonatomic, readonly) shared_ptr<b2World> world;
 @property (nonatomic, readonly) shared_ptr<GLESDebugDraw> debugDraw;

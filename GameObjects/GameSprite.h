@@ -15,9 +15,6 @@
 
 @property (nonatomic) b2Vec2 positionForBox2D;					///< magic getter/setter; converts self.position <-> Box2D
 
-//@property (nonatomic) CGPoint positionInPoints;					///< self.position converted to points
-@property (nonatomic) CGSize contentSizeInPoints;				///< self.contentSize converted from pixels to points.
-
 @property (nonatomic, readonly) b2Vec2 contentSizeForBox2D;		///< magic getter converts self.contentSize -> Box2D
 
 - (void)addToWorld:(shared_ptr<b2World>)world;					/// Subclasses should override this to add fixtures to body as needed

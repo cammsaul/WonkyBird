@@ -8,6 +8,9 @@
 
 #import "ScrollingBackgroundLayer.h"
 
+@interface ScrollingBackgroundLayer ()
+@end
+
 @implementation ScrollingBackgroundLayer
 
 @end

@@ -169,6 +169,8 @@
             <filename>../../../Downloads/wonky pngs/Toucan_1.png</filename>
             <filename>../../../Downloads/wonky pngs/Toucan_2.png</filename>
             <filename>../../../Downloads/wonky pngs/Toucan_3.png</filename>
+            <filename>../../../Downloads/wonky pngs/Cloud_1@2x.png</filename>
+            <filename>../../../Downloads/wonky pngs/Cloud_2@2x.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
