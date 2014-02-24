@@ -194,6 +194,10 @@
 		3243C39B18BAD49900542D7F /* GameSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C39A18BAD49900542D7F /* GameSprite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3243C3A718BAD87500542D7F /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3A418BAD87500542D7F /* MainScene.m */; };
 		3243C3A818BAD87500542D7F /* StaticBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3A618BAD87500542D7F /* StaticBackgroundLayer.m */; };
+		3243C3AE18BADEEA00542D7F /* ScrollingBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3AD18BADEEA00542D7F /* ScrollingBackgroundLayer.m */; };
+		3243C3B118BADEFB00542D7F /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3B018BADEFB00542D7F /* GameplayLayer.m */; };
+		3243C3B418BADF0C00542D7F /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3B318BADF0C00542D7F /* HUDLayer.m */; };
+		3243C3B718BADFE200542D7F /* Box2DLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3B618BADFE200542D7F /* Box2DLayer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -576,6 +580,15 @@
 		3243C3A418BAD87500542D7F /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
 		3243C3A518BAD87500542D7F /* StaticBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticBackgroundLayer.h; sourceTree = "<group>"; };
 		3243C3A618BAD87500542D7F /* StaticBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticBackgroundLayer.m; sourceTree = "<group>"; };
+		3243C3AC18BADEEA00542D7F /* ScrollingBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollingBackgroundLayer.h; sourceTree = "<group>"; };
+		3243C3AD18BADEEA00542D7F /* ScrollingBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollingBackgroundLayer.m; sourceTree = "<group>"; };
+		3243C3AF18BADEFB00542D7F /* GameplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayLayer.h; sourceTree = "<group>"; };
+		3243C3B018BADEFB00542D7F /* GameplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayLayer.m; sourceTree = "<group>"; };
+		3243C3B218BADF0C00542D7F /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
+		3243C3B318BADF0C00542D7F /* HUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDLayer.m; sourceTree = "<group>"; };
+		3243C3B518BADFE200542D7F /* Box2DLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2DLayer.h; sourceTree = "<group>"; };
+		3243C3B618BADFE200542D7F /* Box2DLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box2DLayer.mm; sourceTree = "<group>"; };
+		3243C3B818BAE00100542D7F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -653,6 +666,7 @@
 			children = (
 				3243C15F18BAD22C00542D7F /* AppDelegate.h */,
 				3243C16018BAD22C00542D7F /* AppDelegate.m */,
+				3243C3B818BAE00100542D7F /* Constants.h */,
 			);
 			path = Singletons;
 			sourceTree = SOURCE_ROOT;
@@ -1221,6 +1235,14 @@
 				3243C3A418BAD87500542D7F /* MainScene.m */,
 				3243C3A518BAD87500542D7F /* StaticBackgroundLayer.h */,
 				3243C3A618BAD87500542D7F /* StaticBackgroundLayer.m */,
+				3243C3AC18BADEEA00542D7F /* ScrollingBackgroundLayer.h */,
+				3243C3AD18BADEEA00542D7F /* ScrollingBackgroundLayer.m */,
+				3243C3AF18BADEFB00542D7F /* GameplayLayer.h */,
+				3243C3B018BADEFB00542D7F /* GameplayLayer.m */,
+				3243C3B218BADF0C00542D7F /* HUDLayer.h */,
+				3243C3B318BADF0C00542D7F /* HUDLayer.m */,
+				3243C3B518BADFE200542D7F /* Box2DLayer.h */,
+				3243C3B618BADFE200542D7F /* Box2DLayer.mm */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -1305,6 +1327,7 @@
 				3243C33818BAD3B600542D7F /* CCScene.m in Sources */,
 				3243C35C18BAD3B600542D7F /* CCVertex.m in Sources */,
 				3243C32918BAD3B600542D7F /* CCLayer.m in Sources */,
+				3243C3B418BADF0C00542D7F /* HUDLayer.m in Sources */,
 				3243C30918BAD3B600542D7F /* CCAction.m in Sources */,
 				3243C32518BAD3B600542D7F /* CCGrid.m in Sources */,
 				3243C31F18BAD3B600542D7F /* CCDrawNode.m in Sources */,
@@ -1326,6 +1349,7 @@
 				3243C31418BAD3B600542D7F /* CCActionTiledGrid.m in Sources */,
 				3243C34818BAD3B600542D7F /* CCTMXXMLParser.m in Sources */,
 				3243C2F518BAD3B600542D7F /* b2ContactSolver.cpp in Sources */,
+				3243C3B718BADFE200542D7F /* Box2DLayer.mm in Sources */,
 				3243C2DA18BAD3B600542D7F /* b2CollideCircle.cpp in Sources */,
 				3243C37218BAD3B600542D7F /* quaternion.c in Sources */,
 				3243C33218BAD3B600542D7F /* CCParticleSystem.m in Sources */,
@@ -1371,6 +1395,7 @@
 				3243C37318BAD3B600542D7F /* ray2.c in Sources */,
 				3243C32B18BAD3B600542D7F /* CCMenuItem.m in Sources */,
 				3243C3A818BAD87500542D7F /* StaticBackgroundLayer.m in Sources */,
+				3243C3AE18BADEEA00542D7F /* ScrollingBackgroundLayer.m in Sources */,
 				3243C36118BAD3B600542D7F /* ZipUtils.m in Sources */,
 				3243C33E18BAD3B600542D7F /* CCSpriteFrame.m in Sources */,
 				3243C31A18BAD3B600542D7F /* CCClippingNode.m in Sources */,
@@ -1402,6 +1427,7 @@
 				3243C2FB18BAD3B600542D7F /* b2FrictionJoint.cpp in Sources */,
 				3243C30818BAD3B600542D7F /* SimpleQueryCallback.cpp in Sources */,
 				3243C2F118BAD3B600542D7F /* b2ChainAndCircleContact.cpp in Sources */,
+				3243C3B118BADEFB00542D7F /* GameplayLayer.m in Sources */,
 				3243C31D18BAD3B600542D7F /* CCDirector.m in Sources */,
 				3243C34C18BAD3B600542D7F /* cocos2d.m in Sources */,
 				3243C36618BAD3B600542D7F /* CocosDenshion.m in Sources */,
@@ -1477,6 +1503,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1498,6 +1525,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
+				WARNING_CFLAGS = "-Wno-lambda-extensions";
 			};
 			name = Debug;
 		};
@@ -1509,6 +1537,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
@@ -1528,6 +1557,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
+				WARNING_CFLAGS = "-Wno-lambda-extensions";
 			};
 			name = Release;
 		};
