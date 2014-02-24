@@ -18,8 +18,6 @@
 		320C148318BAD06C000AE6A1 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C148218BAD06C000AE6A1 /* CoreText.framework */; };
 		320C148518BAD06C000AE6A1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C148418BAD06C000AE6A1 /* GameKit.framework */; };
 		3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16018BAD22C00542D7F /* AppDelegate.m */; };
-		3243C16718BAD23300542D7F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16418BAD23300542D7F /* HelloWorldLayer.m */; };
-		3243C16818BAD23300542D7F /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16618BAD23300542D7F /* IntroLayer.m */; };
 		3243C2D918BAD3B600542D7F /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16D18BAD3B500542D7F /* b2BroadPhase.cpp */; };
 		3243C2DA18BAD3B600542D7F /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16F18BAD3B500542D7F /* b2CollideCircle.cpp */; };
 		3243C2DB18BAD3B600542D7F /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3243C17018BAD3B500542D7F /* b2CollideEdge.cpp */; };
@@ -188,13 +186,14 @@
 		3243C38F18BAD42500542D7F /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38218BAD42500542D7F /* Icon-Small@2x.png */; };
 		3243C39018BAD42500542D7F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38318BAD42500542D7F /* Icon.png */; };
 		3243C39118BAD42500542D7F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38418BAD42500542D7F /* Icon@2x.png */; };
-		3243C39218BAD42500542D7F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38518BAD42500542D7F /* Info.plist */; };
 		3243C39318BAD42500542D7F /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38618BAD42500542D7F /* iTunesArtwork */; };
 		3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38818BAD42500542D7F /* Default-568h@2x.png */; };
 		3243C39518BAD42500542D7F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38918BAD42500542D7F /* Default-Landscape~ipad.png */; };
 		3243C39618BAD42500542D7F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38A18BAD42500542D7F /* Default.png */; };
 		3243C39718BAD42500542D7F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38B18BAD42500542D7F /* Default@2x.png */; };
 		3243C39B18BAD49900542D7F /* GameSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C39A18BAD49900542D7F /* GameSprite.m */; };
+		3243C3A718BAD87500542D7F /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3A418BAD87500542D7F /* MainScene.m */; };
+		3243C3A818BAD87500542D7F /* StaticBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3A618BAD87500542D7F /* StaticBackgroundLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -212,10 +211,6 @@
 		320C161418BAD06E000AE6A1 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		3243C15F18BAD22C00542D7F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3243C16018BAD22C00542D7F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3243C16318BAD23300542D7F /* HelloWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		3243C16418BAD23300542D7F /* HelloWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
-		3243C16518BAD23300542D7F /* IntroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
-		3243C16618BAD23300542D7F /* IntroLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		3243C16B18BAD3B500542D7F /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		3243C16D18BAD3B500542D7F /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2BroadPhase.cpp; sourceTree = "<group>"; };
 		3243C16E18BAD3B500542D7F /* b2BroadPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2BroadPhase.h; sourceTree = "<group>"; };
@@ -577,6 +572,10 @@
 		3243C38B18BAD42500542D7F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3243C39918BAD49900542D7F /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSprite.h; sourceTree = "<group>"; };
 		3243C39A18BAD49900542D7F /* GameSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSprite.m; sourceTree = "<group>"; };
+		3243C3A318BAD87500542D7F /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
+		3243C3A418BAD87500542D7F /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
+		3243C3A518BAD87500542D7F /* StaticBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticBackgroundLayer.h; sourceTree = "<group>"; };
+		3243C3A618BAD87500542D7F /* StaticBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticBackgroundLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -605,7 +604,7 @@
 			children = (
 				3243C15E18BAD22C00542D7F /* Singletons */,
 				3243C39818BAD47E00542D7F /* GameObjects */,
-				3243C16218BAD23300542D7F /* Scenes */,
+				3243C3A218BAD87500542D7F /* Scenes */,
 				320C161318BAD06E000AE6A1 /* Supporting Files */,
 				3243C37D18BAD42500542D7F /* Resources */,
 				3243C16918BAD3B500542D7F /* libs */,
@@ -656,17 +655,6 @@
 				3243C16018BAD22C00542D7F /* AppDelegate.m */,
 			);
 			path = Singletons;
-			sourceTree = SOURCE_ROOT;
-		};
-		3243C16218BAD23300542D7F /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				3243C16518BAD23300542D7F /* IntroLayer.h */,
-				3243C16618BAD23300542D7F /* IntroLayer.m */,
-				3243C16318BAD23300542D7F /* HelloWorldLayer.h */,
-				3243C16418BAD23300542D7F /* HelloWorldLayer.m */,
-			);
-			path = Scenes;
 			sourceTree = SOURCE_ROOT;
 		};
 		3243C16918BAD3B500542D7F /* libs */ = {
@@ -1226,6 +1214,17 @@
 			path = GameObjects;
 			sourceTree = "<group>";
 		};
+		3243C3A218BAD87500542D7F /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3243C3A318BAD87500542D7F /* MainScene.h */,
+				3243C3A418BAD87500542D7F /* MainScene.m */,
+				3243C3A518BAD87500542D7F /* StaticBackgroundLayer.h */,
+				3243C3A618BAD87500542D7F /* StaticBackgroundLayer.m */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1293,7 +1292,6 @@
 				3243C39018BAD42500542D7F /* Icon.png in Resources */,
 				3243C37818BAD3B600542D7F /* LICENSE_cocos2d.txt in Resources */,
 				3243C38E18BAD42500542D7F /* Icon-Small.png in Resources */,
-				3243C39218BAD42500542D7F /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1361,6 +1359,7 @@
 				3243C2DD18BAD3B600542D7F /* b2Collision.cpp in Sources */,
 				3243C36418BAD3B600542D7F /* CDXMacOSXSupport.m in Sources */,
 				3243C34118BAD3B600542D7F /* CCTextureAtlas.m in Sources */,
+				3243C3A718BAD87500542D7F /* MainScene.m in Sources */,
 				3243C31C18BAD3B600542D7F /* ccDeprecated.m in Sources */,
 				3243C2EE18BAD3B600542D7F /* b2Island.cpp in Sources */,
 				3243C2E718BAD3B600542D7F /* b2Math.cpp in Sources */,
@@ -1371,6 +1370,7 @@
 				3243C32318BAD3B600542D7F /* ccGLStateCache.m in Sources */,
 				3243C37318BAD3B600542D7F /* ray2.c in Sources */,
 				3243C32B18BAD3B600542D7F /* CCMenuItem.m in Sources */,
+				3243C3A818BAD87500542D7F /* StaticBackgroundLayer.m in Sources */,
 				3243C36118BAD3B600542D7F /* ZipUtils.m in Sources */,
 				3243C33E18BAD3B600542D7F /* CCSpriteFrame.m in Sources */,
 				3243C31A18BAD3B600542D7F /* CCClippingNode.m in Sources */,
@@ -1394,10 +1394,8 @@
 				3243C34418BAD3B600542D7F /* CCTileMapAtlas.m in Sources */,
 				3243C2EC18BAD3B600542D7F /* b2ContactManager.cpp in Sources */,
 				3243C36C18BAD3B600542D7F /* mat4stack.c in Sources */,
-				3243C16718BAD23300542D7F /* HelloWorldLayer.m in Sources */,
 				3243C35018BAD3B600542D7F /* CCTouchDispatcher.m in Sources */,
 				3243C32F18BAD3B600542D7F /* CCParallaxNode.m in Sources */,
-				3243C16818BAD23300542D7F /* IntroLayer.m in Sources */,
 				3243C31818BAD3B600542D7F /* CCAtlasNode.m in Sources */,
 				3243C33318BAD3B600542D7F /* CCParticleSystemQuad.m in Sources */,
 				3243C31518BAD3B600542D7F /* CCActionTween.m in Sources */,
@@ -1493,11 +1491,13 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/libs/kazmath/include",
 					"$(SRCROOT)/libs",
+					"$(SRCROOT)/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1521,11 +1521,13 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/libs/kazmath/include",
 					"$(SRCROOT)/libs",
+					"$(SRCROOT)/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -1538,6 +1540,12 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/libs/kazmath/include",
+					"$(SRCROOT)/libs",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -1557,6 +1565,12 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/libs/kazmath/include",
+					"$(SRCROOT)/libs",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				OTHER_LDFLAGS = (
 					"-lz",
