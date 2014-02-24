@@ -495,10 +495,12 @@
     else
        tempFontSize       =  _fontSize;
     
-    CCFontDefinition *retDefinition = [[CCFontDefinition alloc] initWithFontName:_fontName fontSize:tempFontSize];
+    CCFontDefinition *retDefinition = [[CCFontDefinition alloc]initWithFontName:_fontName fontSize:tempFontSize];
     
     if (retDefinition)
     {
+        
+        [retDefinition autorelease];
         
         retDefinition.lineBreakMode  = _lineBreakMode;
         retDefinition.alignment      = _hAlignment;

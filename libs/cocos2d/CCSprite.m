@@ -623,7 +623,7 @@
 	if (_isReorderChildDirty)
 	{
 		NSInteger i,j,length = _children->data->num;
-		CCNode * __strong * x = _children->data->arr;
+		CCNode** x = _children->data->arr;
 		CCNode *tempItem;
 
 		// insertion sort
