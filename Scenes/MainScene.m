@@ -25,9 +25,9 @@
 	if (self = [super init]) {
 		self.staticBackgroundLayer = [[StaticBackgroundLayer alloc] init];
 		[self addChild:self.staticBackgroundLayer z:0];
-//
-//		self.scrollingBackgroundLayer = [ScrollingBackgroundLayer node];
-//		[self addChild:self.scrollingBackgroundLayer z:100];
+
+		self.scrollingBackgroundLayer = [ScrollingBackgroundLayer node];
+		[self addChild:self.scrollingBackgroundLayer z:100];
 		
 		self.gameplayLayer = [GameplayLayer node];
 		[self addChild:self.gameplayLayer z:200];

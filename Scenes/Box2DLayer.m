@@ -21,7 +21,7 @@ using namespace std;
 - (instancetype)initWithTextureAtlasNamed:(NSString *)textureAtlasName {
 	if (self = [super initWithTextureAtlasNamed:textureAtlasName]) {
 		// create world
-		b2Vec2 gravity { 0.0f, -10.0f };
+		b2Vec2 gravity { -1.0f, -10.0f };
 		self.world = make_shared<b2World>(gravity);
 		
 		// create debug draw

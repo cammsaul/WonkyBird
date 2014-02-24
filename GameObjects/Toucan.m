@@ -71,6 +71,8 @@
 }
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
+	[super updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];
+	
 //	NSLog(@"y: %.3f", self.body->GetLinearVelocity().y);
 	if (!self.body->IsAwake() || (self.body->GetLinearVelocity().y == 0 && self.state == ToucanStateFalling)) {
 		self.state = ToucanStateIdle;

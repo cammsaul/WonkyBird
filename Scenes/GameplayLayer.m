@@ -10,7 +10,7 @@
 #import "BasicSprite.h"
 #import "Toucan.h"
 
-static const int GroundHeight = 60;
+static const int GroundHeight = 120;
 
 @interface GameplayLayer ()
 @property (nonatomic, strong) Toucan *toucan;
@@ -78,7 +78,8 @@ static const int GroundHeight = 60;
 ////			NSLog(@"toucanForceMultiplier: %.1f", toucanForceMultiplier);
 //			self.toucan.body->ApplyForceToCenter({0.0f, toucanForce}, true);
 //		}
-		self.toucan.body->ApplyForceToCenter({0.0f, 100}, true);
+		self.toucan.body->ApplyForceToCenter({10.0f, 100}, true);
+		self.toucan.body->ApplyAngularImpulse(-100.0f, true);
 	}
 	return YES;
 }
