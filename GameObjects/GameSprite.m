@@ -43,23 +43,13 @@
 	self.body->SetUserData((__bridge void *)self);
 }
 
-- (CGPoint)positionForOpenGL {
-//	return [[CCDirector sharedDirector] convertToGL:self.position];
-	return self.position;
-}
-
-- (void)setPositionForOpenGL:(CGPoint)positionForOpenGL {
-//	self.position = [[CCDirector sharedDirector] convertToUI:positionForOpenGL];
-	self.position = positionForOpenGL;
-}
-
 - (b2Vec2)positionForBox2D {
-	auto converted = CC_POINT_PIXELS_TO_POINTS(self.positionForOpenGL);
+	auto converted = CC_POINT_PIXELS_TO_POINTS(self.position);
 	return {converted.x / kPTMRatio, converted.y / kPTMRatio};
 }
 
 - (void)setPositionForBox2D:(b2Vec2)positionForBox2D {
-	self.positionForOpenGL = CC_POINT_POINTS_TO_PIXELS(ccp(positionForBox2D.x * kPTMRatio, positionForBox2D.y * kPTMRatio));
+	self.position = CC_POINT_POINTS_TO_PIXELS(ccp(positionForBox2D.x * kPTMRatio, positionForBox2D.y * kPTMRatio));
 }
 
 - (b2Vec2)contentSizeForBox2D {

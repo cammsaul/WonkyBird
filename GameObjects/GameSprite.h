@@ -14,7 +14,6 @@
 @property (nonatomic, readonly) shared_ptr<b2BodyDef> bodyDef;
 
 @property (nonatomic) b2Vec2 positionForBox2D;					///< magic getter/setter; converts self.position <-> Box2D
-@property (nonatomic) CGPoint positionForOpenGL;				///< magic getter/setter; converts self.position <-> OpenGL
 
 @property (nonatomic, readonly) b2Vec2 contentSizeForBox2D;		///< magic getter converts self.contentSize -> Box2D
 

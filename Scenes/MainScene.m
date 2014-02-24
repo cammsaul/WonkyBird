@@ -23,9 +23,9 @@
 
 - (instancetype)init {
 	if (self = [super init]) {
-//		self.staticBackgroundLayer = [[StaticBackgroundLayer alloc] init];
-//		[self addChild:self.staticBackgroundLayer z:0];
-//		
+		self.staticBackgroundLayer = [[StaticBackgroundLayer alloc] init];
+		[self addChild:self.staticBackgroundLayer z:0];
+//
 //		self.scrollingBackgroundLayer = [ScrollingBackgroundLayer node];
 //		[self addChild:self.scrollingBackgroundLayer z:100];
 		

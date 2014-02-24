@@ -87,6 +87,7 @@
 		3243C3B718BADFE200542D7F /* Box2DLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3B618BADFE200542D7F /* Box2DLayer.m */; };
 		3243C57318BAE69700542D7F /* libCocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3243C3F118BAE60900542D7F /* libCocos2d.a */; };
 		3243C6E718BAF16400542D7F /* SquareSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C6E618BAF16400542D7F /* SquareSprite.m */; };
+		3243C6F118BAFA9B00542D7F /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C6F018BAFA9B00542D7F /* Background@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -249,6 +250,7 @@
 		3243C3EB18BAE60900542D7F /* Cocos2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cocos2d.xcodeproj; path = Cocos2d/Cocos2d.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3243C6E518BAF16400542D7F /* SquareSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareSprite.h; sourceTree = "<group>"; };
 		3243C6E618BAF16400542D7F /* SquareSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareSprite.m; sourceTree = "<group>"; };
+		3243C6F018BAFA9B00542D7F /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -504,6 +506,7 @@
 		3243C37D18BAD42500542D7F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3243C6EF18BAFA9700542D7F /* Images */,
 				3243C37E18BAD42500542D7F /* Icons */,
 				3243C38518BAD42500542D7F /* Info.plist */,
 				3243C38618BAD42500542D7F /* iTunesArtwork */,
@@ -572,6 +575,14 @@
 				3243C3F118BAE60900542D7F /* libCocos2d.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3243C6EF18BAFA9700542D7F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3243C6F018BAFA9B00542D7F /* Background@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -648,6 +659,7 @@
 				3243C39618BAD42500542D7F /* Default.png in Resources */,
 				3243C38D18BAD42500542D7F /* Icon-Small-50.png in Resources */,
 				3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */,
+				3243C6F118BAFA9B00542D7F /* Background@2x.png in Resources */,
 				3243C38C18BAD42500542D7F /* Icon-72.png in Resources */,
 				3243C39718BAD42500542D7F /* Default@2x.png in Resources */,
 				3243C39318BAD42500542D7F /* iTunesArtwork in Resources */,
