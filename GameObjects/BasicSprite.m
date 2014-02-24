@@ -25,17 +25,12 @@
 }
 
 - (void)updateShape {	
-	if (self.shape) self.shape->SetAsBox(self.contentSizeForBox2D.x, self.contentSizeForBox2D.y, self.positionForBox2D, 0);
+	if (self.shape) self.shape->SetAsBox(self.contentSizeForBox2D.x / 2, self.contentSizeForBox2D.y / 2, self.positionForBox2D, 0);
 }
 
 - (void)setContentSize:(CGSize)contentSize {
 	[super setContentSize:contentSize];
 	[self updateShape];
 }
-
-//- (void)setPosition:(CGPoint)position {
-//	[super setPosition:position];
-//	[self updateShape];
-//}
 
 @end

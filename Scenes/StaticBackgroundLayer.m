@@ -6,9 +6,6 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-#define SCREEN_SIZE ([CCDirector sharedDirector].winSize)
-#define IS_IPHONE_5 (SCREEN_SIZE.height > 480)
-
 #import "StaticBackgroundLayer.h"
 
 @implementation StaticBackgroundLayer

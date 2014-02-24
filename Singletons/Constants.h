@@ -11,4 +11,7 @@
 
 static const float kPTMRatio = 100.0f;
 
+#define SCREEN_SIZE ([CCDirector sharedDirector].winSize)
+#define IS_IPHONE_5 (SCREEN_SIZE.height > 480)
+
 #endif

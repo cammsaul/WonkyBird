@@ -30,6 +30,20 @@
 	return self;
 }
 
+- (id)initWithSpriteFrame:(CCSpriteFrame *)spriteFrame {
+	if (self = [super initWithSpriteFrame:spriteFrame]) {
+		[self setup];
+	}
+	return self;
+}
+
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName {
+	if (self = [super initWithSpriteFrameName:spriteFrameName]) {
+		[self setup];
+	}
+	return self;
+}
+
 - (instancetype)init {
 	if (self = [super init]) {
 		[self setup];
@@ -52,8 +66,16 @@
 	self.position = CC_POINT_POINTS_TO_PIXELS(ccp(positionForBox2D.x * kPTMRatio, positionForBox2D.y * kPTMRatio));
 }
 
+- (CGSize)contentSizeInPoints {
+	return CC_SIZE_PIXELS_TO_POINTS(self.contentSize);
+}
+
+- (void)setContentSizeInPoints:(CGSize)contentSizeInPoints {
+	self.contentSize = CC_SIZE_POINTS_TO_PIXELS(contentSizeInPoints);
+}
+
 - (b2Vec2)contentSizeForBox2D {
-	auto convertedSize = CC_SIZE_PIXELS_TO_POINTS(self.contentSize);
+	auto convertedSize = self.contentSizeInPoints;
 	return { convertedSize.width / kPTMRatio, convertedSize.height / kPTMRatio };
 }
 
