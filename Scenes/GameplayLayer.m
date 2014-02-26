@@ -10,6 +10,7 @@
 #import "GameSprite.h"
 #import "Toucan.h"
 #import "Pipe.h"
+#import "GameManager.h"
 
 static const int GroundHeight = 90;
 
@@ -97,6 +98,10 @@ static const int GroundHeight = 90;
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+	if ([GameManager sharedInstance].gameState != GameStateActive) {
+		return NO; // nothing to do when game is inactive
+	}
+	
 	if (self.toucan.state != ToucanStateDead) {
 		self.toucan.item.body->SetAwake(true);
 		

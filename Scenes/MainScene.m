@@ -32,8 +32,8 @@
 		self.gameplayLayer = [GameplayLayer node];
 		[self addChild:self.gameplayLayer z:200];
 		
-//		self.hudLayer = [HUDLayer node];
-//		[self addChild:self.hudLayer z:300];
+		self.hudLayer = [[HUDLayer alloc] init];
+		[self addChild:self.hudLayer z:300];
 	}
 	return self;
 }

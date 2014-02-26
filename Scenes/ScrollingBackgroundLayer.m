@@ -7,6 +7,7 @@
 //
 
 #import "ScrollingBackgroundLayer.h"
+#import "GameManager.h"
 
 @interface ScrollingBackgroundLayer ()
 @end
@@ -15,10 +16,12 @@
 
 - (id)init {
 	if (self = [super initWithTextureAtlasNamed:@"Clouds"]) {
-		srandom(time(nullptr));
+		srandom((int)time(NULL));
 		for (int i = 0; i < 3; i++) {
 			[self createCloud];
 		}
+		
+		[self scheduleUpdate];
 	}
 	return self;
 }
@@ -52,14 +55,23 @@
 	
 	const float offscreenXPosition = (xOffset * -1) - 1;
 	
-	id moveAction = [CCMoveTo actionWithDuration:moveDuration position:ccp(offscreenXPosition, cloud.position.y)];
-	id resetAction = [CCCallFuncN actionWithTarget:self selector:@selector(resetCloudWithNode:)];
-	id sequenceAction = [CCSequence actions:moveAction,resetAction,nil];
-	
-	[cloud runAction:sequenceAction];
+	if ([GameManager sharedInstance].gameState != GameStateGameOver) {
+		id moveAction = [CCMoveTo actionWithDuration:moveDuration position:ccp(offscreenXPosition, cloud.position.y)];
+		id resetAction = [CCCallFuncN actionWithTarget:self selector:@selector(resetCloudWithNode:)];
+		id sequenceAction = [CCSequence actions:moveAction,resetAction,nil];
+		[cloud runAction:sequenceAction];
+	}
 	
 	const int newZOrder = MaxCloudMoveDuration - moveDuration;
 	[self.sceneSpriteBatchNode reorderChild:cloud z:newZOrder];
+}
+
+- (void)update:(ccTime)delta {
+	if ([GameManager sharedInstance].gameState == GameStateGameOver) {
+		for (id child in self.sceneSpriteBatchNode.children) {
+			[child stopAllActions];
+		}
+	}
 }
 
 @end

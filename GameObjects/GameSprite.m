@@ -18,6 +18,10 @@
 	return gameSprite;
 }
 
+- (BOOL)isOffscreen {
+	return self.position.x < -(self.contentSize.width / 2);
+}
+
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {}
 
 @end

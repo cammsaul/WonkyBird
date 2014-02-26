@@ -7,6 +7,7 @@
 //
 
 #import "Toucan.h"
+#import "GameManager.h"
 
 @interface Toucan ()
 @property (nonatomic, strong) CCAnimation *flappingAnimation;
@@ -71,6 +72,10 @@
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
 	[super updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];
+	
+	if (self.isOffscreen) {
+		[GameManager sharedInstance].gameState = GameStateGameOver;
+	}
 	
 //	NSLog(@"y: %.3f", self.body->GetLinearVelocity().y);
 	if (!self.item.body->IsAwake() || (self.item.body->GetLinearVelocity().y == 0 && self.state == ToucanStateFalling)) {

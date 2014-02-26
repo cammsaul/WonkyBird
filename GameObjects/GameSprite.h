@@ -13,6 +13,8 @@
 
 @property (nonatomic, readonly) Box2DItem *item;
 
+@property (nonatomic, readonly) BOOL isOffscreen;
+
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects; ///< Default behavior does nothing
 
 @end

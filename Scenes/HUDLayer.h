@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-#import "CCLayer.h"
+#import "GameLayer.h"
 
-@interface HUDLayer : CCLayer
+@interface HUDLayer : GameLayer
 
 @end

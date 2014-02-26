@@ -17,6 +17,7 @@
 		320C148118BAD06C000AE6A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C148018BAD06C000AE6A1 /* CoreGraphics.framework */; };
 		320C148318BAD06C000AE6A1 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C148218BAD06C000AE6A1 /* CoreText.framework */; };
 		320C148518BAD06C000AE6A1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C148418BAD06C000AE6A1 /* GameKit.framework */; };
+		32120FDC18BDAF36006C1026 /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32120FDB18BDAF36006C1026 /* GameManager.m */; };
 		3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16018BAD22C00542D7F /* AppDelegate.m */; };
 		3243C2D918BAD3B600542D7F /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16D18BAD3B500542D7F /* b2BroadPhase.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3243C2DA18BAD3B600542D7F /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16F18BAD3B500542D7F /* b2CollideCircle.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -93,8 +94,8 @@
 		3243C70518BB2E5500542D7F /* Clouds@2x.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70318BB2E5500542D7F /* Clouds@2x.plist */; };
 		3243C70618BB2E5500542D7F /* Clouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70418BB2E5500542D7F /* Clouds@2x.png */; };
 		3243C70918BB2E7600542D7F /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C70818BB2E7600542D7F /* GameLayer.m */; };
-		3243C70C18BB448700542D7F /* HUD.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70A18BB448700542D7F /* HUD.plist */; };
-		3243C70D18BB448700542D7F /* HUD.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70B18BB448700542D7F /* HUD.png */; };
+		3243C70C18BB448700542D7F /* HUD@2x.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70A18BB448700542D7F /* HUD@2x.plist */; };
+		3243C70D18BB448700542D7F /* HUD@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70B18BB448700542D7F /* HUD@2x.png */; };
 		3243C71218BB4B9500542D7F /* Pipe.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3243C71018BB4B9500542D7F /* Pipe.tmx */; };
 		3243C71A18BB508300542D7F /* Pipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C71918BB508300542D7F /* Pipe.png */; };
 		3243C71D18BB53FD00542D7F /* Pipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C71C18BB53FD00542D7F /* Pipe.m */; };
@@ -131,6 +132,8 @@
 		320C148218BAD06C000AE6A1 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		320C148418BAD06C000AE6A1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		320C161418BAD06E000AE6A1 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		32120FDA18BDAF36006C1026 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
+		32120FDB18BDAF36006C1026 /* GameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameManager.m; sourceTree = "<group>"; };
 		3243C15F18BAD22C00542D7F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3243C16018BAD22C00542D7F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3243C16B18BAD3B500542D7F /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
@@ -268,8 +271,8 @@
 		3243C70418BB2E5500542D7F /* Clouds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clouds@2x.png"; sourceTree = "<group>"; };
 		3243C70718BB2E7600542D7F /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		3243C70818BB2E7600542D7F /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
-		3243C70A18BB448700542D7F /* HUD.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HUD.plist; sourceTree = "<group>"; };
-		3243C70B18BB448700542D7F /* HUD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HUD.png; sourceTree = "<group>"; };
+		3243C70A18BB448700542D7F /* HUD@2x.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HUD@2x.plist"; sourceTree = "<group>"; };
+		3243C70B18BB448700542D7F /* HUD@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HUD@2x.png"; sourceTree = "<group>"; };
 		3243C71018BB4B9500542D7F /* Pipe.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pipe.tmx; sourceTree = "<group>"; };
 		3243C71918BB508300542D7F /* Pipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pipe.png; sourceTree = "<group>"; };
 		3243C71B18BB53FD00542D7F /* Pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pipe.h; sourceTree = "<group>"; };
@@ -356,6 +359,8 @@
 				3243C15F18BAD22C00542D7F /* AppDelegate.h */,
 				3243C16018BAD22C00542D7F /* AppDelegate.m */,
 				3243C3B818BAE00100542D7F /* Constants.h */,
+				32120FDA18BDAF36006C1026 /* GameManager.h */,
+				32120FDB18BDAF36006C1026 /* GameManager.m */,
 			);
 			path = Singletons;
 			sourceTree = SOURCE_ROOT;
@@ -621,8 +626,8 @@
 		3243C6F818BB04F000542D7F /* TextureAtlases */ = {
 			isa = PBXGroup;
 			children = (
-				3243C70A18BB448700542D7F /* HUD.plist */,
-				3243C70B18BB448700542D7F /* HUD.png */,
+				3243C70A18BB448700542D7F /* HUD@2x.plist */,
+				3243C70B18BB448700542D7F /* HUD@2x.png */,
 				3243C70318BB2E5500542D7F /* Clouds@2x.plist */,
 				3243C70418BB2E5500542D7F /* Clouds@2x.png */,
 				3243C6FF18BB0A8C00542D7F /* Textures@2x.plist */,
@@ -716,9 +721,9 @@
 				3243C39618BAD42500542D7F /* Default.png in Resources */,
 				3243C38D18BAD42500542D7F /* Icon-Small-50.png in Resources */,
 				3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */,
-				3243C70C18BB448700542D7F /* HUD.plist in Resources */,
+				3243C70C18BB448700542D7F /* HUD@2x.plist in Resources */,
 				3243C71218BB4B9500542D7F /* Pipe.tmx in Resources */,
-				3243C70D18BB448700542D7F /* HUD.png in Resources */,
+				3243C70D18BB448700542D7F /* HUD@2x.png in Resources */,
 				3243C70518BB2E5500542D7F /* Clouds@2x.plist in Resources */,
 				3243C6F118BAFA9B00542D7F /* Background@2x.png in Resources */,
 				3243C38C18BAD42500542D7F /* Icon-72.png in Resources */,
@@ -789,6 +794,7 @@
 				3243C30018BAD3B600542D7F /* b2PrismaticJoint.cpp in Sources */,
 				3243C2FC18BAD3B600542D7F /* b2GearJoint.cpp in Sources */,
 				3243C70918BB2E7600542D7F /* GameLayer.m in Sources */,
+				32120FDC18BDAF36006C1026 /* GameManager.m in Sources */,
 				3243C2FD18BAD3B600542D7F /* b2Joint.cpp in Sources */,
 				3243C2E818BAD3B600542D7F /* b2Settings.cpp in Sources */,
 				3243C2F918BAD3B600542D7F /* b2PolygonContact.cpp in Sources */,
