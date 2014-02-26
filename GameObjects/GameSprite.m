@@ -13,6 +13,7 @@
 + (instancetype)alloc {
 	GameSprite *gameSprite = nil;
 	if ((gameSprite = [super alloc])) {
+		NSLog(@"init %@", NSStringFromClass(self));
 		gameSprite->_item = [[Box2DItem alloc] initWithOwner:gameSprite];
 	}
 	return gameSprite;

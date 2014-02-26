@@ -7,10 +7,10 @@
 //
 
 typedef enum : NSInteger {
-	GameStateMainMenu,
-	GameStateGetReady,
-	GameStateActive,
-	GameStateGameOver
+	GameStateMainMenu	= 0b0001,
+	GameStateGetReady	= 0b0010,
+	GameStateActive		= 0b0100,
+	GameStateGameOver	= 0b1000
 } GameState;
 
 @interface GameManager : NSObject

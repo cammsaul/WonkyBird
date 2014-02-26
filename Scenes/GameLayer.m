@@ -12,9 +12,9 @@
 
 - (instancetype)initWithTextureAtlasNamed:(NSString *)textureAtlasName {
 	if (self = [super init]) {
-		_sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:[textureAtlasName stringByAppendingString:@".png"]];
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[textureAtlasName stringByAppendingString:@".plist"] texture:self.sceneSpriteBatchNode.texture];
-		[self addChild:self.sceneSpriteBatchNode];
+		_spriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:[textureAtlasName stringByAppendingString:@".png"]];
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[textureAtlasName stringByAppendingString:@".plist"] texture:self.spriteBatchNode.texture];
+		[self addChild:self.spriteBatchNode];
 	}
 	return self;
 }

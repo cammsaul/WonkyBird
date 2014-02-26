@@ -31,7 +31,7 @@
 	NSString * const cloudFilename = [NSString stringWithFormat:@"Cloud_%d.png", cloudToDraw + 1];
 	CCSprite *cloudSprite = [CCSprite spriteWithSpriteFrameName:cloudFilename];
 	
-	[self.sceneSpriteBatchNode addChild:cloudSprite];
+	[self.spriteBatchNode addChild:cloudSprite];
 	[self resetCloudWithNode:cloudSprite];
 }
 
@@ -63,12 +63,12 @@
 	}
 	
 	const int newZOrder = MaxCloudMoveDuration - moveDuration;
-	[self.sceneSpriteBatchNode reorderChild:cloud z:newZOrder];
+	[self.spriteBatchNode reorderChild:cloud z:newZOrder];
 }
 
 - (void)update:(ccTime)delta {
 	if ([GameManager sharedInstance].gameState == GameStateGameOver) {
-		for (id child in self.sceneSpriteBatchNode.children) {
+		for (id child in self.spriteBatchNode.children) {
 			[child stopAllActions];
 		}
 	}

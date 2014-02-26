@@ -14,6 +14,8 @@
 
 static const int GroundHeight = 90;
 
+static const int kMaxNumPipes = 1;
+
 @interface GameplayLayer ()
 @property (nonatomic, strong) Toucan *toucan;
 @property (nonatomic, strong) GameSprite *ground;
@@ -25,9 +27,11 @@ static const int GroundHeight = 90;
 
 - (instancetype)init {
 	if (self = [super initWithTextureAtlasNamed:@"Textures"]) {
+		srandom((int)time(NULL));
+		
 		self.toucan = [[Toucan alloc] init];
-		self.toucan.position = ccp(SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height * 0.6f);
-		[self.sceneSpriteBatchNode addChild:self.toucan];
+		self.toucan.position = ccp(SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height * kToucanMenuHeight);
+		[self.spriteBatchNode addChild:self.toucan];
 		[self.toucan.item addToWorld:self.world];
 		
 		// add the ground
@@ -54,11 +58,7 @@ static const int GroundHeight = 90;
 		makeWall(160, SCREEN_SIZE.height - 2, 320, 4); // roof
 		makeWall(-70 /* enough to move pipe offscreen */, SCREEN_SIZE.height / 2, 4, SCREEN_SIZE.height); // left wall
 		makeWall(SCREEN_SIZE.width + 2, SCREEN_SIZE.height / 2, 4, SCREEN_SIZE.height); // right wall
-		
-		// add a pipe
-		self.pipes = [NSMutableArray array];
-		[self addPipeOfSize:6];
-		
+				
 		self.touchEnabled = YES;
 	}
 	return self;
@@ -72,18 +72,37 @@ static const int GroundHeight = 90;
 	[self.pipes addObject:p];
 }
 
+- (void)addRandomPipeIfNeeded {
+	if (self.pipes.count < kMaxNumPipes) {
+		[self addPipeOfSize:(random() % 4) + 2];
+	}
+}
+
 - (void)registerWithTouchDispatcher {
 	[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
 - (void)update:(ccTime)delta {
 	if ([GameManager sharedInstance].gameState != GameStateActive) {
-		return;
+		// cancel out gravity if game isn't active, but apply random y velocity to toucan so it looks like it's moving around
+		static const int randVelRange = 5; ///< +/- this range
+		const int randVel = (random() % (randVelRange * 2)) - randVelRange;
+		const int heightCorrectionVel = ((SCREEN_SIZE.height * kToucanMenuHeight) / kPTMRatio) - self.toucan.item.positionForBox2D.y; ///< add neccessary velocity to keep toucan around the right y spot during flapping
+		const float newYVel = self.toucan.item.body->GetLinearVelocity().y + randVel + heightCorrectionVel;
+		self.toucan.item.body->SetLinearVelocity({0, newYVel});
 	}
 	
 	[super update:delta];
 	
-	CCArray *gameObjects = self.sceneSpriteBatchNode.children; // TODO - this should be iterated in a thread safe manner ?
+	if ([GameManager sharedInstance].gameState != GameStateActive) {
+		return;
+	}
+	
+	if ([GameManager sharedInstance].gameState == GameStateActive) {
+		[self addRandomPipeIfNeeded];
+	}
+	
+	CCArray *gameObjects = self.spriteBatchNode.children; // TODO - this should be iterated in a thread safe manner ?
 	for (GameSprite *sprite in gameObjects) {
 		[sprite updateStateWithDeltaTime:delta andListOfGameObjects:gameObjects];
 	}
@@ -93,7 +112,7 @@ static const int GroundHeight = 90;
 			[self.pipes removeObject:p];
 			[self removeChild:p.layer cleanup:YES];
 			dispatch_async(dispatch_get_main_queue(), ^{
-				[self addPipeOfSize:(rand() % 4) + 2];
+				[self addRandomPipeIfNeeded];
 			});
 		} else {
 			p.item.body->SetLinearVelocity({-1.0f, 0});
@@ -103,7 +122,7 @@ static const int GroundHeight = 90;
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
 	if ([GameManager sharedInstance].gameState != GameStateActive) {
-		return NO; // nothing to do when game is inactive
+		return NO;
 	}
 	
 	if (self.toucan.state != ToucanStateDead) {

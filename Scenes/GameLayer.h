@@ -10,7 +10,7 @@
 
 @interface GameLayer : CCLayer
 
-@property (nonatomic, strong, readonly) CCSpriteBatchNode *sceneSpriteBatchNode;
+@property (nonatomic, strong, readonly) CCSpriteBatchNode *spriteBatchNode;
 
 - (instancetype)initWithTextureAtlasNamed:(NSString *)textureAtlasName; ///< designated initializer
 
