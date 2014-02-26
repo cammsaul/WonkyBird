@@ -26,7 +26,7 @@ static const int GroundHeight = 90;
 - (instancetype)init {
 	if (self = [super initWithTextureAtlasNamed:@"Textures"]) {
 		self.toucan = [[Toucan alloc] init];
-		self.toucan.position = ccp(SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height / 2.0f);
+		self.toucan.position = ccp(SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height * 0.6f);
 		[self.sceneSpriteBatchNode addChild:self.toucan];
 		[self.toucan.item addToWorld:self.world];
 		
@@ -77,6 +77,10 @@ static const int GroundHeight = 90;
 }
 
 - (void)update:(ccTime)delta {
+	if ([GameManager sharedInstance].gameState != GameStateActive) {
+		return;
+	}
+	
 	[super update:delta];
 	
 	CCArray *gameObjects = self.sceneSpriteBatchNode.children; // TODO - this should be iterated in a thread safe manner ?

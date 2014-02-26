@@ -31,6 +31,8 @@
 			[frames2 addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"Toucan_%d.png", frameNum]]];
 		}
 		self.fallingAnimation = [CCAnimation animationWithSpriteFrames:frames2 delay:0.10f];
+		
+		self.state = ToucanStateFlapping; // start out flapping on main menu
 	}
 	return self;
 }
