@@ -42,8 +42,8 @@
 	
 	const int xPosition = screenSize.width + 1 + xOffset;
 	
-	const int yMin = (int)SCREEN_SIZE.height * 0.33f;
-	const int yMax = (int)SCREEN_SIZE.height;
+	const int yMin = (int)ScreenHeight() * 0.33f;
+	const int yMax = (int)ScreenHeight();
 	const int yRange = yMax - yMin;
 	const int yPosition = (random() % yRange) + yMin;
 	
@@ -55,7 +55,7 @@
 	
 	const float offscreenXPosition = (xOffset * -1) - 1;
 	
-	if ([GameManager sharedInstance].gameState != GameStateGameOver) {
+	if (GStateIsActive()) {
 		id moveAction = [CCMoveTo actionWithDuration:moveDuration position:ccp(offscreenXPosition, cloud.position.y)];
 		id resetAction = [CCCallFuncN actionWithTarget:self selector:@selector(resetCloudWithNode:)];
 		id sequenceAction = [CCSequence actions:moveAction,resetAction,nil];
@@ -67,7 +67,7 @@
 }
 
 - (void)update:(ccTime)delta {
-	if ([GameManager sharedInstance].gameState == GameStateGameOver) {
+	if (GState() == GameStateGameOver) {
 		for (id child in self.spriteBatchNode.children) {
 			[child stopAllActions];
 		}

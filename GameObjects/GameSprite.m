@@ -20,8 +20,21 @@
 }
 
 - (BOOL)isOffscreen {
-	return self.position.x < -(self.contentSize.width / 2);
+	return self.x < -(self.contentSize.width / 2);
 }
+
+- (float)x { return self.position.x; }
+- (float)y { return self.position.y; }
+- (void)setX:(float)x { self.position = ccp(x, self.y); }
+- (void)setY:(float)y { self.position = ccp(self.x, y); }
+
+- (b2Vec2)velocity { return self.item.body->GetLinearVelocity(); }
+- (float)xVelocity { return self.velocity.x; }
+- (float)yVelocity { return self.velocity.y; }
+
+- (void)setVelocity:(b2Vec2)velocity  { self.item.body->SetLinearVelocity(velocity); }
+- (void)setXVelocity:(float)xVelocity {	self.velocity = b2Vec2 {xVelocity, self.yVelocity}; }
+- (void)setYVelocity:(float)yVelocity { self.velocity = b2Vec2 {self.xVelocity, yVelocity}; }
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {}
 

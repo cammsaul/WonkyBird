@@ -6,12 +6,7 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-typedef enum : NSInteger {
-	GameStateMainMenu	= 0b0001,
-	GameStateGetReady	= 0b0010,
-	GameStateActive		= 0b0100,
-	GameStateGameOver	= 0b1000
-} GameState;
+#import "Constants.h"
 
 @interface GameManager : NSObject
 

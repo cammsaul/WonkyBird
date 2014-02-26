@@ -11,6 +11,7 @@
 #import "ScrollingBackgroundLayer.h"
 #import "GameplayLayer.h"
 #import "HUDLayer.h"
+#import "GameManager.h"
 
 @interface MainScene ()
 @property (nonatomic, strong) StaticBackgroundLayer *staticBackgroundLayer;
@@ -30,11 +31,19 @@
 		[self addChild:self.scrollingBackgroundLayer z:100];
 		
 		self.gameplayLayer = [GameplayLayer node];
-		[self addChild:self.gameplayLayer z:200];
+		[self addChild:self.gameplayLayer z:305];
 		
 		self.hudLayer = [[HUDLayer alloc] init];
 		[self addChild:self.hudLayer z:300];
+		
+		[self scheduleUpdate];
 	}
 	return self;
+}
+
+- (void)update:(ccTime)delta {
+	// move gameplay layer to front in main menu so touch is in front of buttons
+	self.hudLayer.zOrder = !GStateIsMainMenu() ? 300 : 200;
+	self.gameplayLayer.zOrder = !GStateIsMainMenu() ? 200 : 300;
 }
 @end

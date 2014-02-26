@@ -37,6 +37,12 @@
 	return self;
 }
 
+- (BOOL)idle		{ return self.state == ToucanStateIdle; }
+- (BOOL)dead		{ return self.state == ToucanStateDead; }
+- (BOOL)falling		{ return self.state == ToucanStateFalling; }
+- (BOOL)flapping	{ return self.state == ToucanStateFlapping; }
+
+
 - (void)setState:(ToucanState)state {
 	const ToucanState lastState = _state;
 	if (lastState == ToucanStateDead) {
@@ -61,12 +67,10 @@
 		case ToucanStateFlapping: {
 //			NSLog(@"Toucan -> flapping");
 			[self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.flappingAnimation]]];
-			[self runAction:[CCRotateTo actionWithDuration:0.1f angle:-15.0f]];
 		} break;
 		case ToucanStateFalling: {
 //			NSLog(@"Toucan -> falling");
 			[self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.fallingAnimation]]];
-			[self runAction:[CCRotateTo actionWithDuration:1.1f angle:45.0f]];
 		} break;
 		default: NSAssert(NO, @"Unhandled state for toucan: %d", state);
 	}
@@ -75,14 +79,38 @@
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
 	[super updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];
 	
-	if (self.isOffscreen) {
-		[GameManager sharedInstance].gameState = GameStateGameOver;
+//	if (GStateIsActive() && self.isOffscreen) {
+//		GState() = GameStateGameOver;
+//	}
+	
+	// clamp to screen as needed
+	const float minX = 0;
+	const float maxX = ScreenWidth();
+	if (self.x < minX) {
+		self.xVelocity = 1;
+	} else if (self.x > maxX) {
+		self.xVelocity = -1;
+	}
+	if		(self.y < 0)				self.yVelocity = 1;
+	else if (self.y > ScreenHeight())	self.yVelocity = -1;
+	
+	if (GState() == GameStateMainMenu) {
+		self.state = self.yVelocity < 0 ? ToucanStateFalling : ToucanStateFlapping;
 	}
 	
+	static const float MinXVelocityBeforeFlipping = 0.2f; ///< don't flipX until we're going at least this amount to prevent thrashing
+	if		(self.xVelocity < -MinXVelocityBeforeFlipping /* -1 */)	self.flipX = YES;
+	else if (self.xVelocity > MinXVelocityBeforeFlipping)			self.flipX = NO;
+	
+	float    rotation = self.yVelocity * 20;
+	if		(rotation > 90.0f)  rotation =  90.0f;
+	else if (rotation < -90.0f) rotation = -90.0f;
+	self.rotation = rotation * (self.flipX ? 1.0f : -1.0f);
+	
 //	NSLog(@"y: %.3f", self.body->GetLinearVelocity().y);
-	if (!self.item.body->IsAwake() || (self.item.body->GetLinearVelocity().y == 0 && self.state == ToucanStateFalling)) {
+	if (!self.item.body->IsAwake() || (self.yVelocity == 0 && self.falling)) {
 		self.state = ToucanStateIdle;
-	} else if (self.item.body->GetLinearVelocity().y <= 0) {
+	} else if (self.yVelocity <= 0) {
 		self.state = ToucanStateFalling;
 	} else {
 		self.state = ToucanStateFlapping;

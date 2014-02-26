@@ -49,3 +49,6 @@
 }
 
 @end
+
+GameState GState() { return [[GameManager sharedInstance] gameState]; }
+void SetGState(GameState gState) { [GameManager sharedInstance].gameState = gState; }

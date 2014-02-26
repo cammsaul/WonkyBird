@@ -51,19 +51,19 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 		self.touchEnabled = YES;
 		[self scheduleUpdate];
 		
-		const CGPoint labelPosition = ccp(SCREEN_SIZE.width / 2.0f, SCREEN_SIZE.height * 0.75f);
+		const CGPoint labelPosition = ccp(ScreenWidth() / 2.0f, ScreenHeight() * 0.75f);
 		static const GameState ButtonStates = (GameState)(GameStateMainMenu|GameStateGameOver);
 		
-		const float rateButtonY = SCREEN_SIZE.height * 0.45f;
-		const float otherButtonsY = SCREEN_SIZE.height * 0.3f;
+		const float rateButtonY = ScreenHeight() * 0.45f;
+		const float otherButtonsY = ScreenHeight() * 0.3f;
 		
 		_sprites = @{}.mutableCopy;
 		_spriteInfo = @{TitleLabelKey:			[HUDSpriteInfo states:GameStateMainMenu position:labelPosition],
 						GetReadyLabelKey:		[HUDSpriteInfo states:GameStateGetReady position:labelPosition],
 						GameOverLabelKey:		[HUDSpriteInfo states:GameStateGameOver position:labelPosition],
-						PlayButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(SCREEN_SIZE.width * 0.25f, otherButtonsY)],
-						LeaderBoardButtonKey:	[HUDSpriteInfo states:ButtonStates position:ccp(SCREEN_SIZE.width * 0.75f, otherButtonsY)],
-						RateButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(SCREEN_SIZE.width * 0.5f, rateButtonY)]};
+						PlayButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.25f, otherButtonsY)],
+						LeaderBoardButtonKey:	[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.75f, otherButtonsY)],
+						RateButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.5f, rateButtonY)]};
 		
 	}
 	return self;
@@ -96,8 +96,9 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 	CCSprite *sprite = self[spriteKey];
 	if (!sprite) return;
 	
-	id action = [CCSequence actionOne:[CCSpawn actionOne:[CCScaleBy actionWithDuration:2.0f scale:4.0]
-													 two:[CCFadeOut actionWithDuration:2.0f]]
+	static const float RemovalDuration = 0.5f;
+	id action = [CCSequence actionOne:[CCSpawn actionOne:[CCScaleBy actionWithDuration:RemovalDuration scale:4.0]
+													 two:[CCFadeOut actionWithDuration:RemovalDuration]]
 								  two:[CCCallBlockN actionWithBlock:^(CCNode *node) {
 		[node removeFromParentAndCleanup:YES];
 	}]];
@@ -108,7 +109,7 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 
 /// add sprite if needed if !(gameState & state), otherwise remove if needed if condition == false
 - (void)addOrRemoveSpriteWithKey:(NSString *)spriteKey states:(GameState)states {
-	const auto gameState = [GameManager sharedInstance].gameState;
+	const auto gameState = GState();
 	if (gameState & states)	[self addSpriteWithKeyIfNeeded:spriteKey];
 	else					[self removeSpriteWithKeyIfNeeded:spriteKey];
 }
@@ -130,7 +131,7 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
 	// TODO - move button down when touched if applicable
-	return [GameManager sharedInstance].gameState != GameStateActive;
+	return !GStateIsActive();
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -138,11 +139,11 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 		return CGRectContainsPoint([self.sprites[spriteKey] boundingBox], [self convertTouchToNodeSpace:touch]);
 	};
 	
-	if ([GameManager sharedInstance].gameState & GameState(GameStateMainMenu|GameStateGameOver)) {
+	if (GState() & GameState(GameStateMainMenu|GameStateGameOver)) {
 		// TODO -> move button back to appropriate location
 		
 		if (TouchOnSprite(PlayButtonKey)) {
-			[GameManager sharedInstance].gameState = GameStateGetReady;
+			SetGState(GameStateGetReady);
 		} else if (TouchOnSprite(RateButtonKey)) {
 			[[[UIAlertView alloc] initWithTitle:@"Todo!" message:@"Take user to the app store!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 		} else if (TouchOnSprite(LeaderBoardButtonKey)) {
@@ -150,8 +151,8 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 		}
 		return;
 	}
-	if ([GameManager sharedInstance].gameState == GameStateGetReady) {
-		[GameManager sharedInstance].gameState = GameStateActive;
+	if (GStateIsGetReady()) {
+		SetGState(GameStateActive);
 	}
 }
 

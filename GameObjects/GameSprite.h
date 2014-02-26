@@ -17,4 +17,10 @@
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects; ///< Default behavior does nothing
 
+@property (nonatomic) b2Vec2 velocity;
+@property (nonatomic) float xVelocity;
+@property (nonatomic) float yVelocity;
+@property (nonatomic) float x;
+@property (nonatomic) float y;
+
 @end

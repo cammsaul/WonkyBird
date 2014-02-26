@@ -21,4 +21,9 @@ typedef enum : unsigned {
 
 @property (nonatomic) ToucanState state;
 
+@property (nonatomic, readonly) BOOL idle;
+@property (nonatomic, readonly) BOOL dead;
+@property (nonatomic, readonly) BOOL falling;
+@property (nonatomic, readonly) BOOL flapping;
+
 @end
