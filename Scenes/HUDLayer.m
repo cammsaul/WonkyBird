@@ -122,22 +122,36 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 	
 	// TODO -> show score if needed
 	
-	// TODO -> show counter if needed
-	
 	// TODO -> show copyright notice if needed
-	
-	// TODO -> show get ready if needed
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-	// TODO - move button down when touched if applicable
-	return !GStateIsActive();
+	if (GStateIsActive()) return NO;
+	
+	auto TouchedSprite = [&](NSString *spriteKey) -> CCSprite* {
+		return CGRectContainsPoint([self.sprites[spriteKey] boundingBox], [self convertTouchToNodeSpace:touch]) ? self.sprites[spriteKey] : nil;
+	};
+	for (id spriteKey in @[PlayButtonKey, RateButtonKey, LeaderBoardButtonKey]) {
+		if (auto sprite = TouchedSprite(spriteKey)) {
+			sprite.scale = 0.9f;
+		}
+	}
+	
+	return YES;
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+	if (GStateIsActive()) return;
+	
 	auto TouchOnSprite = [=](NSString *spriteKey) -> bool {
 		return CGRectContainsPoint([self.sprites[spriteKey] boundingBox], [self convertTouchToNodeSpace:touch]);
 	};
+	
+	for (id spriteKey in @[PlayButtonKey, RateButtonKey, LeaderBoardButtonKey]) {
+		if (CCSprite *sprite = self.sprites[spriteKey]) {
+			sprite.scale = 1.0f;
+		}
+	}
 	
 	if (GState() & GameState(GameStateMainMenu|GameStateGameOver)) {
 		// TODO -> move button back to appropriate location
@@ -145,9 +159,8 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 		if (TouchOnSprite(PlayButtonKey)) {
 			SetGState(GameStateGetReady);
 		} else if (TouchOnSprite(RateButtonKey)) {
-			[[[UIAlertView alloc] initWithTitle:@"Todo!" message:@"Take user to the app store!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+			SetGState(GameStateMainMenu);
 		} else if (TouchOnSprite(LeaderBoardButtonKey)) {
-			[[[UIAlertView alloc] initWithTitle:@"Todo!" message:@"Take user to the leader board!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 		}
 		return;
 	}

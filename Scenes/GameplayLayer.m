@@ -18,7 +18,7 @@ static const float kToucanMenuRandVelocity = 10.0f; ///< Apply +/- this amount t
 static auto Rand = std::bind (std::uniform_real_distribution<float>(0.0f, 1.0f), std::default_random_engine()); // nice random number between 0.0f and 1.0f
 
 static const int GroundHeight = 125;
-static const int kMaxNumPipes = 1;
+static const int kMaxNumPipes = 4;
 
 @interface GameplayLayer ()
 @property (nonatomic, strong) Toucan *toucan;
@@ -62,7 +62,9 @@ static const int kMaxNumPipes = 1;
 		makeWall(ScreenWidth() / 2, ScreenHeight() - 2, ScreenWidth() * 2, 4); // roof
 //		makeWall(-70 /* enough to move pipe offscreen */, ScreenHeight() / 2, 4, ScreenHeight()); // left wall
 //		makeWall(ScreenWidth() + 2, ScreenHeight() / 2, 4, ScreenHeight()); // right wall
-				
+								
+		self.pipes = [NSMutableArray array];
+		
 		self.touchEnabled = YES;
 	}
 	return self;
@@ -74,12 +76,29 @@ static const int kMaxNumPipes = 1;
 	[self addChild:p.layer];
 	[p.item addToWorld:self.world];
 	[self.pipes addObject:p];
+	
+	p.item.body->SetLinearVelocity({-1.0f, 0});
+}
+
+- (void)removeOldPipes {
+	Pipe *p = self.pipes.firstObject;
+	if (p.position.x < -p.contentSize.width / 2) {
+		[self.pipes removeObject:p];
+		[self removeChild:p.layer cleanup:YES];
+		[self removeOldPipes];
+	}
 }
 
 - (void)addRandomPipeIfNeeded {
-	if (self.pipes.count < kMaxNumPipes) {
-		[self addPipeOfSize:(random() % 4) + 2];
-	}
+	[self removeOldPipes];
+	
+	if (self.pipes.count >= kMaxNumPipes) return;
+	
+	// how far was the most recent pipe?
+	Pipe *lastPipe = self.pipes.lastObject;
+	if (lastPipe.layer.position.x > ScreenWidth() * 0.6f) return; // too soon
+	
+	[self addPipeOfSize:(random() % 4) + 2];
 }
 
 - (void)registerWithTouchDispatcher {
@@ -87,7 +106,7 @@ static const int kMaxNumPipes = 1;
 }
 
 - (void)update:(ccTime)delta {
-	if (!GStateIsActive()) {
+	if (GStateIsMainMenu()) {
 		auto RandTimes10 = []{ return Rand() * kToucanMenuRandVelocity; };
 		
 		if (ABS(self.toucan.yVelocity) < 2) {
@@ -108,12 +127,29 @@ static const int kMaxNumPipes = 1;
 			
 			const float heightCorrectionVel = ((ScreenHeight() * kToucanMenuHeight) - self.toucan.y) * Rand() * AntiGravityAmount * 0.1f; ///< add neccessary velocity to keep toucan around the right y spot during flapping
 			
-//			const float randomBonus = Rand() < (1.0f / 40.0f) ? 50.0f : 0.0f;
 			const float newYVel = (-kGravityVelocity * AntiGravityAmount) + heightCorrectionVel + RandTimes10();
 		
 			const float xVel = (Rand() > .5f) ? (RandTimes10() * -toucanXDiff) : ((RandTimes10() * 2) - kToucanMenuRandVelocity);
 			self.toucan.item.body->ApplyForceToCenter({xVel, newYVel}, true);
-			NSLog(@"x: %.0f, y: %.0f", self.toucan.xVelocity, self.toucan.yVelocity);
+		}
+	}
+	else if (GStateIsGetReady())
+	{
+		self.toucan.state = ToucanStateFlapping;
+		const float toucanYDiff = (self.toucan.y - (ScreenHeight() * 0.60f)) / kPTMRatio;
+		const float toucanXDiff = (self.toucan.x - HalfWidth()) / kPTMRatio;
+		self.toucan.velocity =  b2Vec2{-toucanXDiff, -toucanYDiff};
+	}
+	else if (GStateIsActive())
+	{
+		if (self.toucan.dead) {
+			SetGState(GameStateGameOver);
+		} else {
+			[self addRandomPipeIfNeeded];
+		}
+		
+		for (Pipe *p in self.pipes) {
+			p.item.body->SetLinearVelocity({-1.0f, 0.0f});
 		}
 	}
 	
@@ -122,20 +158,6 @@ static const int kMaxNumPipes = 1;
 	CCArray *gameObjects = self.spriteBatchNode.children; // TODO - this should be iterated in a thread safe manner ?
 	for (GameSprite *sprite in gameObjects) {
 		[sprite updateStateWithDeltaTime:delta andListOfGameObjects:gameObjects];
-	}
-	
-	if (!GStateIsActive()) return; // don't add pipes unless we're active
-	
-	for (Pipe *p in self.pipes.copy) {
-		if (p.position.x < -p.contentSize.width / 2) {
-			[self.pipes removeObject:p];
-			[self removeChild:p.layer cleanup:YES];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[self addRandomPipeIfNeeded];
-			});
-		} else {
-			p.item.body->SetLinearVelocity({-1.0f, 0});
-		}
 	}
 }
 

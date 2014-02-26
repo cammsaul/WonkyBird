@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/GameplayLayer.m"
-            timestampString = "415113817.603241"
+            timestampString = "415116777.981086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "-ccTouchBegan:withEvent:"
             landmarkType = "5">
             <Locations>
@@ -160,11 +160,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/GameplayLayer.m"
-            timestampString = "415101853.407328"
+            timestampString = "415115612.263753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-addPipeOfSize:"
             landmarkType = "5">
             <Locations>
@@ -237,22 +237,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scenes/GameplayLayer.m"
-            timestampString = "415113817.603241"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "-update:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GameObjects/Box2DItem.m"
             timestampString = "414935679.917602"
             startingColumnNumber = "9223372036854775807"
@@ -277,52 +261,6 @@
             endingLineNumber = "62"
             landmarkName = "-removeFromWorld"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Scenes/GameplayLayer.m"
-            timestampString = "415113817.603241"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "-update:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GameplayLayer update:]"
-                  moduleName = "WonkyBird"
-                  urlString = "file:///Users/cam/WonkyBird/Scenes/GameplayLayer.m"
-                  timestampString = "414936559.472621"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "968">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GameplayLayer update:]"
-                  moduleName = "WonkyBird"
-                  urlString = "file:///Users/cam/WonkyBird/Scenes/GameplayLayer.m"
-                  timestampString = "414936559.472773"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "1328">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -378,11 +316,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/GameplayLayer.m"
-            timestampString = "415113817.603241"
+            timestampString = "415116777.981086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "-ccTouchBegan:withEvent:"
             landmarkType = "5">
             <Locations>
@@ -424,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/GameplayLayer.m"
-            timestampString = "415113817.603241"
+            timestampString = "415116777.981086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "-ccTouchBegan:withEvent:"
             landmarkType = "5">
             <Locations>
@@ -548,11 +486,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/HUDLayer.m"
-            timestampString = "415099592.919024"
+            timestampString = "415116891.740854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "-ccTouchEnded:withEvent:"
             landmarkType = "5">
             <Locations>
@@ -624,11 +562,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/GameplayLayer.m"
-            timestampString = "415113817.603241"
+            timestampString = "415116777.981086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "-update:"
             landmarkType = "5">
             <Locations>
@@ -670,11 +608,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/GameplayLayer.m"
-            timestampString = "415113025.964711"
+            timestampString = "415116777.981086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "-update:"
             landmarkType = "5">
          </BreakpointContent>
@@ -767,6 +705,176 @@
                   startingLineNumber = "52"
                   endingLineNumber = "52"
                   offsetFromSymbolStart = "752">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scenes/HUDLayer.m"
+            timestampString = "415116891.740854"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-ccTouchBegan:withEvent:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HUDLayer ccTouchBegan:withEvent:]"
+                  moduleName = "WonkyBird"
+                  urlString = "file:///Users/cam/WonkyBird/Scenes/HUDLayer.m"
+                  timestampString = "415114401.23494"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "492">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HUDLayer ccTouchBegan:withEvent:]"
+                  moduleName = "WonkyBird"
+                  urlString = "file:///Users/cam/WonkyBird/Scenes/HUDLayer.m"
+                  timestampString = "415114401.235066"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "568">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scenes/HUDLayer.m"
+            timestampString = "415116891.740854"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-ccTouchBegan:withEvent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scenes/HUDLayer.m"
+            timestampString = "415116891.740854"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-ccTouchBegan:withEvent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scenes/GameplayLayer.m"
+            timestampString = "415116777.981086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-update:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GameplayLayer update:]"
+                  moduleName = "WonkyBird"
+                  urlString = "file:///Users/cam/WonkyBird/Scenes/GameplayLayer.m"
+                  timestampString = "415115263.195356"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "2044">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GameplayLayer update:]"
+                  moduleName = "WonkyBird"
+                  urlString = "file:///Users/cam/WonkyBird/Scenes/GameplayLayer.m"
+                  timestampString = "415115263.195499"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "2428">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scenes/GameplayLayer.m"
+            timestampString = "415116777.981086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-removeOldPipes"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GameplayLayer addPipeOfSize:]"
+                  moduleName = "WonkyBird"
+                  urlString = "file:///Users/cam/WonkyBird/Scenes/GameplayLayer.m"
+                  timestampString = "415116696.816491"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "948">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GameplayLayer addPipeOfSize:]"
+                  moduleName = "WonkyBird"
+                  urlString = "file:///Users/cam/WonkyBird/Scenes/GameplayLayer.m"
+                  timestampString = "415116696.816643"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "1332">
                </Location>
             </Locations>
          </BreakpointContent>

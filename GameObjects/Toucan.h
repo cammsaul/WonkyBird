@@ -11,7 +11,7 @@
 static const float kToucanMenuHeight = 0.6f; ///< toucan is 60% way up screen when flapping in menu
 
 typedef enum : unsigned {
-	ToucanStateIdle,
+//	ToucanStateIdle,
 	ToucanStateDead,
 	ToucanStateFalling,
 	ToucanStateFlapping,
@@ -21,7 +21,7 @@ typedef enum : unsigned {
 
 @property (nonatomic) ToucanState state;
 
-@property (nonatomic, readonly) BOOL idle;
+//@property (nonatomic, readonly) BOOL idle;
 @property (nonatomic, readonly) BOOL dead;
 @property (nonatomic, readonly) BOOL falling;
 @property (nonatomic, readonly) BOOL flapping;
