@@ -46,7 +46,7 @@ static const int GroundHeight = 90;
 			wall.position = CGPointMake(x, y);
 			wall.contentSize = CGSizeMake(width, height);
 			wall.item.fixtureDef->density = 0.0f;
-			wall.item.fixtureDef->restitution = 0.4f;
+//			wall.item.fixtureDef->restitution = 0.4f;
 			[wall.item addToWorld:self.world];
 			[self.walls addObject:wall];
 		};
@@ -100,18 +100,22 @@ static const int GroundHeight = 90;
 	if (self.toucan.state != ToucanStateDead) {
 		self.toucan.item.body->SetAwake(true);
 		
-		static const int XPositionValue = 0.5f;
-		const float xPositionAmount = (SCREEN_SIZE.width/2 - self.toucan.position.x) * XPositionValue;
-		
-		static const int XTouchValue = 0.4f;
-		const float xTouchAmount = ([touch locationInView:[[CCDirector sharedDirector] view]].x - SCREEN_SIZE.width/2) * XTouchValue;
-		
 		const float yVelocity = self.toucan.item.body->GetLinearVelocity().y;
-		const float YVelocityBase = 150 + rand() % 100;
+		const float YVelocityBase = 50 + rand() % 50;
 		const float yAmount = yVelocity > 1 ? (YVelocityBase / yVelocity) : YVelocityBase;
-		self.toucan.item.body->ApplyForceToCenter({xPositionAmount + xTouchAmount, yAmount}, true); // try to fly toucan towards center
+		const float yPositionAmount = (SCREEN_SIZE.height - self.toucan.position.y) / 2;
+		self.toucan.item.body->ApplyForceToCenter({0, yAmount + yPositionAmount}, true);
+		
+		// move toucan towards horizontal center of screen if needed
+		auto linearVelocity = self.toucan.item.body->GetLinearVelocity();
+		linearVelocity.x = (SCREEN_SIZE.width / 2 / kPTMRatio) - self.toucan.item.positionForBox2D.x;
+		self.toucan.item.body->SetLinearVelocity(linearVelocity);
 	}
 	return YES;
+}
+
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
+	self.toucan.item.body->ApplyForceToCenter({0, 10}, true);
 }
 
 @end
