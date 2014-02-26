@@ -49,25 +49,23 @@
 	
 	cloud.position = ccp(xPosition, yPosition);
 	
-	static const int MaxCloudMoveDuration = 5;
-	static const int MinCloudMoveDuration = 2;
+	const int MaxCloudMoveDuration = GStateIsActive() ? 5 : 20;
+	static const int MinCloudMoveDuration = GStateIsActive() ? 2 : 10;
 	const int moveDuration = (random() % (MaxCloudMoveDuration - MinCloudMoveDuration)) + MinCloudMoveDuration;
 	
 	const float offscreenXPosition = (xOffset * -1) - 1;
 	
-	if (GStateIsActive()) {
-		id moveAction = [CCMoveTo actionWithDuration:moveDuration position:ccp(offscreenXPosition, cloud.position.y)];
-		id resetAction = [CCCallFuncN actionWithTarget:self selector:@selector(resetCloudWithNode:)];
-		id sequenceAction = [CCSequence actions:moveAction,resetAction,nil];
-		[cloud runAction:sequenceAction];
-	}
+	id moveAction = [CCMoveTo actionWithDuration:moveDuration position:ccp(offscreenXPosition, cloud.position.y)];
+	id resetAction = [CCCallFuncN actionWithTarget:self selector:@selector(resetCloudWithNode:)];
+	id sequenceAction = [CCSequence actions:moveAction,resetAction,nil];
+	[cloud runAction:sequenceAction];
 	
 	const int newZOrder = MaxCloudMoveDuration - moveDuration;
 	[self.spriteBatchNode reorderChild:cloud z:newZOrder];
 }
 
 - (void)update:(ccTime)delta {
-	if (GState() == GameStateGameOver) {
+	if (GStateIsGameOver()) {
 		for (id child in self.spriteBatchNode.children) {
 			[child stopAllActions];
 		}

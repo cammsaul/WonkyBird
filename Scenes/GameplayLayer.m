@@ -14,7 +14,7 @@
 #import "Pipe.h"
 #import "GameManager.h"
 
-static const float kToucanMenuRandVelocity = 10.0f; ///< Apply +/- this amount to toucan's y velocity in main menu
+static const float kToucanMenuRandVelocity = 10.0f; ///< Apply +/- this amount to toucan's x velocity in main menu
 static auto Rand = std::bind (std::uniform_real_distribution<float>(0.0f, 1.0f), std::default_random_engine()); // nice random number between 0.0f and 1.0f
 
 static const int GroundHeight = 125;
@@ -88,23 +88,32 @@ static const int kMaxNumPipes = 1;
 
 - (void)update:(ccTime)delta {
 	if (!GStateIsActive()) {
-		const float randVel = (Rand() * 2 * kToucanMenuRandVelocity) - kToucanMenuRandVelocity;
-		const float heightCorrectionVel = ((ScreenHeight() * kToucanMenuHeight) / kPTMRatio) - self.toucan.item.positionForBox2D.y; ///< add neccessary velocity to keep toucan around the right y spot during flapping
+		auto RandTimes10 = []{ return Rand() * kToucanMenuRandVelocity; };
 		
-		static float AntiGravityAmount = Rand(); // amount of gravity to apply on home screen will be random
-		const float newYVel = (-kGravityVelocity * AntiGravityAmount) + heightCorrectionVel + randVel;
-		self.toucan.item.body->ApplyForceToCenter({Rand(), newYVel}, true);
-//		
-		// randomly apply force to toucan
-		if (Rand() < (1.0f / 1000.0f)) {
-			NSLog(@"TONS OF FORCE!");
-			self.toucan.item.body->ApplyForceToCenter({0, 100}, true);
-		}
+		if (ABS(self.toucan.yVelocity) < 2) {
+			const float toucanXDiff = (self.toucan.x - HalfWidth()) / HalfWidth(); /// < 1.0 = right edge, -1.0 = left
+			
+			static const float MinAntiGravityAmount = 0.0f;
+			static const float MaxAntiGravityAmount = 0.7f;
+			static const float AntiGravityRange = MaxAntiGravityAmount - MinAntiGravityAmount;
+			static const int NumAntiGravityTurnsBeforeChanging = 200;
+			static int NumAntiGravityTurns = NumAntiGravityTurnsBeforeChanging;
+			static float AntiGravityAmount = MinAntiGravityAmount; // amount of gravity to apply on home screen will be random
+			if (NumAntiGravityTurns > NumAntiGravityTurnsBeforeChanging) {
+				AntiGravityAmount = (Rand() / (1.0/AntiGravityRange)) + MinAntiGravityAmount;
+				NSLog(@"Today's random anti-gravity amount = %.02f", AntiGravityAmount);
+				NumAntiGravityTurns = 0;
+			}
+			NumAntiGravityTurns++;
+			
+			const float heightCorrectionVel = ((ScreenHeight() * kToucanMenuHeight) - self.toucan.y) * Rand() * AntiGravityAmount * 0.1f; ///< add neccessary velocity to keep toucan around the right y spot during flapping
+			
+//			const float randomBonus = Rand() < (1.0f / 40.0f) ? 50.0f : 0.0f;
+			const float newYVel = (-kGravityVelocity * AntiGravityAmount) + heightCorrectionVel + RandTimes10();
 		
-		// randomly apply force to toucan
-		if (Rand() < (1.0f / 100.0f)) {
-			NSLog(@"TONS OF FORCE!");
-			self.toucan.item.body->ApplyForceToCenter({0, 10}, true);
+			const float xVel = (Rand() > .5f) ? (RandTimes10() * -toucanXDiff) : ((RandTimes10() * 2) - kToucanMenuRandVelocity);
+			self.toucan.item.body->ApplyForceToCenter({xVel, newYVel}, true);
+			NSLog(@"x: %.0f, y: %.0f", self.toucan.xVelocity, self.toucan.yVelocity);
 		}
 	}
 	

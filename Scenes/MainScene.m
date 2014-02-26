@@ -12,6 +12,7 @@
 #import "GameplayLayer.h"
 #import "HUDLayer.h"
 #import "GameManager.h"
+#import "Toucan.h"
 
 @interface MainScene ()
 @property (nonatomic, strong) StaticBackgroundLayer *staticBackgroundLayer;
@@ -42,8 +43,20 @@
 }
 
 - (void)update:(ccTime)delta {
-	// move gameplay layer to front in main menu so touch is in front of buttons
-	self.hudLayer.zOrder = !GStateIsMainMenu() ? 300 : 200;
-	self.gameplayLayer.zOrder = !GStateIsMainMenu() ? 200 : 300;
+	if (!GStateIsMainMenu()) {
+		self.hudLayer.zOrder = 300;
+		self.gameplayLayer.zOrder = 200;
+	} else {
+		// flip the zOrders when toucan's flies past the buttons
+		static bool lockToggle = false; ///< disable further toggling until toucan is back to negative y velocity
+		if (self.gameplayLayer.toucan.y > 300 && !lockToggle) {
+			lockToggle = true;
+			auto temp = self.hudLayer.zOrder;
+			self.hudLayer.zOrder = self.gameplayLayer.zOrder;
+			self.gameplayLayer.zOrder = temp;
+		} else if (self.gameplayLayer.toucan.y < 150) {
+			lockToggle = false;
+		}
+	}
 }
 @end

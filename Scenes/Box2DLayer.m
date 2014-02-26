@@ -34,14 +34,14 @@ using namespace std;
 	return self;
 }
 
-- (void)draw {
-	ccGLEnableVertexAttribs(kCCVertexAttribFlag_Position);
-	kmGLPushMatrix();
-	
-	self.world->DrawDebugData();
-	
-	kmGLPopMatrix();
-}
+//- (void)draw {
+//	ccGLEnableVertexAttribs(kCCVertexAttribFlag_Position);
+//	kmGLPushMatrix();
+//	
+//	self.world->DrawDebugData();
+//	
+//	kmGLPopMatrix();
+//}
 
 - (void)update:(ccTime)delta {
 	static const int32 VelocityIterations = 3;
