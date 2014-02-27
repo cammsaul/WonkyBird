@@ -27,23 +27,17 @@ static const int kTileSize = 32; ///< in points
 	return p;
 }
 
-+ (instancetype)pipeOfSize:(NSUInteger)pipeHeight {
++ (instancetype)pipeOfSize:(NSUInteger)pipeHeight upsideDown:(BOOL)upsideDown {
 	Pipe *p = [[Pipe alloc] init];
+	p->_upsideDown = upsideDown;
 	p.numRows = pipeHeight;
 	
 	p.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"Pipe.tmx"];
-	p.layer = [p.tileMap layerNamed:[NSString stringWithFormat:@"Pipe_%zu", p.numRows]];
+	p.layer = [p.tileMap layerNamed:[NSString stringWithFormat:@"Pipe_%zu%@", p.numRows, (upsideDown ? @"R" : @"")]];
 	[p.layer removeFromParentAndCleanup:NO];
-	
-//	p.layer.contentSize = p.contentSize;
-//	p.contentSize = CGSizeMake(kTileSize * 2, kTileSize * pipeHeight);
 	
 	return p;
 }
-
-//- (CGPoint)position {
-//	return self.layer.position;
-//}
 
 - (void)setPosition:(CGPoint)position {
 	_position = position;
@@ -56,15 +50,13 @@ static const int kTileSize = 32; ///< in points
 	return size;
 }
 
-//- (void)setContentSize:(CGSize)contentSize {
-//	self.layer.contentSize = contentSize;
-//}
-
 - (void)updateStateWithDeltaTime:(ccTime)delta {
 	if (!self.cleared) {
 		if (self.position.x < ScreenHalfWidth()) {
 			_cleared = YES;
-			[GameManager sharedInstance].gameScore++;
+			if (!self.upsideDown) {
+				[GameManager sharedInstance].gameScore++;
+			}
 		}
 	}
 }

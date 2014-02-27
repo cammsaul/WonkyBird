@@ -16,6 +16,7 @@ static NSString * const PlayButtonKey			= @"Button_Play.png";
 static NSString * const RateButtonKey			= @"Button_Rate.png";
 static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 static NSString * const ScoreBackgroundKey		= @"Score_Background.png";
+static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 
 @interface HUDSpriteInfo : NSObject
 @property (nonatomic, readonly) GameState states;
@@ -33,10 +34,6 @@ static NSString * const ScoreBackgroundKey		= @"Score_Background.png";
 @end
 
 @interface HUDLayer ()
-@property (nonatomic, strong) CCSprite *getReadyLabel;
-@property (nonatomic, strong) CCSprite *gameOverLabel;
-@property (nonatomic, strong) CCSprite *titleLabel;
-
 @property (nonatomic, strong) CCLabelBMFont *scoreLabel;
 @property (nonatomic, strong) CCLabelBMFont *scoreBoardScoreLabel;
 @property (nonatomic, strong) CCLabelBMFont *scoreBoardBestLabel;
@@ -82,6 +79,7 @@ static NSString * const ScoreBackgroundKey		= @"Score_Background.png";
 		_spriteInfo = @{TitleLabelKey:			[HUDSpriteInfo states:GameStateMainMenu position:labelPosition],
 						GetReadyLabelKey:		[HUDSpriteInfo states:GameStateGetReady position:labelPosition],
 						GameOverLabelKey:		[HUDSpriteInfo states:GameStateGameOver position:labelPosition],
+						CopyrightLabelKey:		[HUDSpriteInfo states:GameStateMainMenu position:ccp(ScreenHalfWidth(), ScreenHeight() * 0.15f)],
 						ScoreBackgroundKey:		[HUDSpriteInfo states:GameStateGameOver position:ccp(ScreenHalfWidth(), scoreboardYPosition)],
 						PlayButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.25f, otherButtonsY)],
 						LeaderBoardButtonKey:	[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.75f, otherButtonsY)],

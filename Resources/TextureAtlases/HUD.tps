@@ -177,6 +177,7 @@
             <filename>../../../Downloads/wonky 2x/Button_Tap_Right.png</filename>
             <filename>../../../Downloads/wonky 2x/Title.png</filename>
             <filename>../../../Downloads/wonky 2x/Up_Arrow.png</filename>
+            <filename>../../../Downloads/LuckyBird_2014.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

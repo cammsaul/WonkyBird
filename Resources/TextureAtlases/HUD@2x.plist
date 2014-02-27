@@ -108,10 +108,23 @@
                 <key>sourceSize</key>
                 <string>{532,53}</string>
             </dict>
+            <key>LuckyBird_2014.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{536,173},{267,14}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{267,14}}</string>
+                <key>sourceSize</key>
+                <string>{267,14}</string>
+            </dict>
             <key>Score_Background.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{536,173},{350,191}}</string>
+                <string>{{2,228},{350,191}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +137,7 @@
             <key>Title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,366},{491,53}}</string>
+                <string>{{354,228},{491,53}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +150,7 @@
             <key>Up_Arrow.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{495,366},{28,32}}</string>
+                <string>{{847,228},{28,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -157,7 +170,7 @@
             <key>size</key>
             <string>{1024,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b5a1a3461bd4496fac397751d17ce45a:5f866f2e1c0b5dc459c086b46459dc69:222dffc7200ef8c17495695a87596627$</string>
+            <string>$TexturePacker:SmartUpdate:3875970dad348e9b4949b52292c2cd9c:db10f0bf9a3092730223b01c6d3390a6:222dffc7200ef8c17495695a87596627$</string>
             <key>textureFileName</key>
             <string>HUD@2x.png</string>
         </dict>

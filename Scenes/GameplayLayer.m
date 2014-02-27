@@ -14,11 +14,28 @@
 #import "Pipe.h"
 #import "GameManager.h"
 
+static const float PipeXVelocity = -1.4f; ///< base x velocity for pipe movement
+static const float ScorePipeXVelocityMultiplier = 0.01f; ///< Amount each point should increase pipe velocity. e.g. if ScorePipeXVelocityMultiplier = 0.01f, 100 points means pipes move at double speed
+
 static const float kToucanMenuRandVelocity = 10.0f; ///< Apply +/- this amount to toucan's x velocity in main menu
 static auto Rand = std::bind (std::uniform_real_distribution<float>(0.0f, 1.0f), std::default_random_engine()); // nice random number between 0.0f and 1.0f
 
-static const int GroundHeight = 125;
-static const int kMaxNumPipes = 4;
+static float __lastTotalPipeSize = 0; // don't be too aggressive with adding new pipes if this is pretty big
+
+static const int MinPipeSize = 2;
+static const int MaxPipeSize = 10;
+static const int MaxTotalSize = 10;
+float RandomPipeSize(int lastPipeSize = MinPipeSize) {
+	int max = MaxTotalSize - lastPipeSize;
+	int SizeRange = max - MinPipeSize;
+	return (random() % SizeRange) + MinPipeSize;
+}
+
+static const int GroundHeight = 130;
+static const int kMaxNumPipes = 12;
+
+static const int ToucanTouchYVelocityBase = 100; ///< amount to add to toucan's Y velocity when screen is tapped
+static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to toucan's y velocity when screen is tapped
 
 @interface GameplayLayer ()
 @property (nonatomic, strong) Toucan *toucan;
@@ -59,7 +76,7 @@ static const int kMaxNumPipes = 4;
 			[wall.item addToWorld:self.world];
 			[self.walls addObject:wall];
 		};
-		makeWall(ScreenWidth() / 2, ScreenHeight() - 2, ScreenWidth() * 2, 4); // roof
+		makeWall(ScreenHalfWidth(), ScreenHeight() + 2, ScreenWidth() * 2, 4); // roof
 //		makeWall(-70 /* enough to move pipe offscreen */, ScreenHeight() / 2, 4, ScreenHeight()); // left wall
 //		makeWall(ScreenWidth() + 2, ScreenHeight() / 2, 4, ScreenHeight()); // right wall
 								
@@ -70,14 +87,23 @@ static const int kMaxNumPipes = 4;
 	return self;
 }
 
-- (void)addPipeOfSize:(int)pipeSize {
-	Pipe *p = [Pipe pipeOfSize:pipeSize];
-	p.position = CGPointMake(ScreenWidth(), p.contentSize.height / 2 + GroundHeight);
+- (void)addPipeOfSize:(int)pipeSize upsideDown:(BOOL)upsideDown {
+	Pipe *p = [Pipe pipeOfSize:pipeSize upsideDown:upsideDown];
+	const float pipeHalfHeight = p.contentSize.height / 2;
+	p.position = CGPointMake(ScreenWidth(), (upsideDown ? (ScreenHeight() - pipeHalfHeight) : (pipeHalfHeight + GroundHeight)));
 	[self addChild:p.layer];
 	[p.item addToWorld:self.world];
 	[self.pipes addObject:p];
 	
-	p.item.body->SetLinearVelocity({-1.0f, 0});
+	p.item.body->SetLinearVelocity({PipeXVelocity, -kGravityVelocity});
+	p.item.body->SetGravityScale(0.0f); // pipes unaffected by gravity !
+	
+	// call self recursively to add upside-down pipe if needed
+	if (!upsideDown) {
+		const auto newPipeSize = RandomPipeSize(pipeSize);
+		__lastTotalPipeSize = pipeSize + newPipeSize;
+		[self addPipeOfSize:newPipeSize upsideDown:YES];
+	}
 }
 
 - (void)removeOldPipes {
@@ -93,12 +119,25 @@ static const int kMaxNumPipes = 4;
 	[self removeOldPipes];
 	
 	if (self.pipes.count >= kMaxNumPipes) return;
+	static float nextPipeDistance = 0.6f;
 	
 	// how far was the most recent pipe?
 	Pipe *lastPipe = self.pipes.lastObject;
-	if (lastPipe.layer.position.x > ScreenWidth() * 0.6f) return; // too soon
 	
-	[self addPipeOfSize:(random() % 4) + 2];
+	if (lastPipe.layer.position.x > ScreenWidth() * nextPipeDistance) return; // too soon
+	
+	const float totalPipeSizeModifier = (MaxTotalSize - __lastTotalPipeSize) * 0.1f; // 8 --> 0 : 0.8f --> (worst) 0 (best)
+	static const float Aggression = 0.0f; // how aggresively we add new pipes
+	static const float Range = 0.1f; // how much agression can differ, in terms of size of screen
+	const float MinNextPipeDistance = Aggression + totalPipeSizeModifier; ///< LATEST point (lowest x) at which to add another pipe
+	const float MaxNextPipeDistance = Aggression + Range + totalPipeSizeModifier; ///< EARLIEST point (highest x) at which to add another pipe
+	const float NextPipeDistRange = MaxNextPipeDistance - MinNextPipeDistance;
+	
+	NSLog(@"modifier: %.2f, min: %.2f, max: %.2f", totalPipeSizeModifier, MinNextPipeDistance, MaxNextPipeDistance);
+	
+	[self addPipeOfSize:RandomPipeSize() upsideDown:NO];
+	nextPipeDistance = ((random() % (int)(NextPipeDistRange * 1000)) / 1000.0f) + MinNextPipeDistance;
+	NSLog(@"added pipe for %.2f. nextPipeDist = %.2f * %.2f = %.2f", lastPipe.layer.position.x, nextPipeDistance, ScreenWidth() , nextPipeDistance * ScreenWidth());
 }
 
 - (void)registerWithTouchDispatcher {
@@ -139,6 +178,11 @@ static const int kMaxNumPipes = 4;
 		const float toucanYDiff = (self.toucan.y - (ScreenHeight() * 0.60f)) / kPTMRatio;
 		const float toucanXDiff = (self.toucan.x - ScreenHalfWidth()) / kPTMRatio;
 		self.toucan.velocity =  b2Vec2{-toucanXDiff, -toucanYDiff};
+		
+		for (Pipe *p in self.pipes) {
+			[self removeChild:p.layer cleanup:YES];
+		}
+		[self.pipes removeAllObjects];
 	}
 	else if (GStateIsActive())
 	{
@@ -149,7 +193,15 @@ static const int kMaxNumPipes = 4;
 		}
 		
 		for (Pipe *p in self.pipes) {
-			p.item.body->SetLinearVelocity({-1.0f, 0.0f});
+			const float pipeXVelocity = PipeXVelocity * (1.0f + ([GameManager sharedInstance].gameScore * ScorePipeXVelocityMultiplier));
+			p.item.body->SetLinearVelocity({pipeXVelocity, 0});
+			[p updateStateWithDeltaTime:delta];
+		}
+	}
+	else if(GStateIsGameOver()) {
+		for (Pipe *p in self.pipes) {
+			p.item.body->SetGravityScale(1.0f);
+			p.item.body->SetLinearVelocity({0.0f, kGravityVelocity});
 			[p updateStateWithDeltaTime:delta];
 		}
 	}
@@ -167,18 +219,18 @@ static const int kMaxNumPipes = 4;
 		return NO;
 	}
 	
-	if (self.toucan.state != ToucanStateDead) {
+	if (self.toucan.state != ToucanStateDead && self.toucan.yVelocity <= 1.0f) {
 		self.toucan.item.body->SetAwake(true);
 		
-		const float yVelocity = self.toucan.item.body->GetLinearVelocity().y;
-		const float YVelocityBase = 50 + rand() % 50;
+		const float yVelocity = self.toucan.yVelocity;
+		const float YVelocityBase = ToucanTouchYVelocityBase + (Rand() * ToucanTouchYVelocityRandom);
 		const float yAmount = yVelocity > 1 ? (YVelocityBase / yVelocity) : YVelocityBase;
-		const float yPositionAmount = (ScreenHeight() - self.toucan.position.y) / 2;
+		const float yPositionAmount = (ScreenHeight() - self.toucan.y) / 2;
 		self.toucan.item.body->ApplyForceToCenter({0, yAmount + yPositionAmount}, true);
 		
 		// move toucan towards horizontal center of screen if needed
 		auto linearVelocity = self.toucan.item.body->GetLinearVelocity();
-		linearVelocity.x = (ScreenWidth() / 2 / kPTMRatio) - self.toucan.item.positionForBox2D.x;
+		linearVelocity.x = (ScreenHalfWidth() / kPTMRatio) - self.toucan.item.positionForBox2D.x;
 		self.toucan.item.body->SetLinearVelocity(linearVelocity);
 	}
 	return YES;
