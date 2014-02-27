@@ -237,7 +237,7 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 		return NO;
 	}
 	
-	if (self.toucan.state != ToucanStateDead && self.toucan.yVelocity <= 1.0f) {
+	if (self.toucan.state != ToucanStateDead) {
 		self.toucan.item.body->SetAwake(true);
 				
 //		self.toucan.yVelocity = 20;
@@ -245,7 +245,7 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 		// move toucan towards horizontal center of screen if needed
 		auto linearVelocity = self.toucan.item.body->GetLinearVelocity();
 //		linearVelocity.x = (ScreenHalfWidth() / kPTMRatio) - self.toucan.item.positionForBox2D.x;
-		linearVelocity.y = -kGravityVelocity * 0.5f;
+		linearVelocity.y = 2; //-kGravityVelocity * 0.5f;
 		self.toucan.item.body->SetLinearVelocity(linearVelocity);
 	}
 	return YES;

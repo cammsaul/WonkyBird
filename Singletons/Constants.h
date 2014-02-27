@@ -11,7 +11,7 @@
 
 static const float kPTMRatio = 100.0f;
 
-static const float kGravityVelocity = -4.0f;
+static const float kGravityVelocity = -6.0f;
 
 static inline CGSize ScreenSize() { return [CCDirector sharedDirector].winSize; }
 static inline float ScreenWidth() { return ScreenSize().width; }
