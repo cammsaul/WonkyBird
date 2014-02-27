@@ -51,6 +51,19 @@
 	_gameState = gameState;
 }
 
+- (NSUInteger)bestScore {
+	static NSString * const BestScoreKey = @"BestScore";
+	static NSInteger bestScore = -1;
+	if (bestScore == -1) bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:BestScoreKey];
+	if (bestScore < self.gameScore) {
+		[[NSUserDefaults standardUserDefaults] setInteger:self.gameScore forKey:BestScoreKey];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		NSLog(@"Updated best score: %zd --> %zd", bestScore, self.gameScore);
+		bestScore = self.gameScore;
+	}
+	return bestScore;
+}
+
 @end
 
 GameState GState() { return [[GameManager sharedInstance] gameState]; }

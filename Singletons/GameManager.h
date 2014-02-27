@@ -14,6 +14,8 @@
 
 @property (nonatomic) GameState gameState;
 
-@property (nonatomic) unsigned gameScore;
+@property (nonatomic) NSUInteger gameScore;
+
+@property (nonatomic, readonly) NSUInteger bestScore;
 
 @end

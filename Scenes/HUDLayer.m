@@ -142,10 +142,14 @@ static NSString * const ScoreBackgroundKey		= @"Score_Background.png";
 	}];
 
 	self.scoreLabel.visible = GStateIsActive();
-	self.scoreLabel.string = [NSString stringWithFormat:@"%d", [GameManager sharedInstance].gameScore];
-	
 	self.scoreBoardScoreLabel.visible = GStateIsGameOver();
 	self.scoreBoardBestLabel.visible = GStateIsGameOver();
+	if (GStateIsActive()) {
+		self.scoreLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].gameScore];
+	} else if (GStateIsGameOver()) {
+		self.scoreBoardScoreLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].gameScore];
+		self.scoreBoardBestLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].bestScore];
+	}
 
 	// TODO -> show copyright notice if needed (start screen)
 }
