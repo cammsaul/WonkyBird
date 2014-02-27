@@ -486,11 +486,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/HUDLayer.m"
-            timestampString = "415167319.132814"
+            timestampString = "415171992.249485"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "-ccTouchEnded:withEvent:"
             landmarkType = "5">
             <Locations>
@@ -716,11 +716,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/HUDLayer.m"
-            timestampString = "415167319.132814"
+            timestampString = "415171992.249485"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "-ccTouchBegan:withEvent:"
             landmarkType = "5">
             <Locations>
@@ -762,11 +762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/HUDLayer.m"
-            timestampString = "415167319.132814"
+            timestampString = "415171992.249485"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-ccTouchBegan:withEvent:"
             landmarkType = "5">
          </BreakpointContent>
@@ -778,11 +778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scenes/HUDLayer.m"
-            timestampString = "415167319.132814"
+            timestampString = "415171992.249485"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-ccTouchBegan:withEvent:"
             landmarkType = "5">
          </BreakpointContent>

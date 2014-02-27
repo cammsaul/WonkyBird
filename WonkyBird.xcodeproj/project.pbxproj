@@ -98,6 +98,8 @@
 		32A6D8C318BEEF180033786C /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8BF18BEEF180033786C /* AppIcon76x76@2x.png */; };
 		32A6D8C818BEF2B70033786C /* Font_Score_Large.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8C518BEF2B70033786C /* Font_Score_Large.fnt */; };
 		32A6D8CA18BEF2B70033786C /* Font_Score_Large.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8C718BEF2B70033786C /* Font_Score_Large.png */; };
+		32A6D8CE18BF02860033786C /* Font_Score_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8CC18BF02860033786C /* Font_Score_Small.png */; };
+		32A6D8D018BF02900033786C /* Font_Score_Small.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8CF18BF02900033786C /* Font_Score_Small.fnt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,6 +277,8 @@
 		32A6D8BF18BEEF180033786C /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
 		32A6D8C518BEF2B70033786C /* Font_Score_Large.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Font_Score_Large.fnt; sourceTree = "<group>"; };
 		32A6D8C718BEF2B70033786C /* Font_Score_Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Font_Score_Large.png; sourceTree = "<group>"; };
+		32A6D8CC18BF02860033786C /* Font_Score_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Font_Score_Small.png; sourceTree = "<group>"; };
+		32A6D8CF18BF02900033786C /* Font_Score_Small.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Font_Score_Small.fnt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -641,6 +645,8 @@
 		32A6D8C418BEF2B70033786C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				32A6D8CC18BF02860033786C /* Font_Score_Small.png */,
+				32A6D8CF18BF02900033786C /* Font_Score_Small.fnt */,
 				32A6D8C518BEF2B70033786C /* Font_Score_Large.fnt */,
 				32A6D8C718BEF2B70033786C /* Font_Score_Large.png */,
 			);
@@ -719,6 +725,7 @@
 				3243C70618BB2E5500542D7F /* Clouds@2x.png in Resources */,
 				3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */,
 				3243C70C18BB448700542D7F /* HUD@2x.plist in Resources */,
+				32A6D8D018BF02900033786C /* Font_Score_Small.fnt in Resources */,
 				3243C71218BB4B9500542D7F /* Pipe.tmx in Resources */,
 				32A6D8C118BEEF180033786C /* AppIcon40x40@2x.png in Resources */,
 				3243C70D18BB448700542D7F /* HUD@2x.png in Resources */,
@@ -727,6 +734,7 @@
 				3243C39718BAD42500542D7F /* Default@2x.png in Resources */,
 				32A6D8C018BEEF180033786C /* AppIcon29x29@2x.png in Resources */,
 				32A6D8CA18BEF2B70033786C /* Font_Score_Large.png in Resources */,
+				32A6D8CE18BF02860033786C /* Font_Score_Small.png in Resources */,
 				32A6D8C818BEF2B70033786C /* Font_Score_Large.fnt in Resources */,
 				3243C39318BAD42500542D7F /* iTunesArtwork in Resources */,
 				3243C71A18BB508300542D7F /* Pipe.png in Resources */,

@@ -15,6 +15,7 @@ static NSString * const GameOverLabelKey		= @"Game_Over.png";
 static NSString * const PlayButtonKey			= @"Button_Play.png";
 static NSString * const RateButtonKey			= @"Button_Rate.png";
 static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
+static NSString * const ScoreBackgroundKey		= @"Score_Background.png";
 
 @interface HUDSpriteInfo : NSObject
 @property (nonatomic, readonly) GameState states;
@@ -37,6 +38,8 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 @property (nonatomic, strong) CCSprite *titleLabel;
 
 @property (nonatomic, strong) CCLabelBMFont *scoreLabel;
+@property (nonatomic, strong) CCLabelBMFont *scoreBoardScoreLabel;
+@property (nonatomic, strong) CCLabelBMFont *scoreBoardBestLabel;
 
 @property (nonatomic, strong, readonly) NSMutableDictionary *sprites;
 @property (nonatomic, strong, readonly) NSDictionary *spriteInfo;
@@ -53,21 +56,33 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 		self.touchEnabled = YES;
 		[self scheduleUpdate];
 		
-		const CGPoint labelPosition = ccp(ScreenWidth() / 2.0f, ScreenHeight() * 0.75f);
-		static const GameState ButtonStates = (GameState)(GameStateMainMenu|GameStateGameOver);
-		
+		const float labelYPosition = ScreenHeight() * 0.75f;
 		const float rateButtonY = ScreenHeight() * 0.45f;
 		const float otherButtonsY = ScreenHeight() * 0.3f;
+		const float scoreboardYPosition = (labelYPosition + rateButtonY) / 2.0f;
+		const float scoreboardScoreYPosition = scoreboardYPosition + 12.0f;
+		const float scoreboardBestYPosition = scoreboardYPosition - 28.0f;
 		
-		// test the score font
+		const CGPoint labelPosition = ccp(ScreenHalfWidth(), labelYPosition);
+		static const GameState ButtonStates = (GameState)(GameStateMainMenu|GameStateGameOver);
+		
 		self.scoreLabel = [CCLabelBMFont labelWithString:@"" fntFile:@"Font_Score_Large.fnt"];
 		self.scoreLabel.position = labelPosition;
-		[self addChild:self.scoreLabel];
+		[self addChild:self.scoreLabel z:0];
+					
+		self.scoreBoardScoreLabel = [CCLabelBMFont labelWithString:@"10" fntFile:@"Font_Score_Small.fnt"];
+		self.scoreBoardScoreLabel.position = ccp(ScreenHalfWidth(), scoreboardScoreYPosition);
+		[self addChild:self.scoreBoardScoreLabel z:1];
+		
+		self.scoreBoardBestLabel = [CCLabelBMFont labelWithString:@"100" fntFile:@"Font_Score_Small.fnt"];
+		self.scoreBoardBestLabel.position = ccp(ScreenHalfWidth(), scoreboardBestYPosition);
+		[self addChild:self.scoreBoardBestLabel z:1];
 		
 		_sprites = @{}.mutableCopy;
 		_spriteInfo = @{TitleLabelKey:			[HUDSpriteInfo states:GameStateMainMenu position:labelPosition],
 						GetReadyLabelKey:		[HUDSpriteInfo states:GameStateGetReady position:labelPosition],
 						GameOverLabelKey:		[HUDSpriteInfo states:GameStateGameOver position:labelPosition],
+						ScoreBackgroundKey:		[HUDSpriteInfo states:GameStateGameOver position:ccp(ScreenHalfWidth(), scoreboardYPosition)],
 						PlayButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.25f, otherButtonsY)],
 						LeaderBoardButtonKey:	[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.75f, otherButtonsY)],
 						RateButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.5f, rateButtonY)]};
@@ -129,7 +144,10 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 	self.scoreLabel.visible = GStateIsActive();
 	self.scoreLabel.string = [NSString stringWithFormat:@"%d", [GameManager sharedInstance].gameScore];
 	
-	// TODO -> show copyright notice if needed
+	self.scoreBoardScoreLabel.visible = GStateIsGameOver();
+	self.scoreBoardBestLabel.visible = GStateIsGameOver();
+
+	// TODO -> show copyright notice if needed (start screen)
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {

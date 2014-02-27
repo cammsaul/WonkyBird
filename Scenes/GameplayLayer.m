@@ -34,14 +34,14 @@ static const int kMaxNumPipes = 4;
 		srandom((int)time(NULL));
 		
 		self.toucan = [[Toucan alloc] init];
-		self.toucan.position = ccp(ScreenWidth() / 2.0f, ScreenHeight() * kToucanMenuHeight);
+		self.toucan.position = ccp(ScreenHalfWidth(), ScreenHeight() * kToucanMenuHeight);
 		[self.spriteBatchNode addChild:self.toucan];
 		[self.toucan.item addToWorld:self.world];
 		
 		// add the ground
 		self.ground = [[GameSprite alloc] init];
 		self.ground.item.bodyDef->type = b2_staticBody;
-		self.ground.position = CGPointMake(ScreenWidth() / 2.0f, GroundHeight / 2);
+		self.ground.position = CGPointMake(ScreenHalfWidth(), GroundHeight / 2);
 		self.ground.contentSize = CGSizeMake(ScreenWidth() * 2 /* extend out past edges a bit */, GroundHeight);
 		self.ground.item.fixtureDef->density = 0.0f;
 		[self.ground.item addToWorld:self.world];

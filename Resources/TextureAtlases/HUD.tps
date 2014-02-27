@@ -166,16 +166,6 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../../../Downloads/wonky 2x/0.png</filename>
-            <filename>../../../Downloads/wonky 2x/1.png</filename>
-            <filename>../../../Downloads/wonky 2x/2.png</filename>
-            <filename>../../../Downloads/wonky 2x/3.png</filename>
-            <filename>../../../Downloads/wonky 2x/4.png</filename>
-            <filename>../../../Downloads/wonky 2x/5.png</filename>
-            <filename>../../../Downloads/wonky 2x/6.png</filename>
-            <filename>../../../Downloads/wonky 2x/7.png</filename>
-            <filename>../../../Downloads/wonky 2x/8.png</filename>
-            <filename>../../../Downloads/wonky 2x/9.png</filename>
             <filename>../../../Downloads/wonky 2x/Finger.png</filename>
             <filename>../../../Downloads/wonky 2x/Game_Over.png</filename>
             <filename>../../../Downloads/wonky 2x/Get_Ready.png</filename>
@@ -187,15 +177,6 @@
             <filename>../../../Downloads/wonky 2x/Button_Tap_Right.png</filename>
             <filename>../../../Downloads/wonky 2x/Title.png</filename>
             <filename>../../../Downloads/wonky 2x/Up_Arrow.png</filename>
-            <filename>../../../Downloads/wonky 2x/ScoreBoard_1.png</filename>
-            <filename>../../../Downloads/wonky 2x/ScoreBoard_2.png</filename>
-            <filename>../../../Downloads/wonky 2x/ScoreBoard_3.png</filename>
-            <filename>../../../Downloads/wonky 2x/ScoreBoard_4.png</filename>
-            <filename>../../../Downloads/wonky 2x/ScoreBoard_5.png</filename>
-            <filename>../../../Downloads/wonky 2x/ScoreBoard_6.png</filename>
-            <filename>../../../Downloads/wonky 2x/ScoreBoard_7.png</filename>
-            <filename>../../../Downloads/wonky 2x/ScoreBoard_8.png</filename>
-            <filename>../../../Downloads/wonky 2x/ScoreBoard_9.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
