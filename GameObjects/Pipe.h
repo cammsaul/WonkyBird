@@ -10,10 +10,14 @@
 
 @interface Pipe : NSObject <Box2DItemOwner>
 
-@property (nonatomic, strong) CCTMXLayer *layer;
-
 + (instancetype)pipeOfSize:(NSUInteger)pipeHeight; ///< return a new pipe a certain number of tiles high.
 
+@property (nonatomic, strong) CCTMXLayer *layer;
+
 @property (nonatomic, readonly) Box2DItem *item;
+
+@property (nonatomic, readonly) BOOL cleared; ///< whether the toucan has 'cleared' this pipe (right edge of pipe == half screen size).
+
+- (void)updateStateWithDeltaTime:(ccTime)delta;
 
 @end

@@ -41,7 +41,10 @@
 		switch (gameState) {
 			case GameStateMainMenu: NSLog(@"GameState -> GameStateMainMenu");	break;
 			case GameStateGetReady: NSLog(@"GameState -> GameStateGetReady");	break;
-			case GameStateActive:	NSLog(@"GameState -> GameStateActive");		break;
+			case GameStateActive: {
+				NSLog(@"GameState -> GameStateActive");
+				self.gameScore = 0;
+			} break;
 			case GameStateGameOver: NSLog(@"GameState -> GameStateGameOver");	break;
 		}
 	}

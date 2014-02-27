@@ -15,9 +15,9 @@ static const float kGravityVelocity = -10.0f;
 
 static inline CGSize ScreenSize() { return [CCDirector sharedDirector].winSize; }
 static inline float ScreenWidth() { return ScreenSize().width; }
-static inline float HalfWidth() { return ScreenWidth() / 2.0f; }
+static inline float ScreenHalfWidth() { return ScreenWidth() / 2.0f; }
 static inline float ScreenHeight() { return ScreenSize().height; }
-static inline float HalfHeight() { return ScreenHeight() / 2.0f; }
+static inline float ScreenHalfHeight() { return ScreenHeight() / 2.0f; }
 static inline bool IsIphone5() { return ScreenHeight() > 480.0f; }
 
 typedef enum : NSInteger {

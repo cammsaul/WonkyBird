@@ -7,6 +7,7 @@
 //
 
 #import "Pipe.h"
+#import "GameManager.h"
 
 static const int kTileSize = 32; ///< in points
 
@@ -58,5 +59,14 @@ static const int kTileSize = 32; ///< in points
 //- (void)setContentSize:(CGSize)contentSize {
 //	self.layer.contentSize = contentSize;
 //}
+
+- (void)updateStateWithDeltaTime:(ccTime)delta {
+	if (!self.cleared) {
+		if (self.position.x < ScreenHalfWidth()) {
+			_cleared = YES;
+			[GameManager sharedInstance].gameScore++;
+		}
+	}
+}
 
 @end

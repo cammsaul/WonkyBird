@@ -36,6 +36,8 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 @property (nonatomic, strong) CCSprite *gameOverLabel;
 @property (nonatomic, strong) CCSprite *titleLabel;
 
+@property (nonatomic, strong) CCLabelBMFont *scoreLabel;
+
 @property (nonatomic, strong, readonly) NSMutableDictionary *sprites;
 @property (nonatomic, strong, readonly) NSDictionary *spriteInfo;
 @end
@@ -56,6 +58,11 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 		
 		const float rateButtonY = ScreenHeight() * 0.45f;
 		const float otherButtonsY = ScreenHeight() * 0.3f;
+		
+		// test the score font
+		self.scoreLabel = [CCLabelBMFont labelWithString:@"" fntFile:@"Font_Score_Large.fnt"];
+		self.scoreLabel.position = labelPosition;
+		[self addChild:self.scoreLabel];
 		
 		_sprites = @{}.mutableCopy;
 		_spriteInfo = @{TitleLabelKey:			[HUDSpriteInfo states:GameStateMainMenu position:labelPosition],
@@ -119,8 +126,8 @@ static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 		[self addOrRemoveSpriteWithKey:spriteKey states:info.states];
 	}];
 
-	
-	// TODO -> show score if needed
+	self.scoreLabel.visible = GStateIsActive();
+	self.scoreLabel.string = [NSString stringWithFormat:@"%d", [GameManager sharedInstance].gameScore];
 	
 	// TODO -> show copyright notice if needed
 }

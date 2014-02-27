@@ -14,4 +14,6 @@
 
 @property (nonatomic) GameState gameState;
 
+@property (nonatomic) unsigned gameScore;
+
 @end

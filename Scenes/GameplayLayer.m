@@ -110,7 +110,7 @@ static const int kMaxNumPipes = 4;
 		auto RandTimes10 = []{ return Rand() * kToucanMenuRandVelocity; };
 		
 		if (ABS(self.toucan.yVelocity) < 2) {
-			const float toucanXDiff = (self.toucan.x - HalfWidth()) / HalfWidth(); /// < 1.0 = right edge, -1.0 = left
+			const float toucanXDiff = (self.toucan.x - ScreenHalfWidth()) / ScreenHalfWidth(); /// < 1.0 = right edge, -1.0 = left
 			
 			static const float MinAntiGravityAmount = 0.0f;
 			static const float MaxAntiGravityAmount = 0.7f;
@@ -137,7 +137,7 @@ static const int kMaxNumPipes = 4;
 	{
 		self.toucan.state = ToucanStateFlapping;
 		const float toucanYDiff = (self.toucan.y - (ScreenHeight() * 0.60f)) / kPTMRatio;
-		const float toucanXDiff = (self.toucan.x - HalfWidth()) / kPTMRatio;
+		const float toucanXDiff = (self.toucan.x - ScreenHalfWidth()) / kPTMRatio;
 		self.toucan.velocity =  b2Vec2{-toucanXDiff, -toucanYDiff};
 	}
 	else if (GStateIsActive())
@@ -150,6 +150,7 @@ static const int kMaxNumPipes = 4;
 		
 		for (Pipe *p in self.pipes) {
 			p.item.body->SetLinearVelocity({-1.0f, 0.0f});
+			[p updateStateWithDeltaTime:delta];
 		}
 	}
 	
