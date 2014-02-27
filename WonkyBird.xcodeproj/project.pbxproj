@@ -76,8 +76,6 @@
 		3243C39118BAD42500542D7F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38418BAD42500542D7F /* Icon@2x.png */; };
 		3243C39318BAD42500542D7F /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38618BAD42500542D7F /* iTunesArtwork */; };
 		3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38818BAD42500542D7F /* Default-568h@2x.png */; };
-		3243C39518BAD42500542D7F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38918BAD42500542D7F /* Default-Landscape~ipad.png */; };
-		3243C39618BAD42500542D7F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38A18BAD42500542D7F /* Default.png */; };
 		3243C39718BAD42500542D7F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38B18BAD42500542D7F /* Default@2x.png */; };
 		3243C39B18BAD49900542D7F /* GameSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C39A18BAD49900542D7F /* GameSprite.m */; };
 		3243C3A718BAD87500542D7F /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3A418BAD87500542D7F /* MainScene.m */; };
@@ -243,8 +241,6 @@
 		3243C38518BAD42500542D7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3243C38618BAD42500542D7F /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		3243C38818BAD42500542D7F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		3243C38918BAD42500542D7F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		3243C38A18BAD42500542D7F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3243C38B18BAD42500542D7F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3243C39918BAD49900542D7F /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSprite.h; sourceTree = "<group>"; };
 		3243C39A18BAD49900542D7F /* GameSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSprite.m; sourceTree = "<group>"; };
@@ -564,8 +560,6 @@
 			isa = PBXGroup;
 			children = (
 				3243C38818BAD42500542D7F /* Default-568h@2x.png */,
-				3243C38918BAD42500542D7F /* Default-Landscape~ipad.png */,
-				3243C38A18BAD42500542D7F /* Default.png */,
 				3243C38B18BAD42500542D7F /* Default@2x.png */,
 			);
 			path = SplashScreens;
@@ -716,9 +710,7 @@
 				3243C39118BAD42500542D7F /* Icon@2x.png in Resources */,
 				3243C38F18BAD42500542D7F /* Icon-Small@2x.png in Resources */,
 				3243C70218BB0A8C00542D7F /* Textures@2x.png in Resources */,
-				3243C39518BAD42500542D7F /* Default-Landscape~ipad.png in Resources */,
 				3243C70618BB2E5500542D7F /* Clouds@2x.png in Resources */,
-				3243C39618BAD42500542D7F /* Default.png in Resources */,
 				3243C38D18BAD42500542D7F /* Icon-Small-50.png in Resources */,
 				3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */,
 				3243C70C18BB448700542D7F /* HUD@2x.plist in Resources */,
