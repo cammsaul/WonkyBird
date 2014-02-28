@@ -27,6 +27,7 @@
 #ifdef __cplusplus
 	#include <functional>
 	#include <memory>
+	#include <random>
 	#include <vector>
 
 	#include <Box2D/Box2D.h>

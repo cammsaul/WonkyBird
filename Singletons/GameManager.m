@@ -31,21 +31,29 @@
 
 - (instancetype)init {
 	if (self = [super init]) {
-		self.gameState = GameStateMainMenu; // start in main menu
+		self.gameState = GStateMainMenu; // start in main menu
 	}
 	return self;
+}
+
+- (float)gameSpeed {
+	return (GState() & (GStateActive|GStateGetReady)) ? ((1.0f + (ScorePipeXVelocityMultiplier * GameScore())) * (GameScore() > CrazyBackwardsModeScore ? -1.0f : 1.0f)) : 0;
+}
+
+- (BOOL)reverse {
+	return [self gameSpeed] < 0.0f;
 }
 
 - (void)setGameState:(GameState)gameState {
 	if (_gameState != gameState) {
 		switch (gameState) {
-			case GameStateMainMenu: NSLog(@"GameState -> GameStateMainMenu");	break;
-			case GameStateGetReady: NSLog(@"GameState -> GameStateGetReady");	break;
-			case GameStateActive: {
-				NSLog(@"GameState -> GameStateActive");
+			case GStateMainMenu: NSLog(@"GameState -> GStateMainMenu");	break;
+			case GStateGetReady: NSLog(@"GameState -> GStateGetReady");	break;
+			case GStateActive: {
+				NSLog(@"GameState -> GStateActive");
 				self.gameScore = 0;
 			} break;
-			case GameStateGameOver: NSLog(@"GameState -> GameStateGameOver");	break;
+			case GStateGameOver: NSLog(@"GameState -> GStateGameOver");	break;
 		}
 	}
 	_gameState = gameState;

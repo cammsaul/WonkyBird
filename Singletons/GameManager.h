@@ -16,6 +16,10 @@
 
 @property (nonatomic) NSUInteger gameScore;
 
+@property (nonatomic, readonly) BOOL reverse;
+
 @property (nonatomic, readonly) NSUInteger bestScore;
+
+@property (nonatomic, readonly) float gameSpeed;
 
 @end

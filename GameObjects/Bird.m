@@ -82,19 +82,21 @@
 	if (self.dead) return;
 
 	// clamp to screen as needed
-	const float minX = 0;
-	const float maxX = ScreenWidth();
-	if (self.x < minX) {
-		self.x = minX;
-		self.xVelocity = 1;
-	} else if (self.x > maxX) {
-		self.xVelocity = -1;
-		self.x = maxX;
+	if (GStateIsMainMenu() || GStateIsActive()) {
+		const float minX = 0;
+		const float maxX = ScreenWidth();
+		if (self.x < minX) {
+			self.x = minX;
+			self.xVelocity = 1;
+		} else if (self.x > maxX) {
+			self.xVelocity = -1;
+			self.x = maxX;
+		}
+		if		(self.y < 0)				self.yVelocity = 1;
+		else if (self.y > ScreenHeight())	self.yVelocity = -1;
 	}
-	if		(self.y < 0)				self.yVelocity = 1;
-	else if (self.y > ScreenHeight())	self.yVelocity = -1;
 	
-	self.rotation = /* MIN(ABS(self.yVelocity) + 0.1f, 1.0f) * */ self.rotationBox2DDegrees * (self.flipX ? -1.0f : 1.0f);
+	self.rotation = self.rotationBox2DDegrees * (self.flipX ? -1.0f : 1.0f);
 	if (self.rotation > 90) self.rotation = 90;
 	if (self.rotation < -90) self.rotation = -90;
 	

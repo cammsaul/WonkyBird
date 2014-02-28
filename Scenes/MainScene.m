@@ -21,10 +21,22 @@
 @property (nonatomic, strong) HUDLayer *hudLayer;
 @end
 
+static MainScene *__mainScene;
+
 @implementation MainScene
+
++ (instancetype)mainScene {
+	return __mainScene;
+}
+
+- (Box2DLayer *)box2DLayer {
+	return self.gameplayLayer;
+}
 
 - (instancetype)init {
 	if (self = [super init]) {
+		__mainScene = self;
+		
 		self.staticBackgroundLayer = [[StaticBackgroundLayer alloc] init];
 		[self addChild:self.staticBackgroundLayer z:0];
 

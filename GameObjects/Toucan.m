@@ -30,7 +30,6 @@
 		static float AntiGravityAmount = MinAntiGravityAmount; // amount of gravity to apply on home screen will be random
 		if (NumAntiGravityTurns > NumAntiGravityTurnsBeforeChanging) {
 			AntiGravityAmount = (Rand() / (1.0/AntiGravityRange)) + MinAntiGravityAmount;
-			NSLog(@"Today's random anti-gravity amount = %.02f", AntiGravityAmount);
 			NumAntiGravityTurns = 0;
 		}
 		NumAntiGravityTurns++;
@@ -48,6 +47,10 @@
 			if ([b isKindOfClass:Pigeon.class]) {
 				self.item.body->ApplyForceToCenter({(b.box2DX - self.box2DX) * 0.5f, (b.box2DY - self.box2DY) * 0.5f}, true);
 			}
+		}
+		
+		if (ABS(self.yVelocity) < 2.0f) {
+			self.item.body->ApplyTorque(-self.rotationBox2D, true);
 		}
 	}
 }

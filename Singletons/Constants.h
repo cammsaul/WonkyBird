@@ -9,8 +9,6 @@
 #ifndef WonkyBird_Constants_h
 #define WonkyBird_Constants_h
 
-#include <random>
-
 static const float kPTMRatio = 100.0f;
 
 static const float kGravityVelocity = -(kPTMRatio / 10.0f);
@@ -23,22 +21,23 @@ static inline float ScreenHalfHeight()	{ return ScreenHeight() / 2.0f; }
 static inline bool IsIphone5()			{ return ScreenHeight() > 480.0f; }
 
 typedef enum : NSInteger {
-	GameStateMainMenu	= 0b0001,
-	GameStateGetReady	= 0b0010,
-	GameStateActive		= 0b0100,
-	GameStateGameOver	= 0b1000
+	GStateMainMenu	= 0b0001,
+	GStateGetReady	= 0b0010,
+	GStateActive	= 0b0100,
+	GStateGameOver	= 0b1000,
 } GameState;
 
 GameState GState();
 void SetGState(GameState gState);
-static inline bool GStateIsActive()		{ return GState() == GameStateActive; }
-static inline bool GStateIsGetReady()	{ return GState() == GameStateGetReady; }
-static inline bool GStateIsMainMenu()	{ return GState() == GameStateMainMenu; }
-static inline bool GStateIsGameOver()	{ return GState() == GameStateGameOver; }
+static inline bool GStateIsActive()		{ return GState() == GStateActive; }
+static inline bool GStateIsGetReady()	{ return GState() == GStateGetReady; }
+static inline bool GStateIsMainMenu()	{ return GState() == GStateMainMenu; }
+static inline bool GStateIsGameOver()	{ return GState() == GStateGameOver; }
 
 NSUInteger GameScore();
 
 static auto Rand = std::bind (std::uniform_real_distribution<float>(0.0f, 1.0f), std::default_random_engine()); // nice random number between 0.0f and 1.0f
+
 
 static const float PipeXVelocity = -1.1f; ///< base x velocity for pipe movement
 static const float ScorePipeXVelocityMultiplier = 0.01f; ///< Amount each point should increase pipe velocity. e.g. if ScorePipeXVelocityMultiplier = 0.01f, 100 points means pipes move at double speed
@@ -57,5 +56,9 @@ static const int kMaxNumPipes = 12;
 
 static const int BirdTouchYVelocityBase = 100; ///< amount to add to Bird's Y velocity when screen is tapped
 static const int BirdTouchYVelocityRandom = 20; ///< random amount to add to Bird's y velocity when screen is tapped
+
+static const int CrazyBackwardsModeScore = 50;		///< game reverse when you pass this many points
+static const int CrazySwitchBackgroundsScore = 10;	///< switch background every time we pass 10
+static const int CrazyBackgroundSkewScore = 25;		///< apply skew transforms to BG every point after this
 
 #endif

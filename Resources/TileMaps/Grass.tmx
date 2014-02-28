@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="2" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="moving ground" tilewidth="16" tileheight="16">
+  <image source="Grass.png" width="641" height="36"/>
+ </tileset>
+ <layer name="Grass" width="50" height="2">
+  <data encoding="base64" compression="zlib">
+   eJxjY2BgYAJiZiBmAWJWIGYbgmJ6QKwFxNpArAPEukNUDABaTAlh
+  </data>
+ </layer>
+</map>

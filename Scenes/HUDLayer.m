@@ -61,7 +61,7 @@ static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 		const float scoreboardBestYPosition = scoreboardYPosition - 28.0f;
 		
 		const CGPoint labelPosition = ccp(ScreenHalfWidth(), labelYPosition);
-		static const GameState ButtonStates = (GameState)(GameStateMainMenu|GameStateGameOver);
+		static const GameState ButtonStates = (GameState)(GStateMainMenu|GStateGameOver);
 		
 		self.scoreLabel = [CCLabelBMFont labelWithString:@"" fntFile:@"Font_Score_Large.fnt"];
 		self.scoreLabel.position = ccp(ScreenHalfWidth(), ScreenHeight() * 0.9f);
@@ -76,11 +76,11 @@ static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 		[self addChild:self.scoreBoardBestLabel z:1];
 		
 		_sprites = @{}.mutableCopy;
-		_spriteInfo = @{TitleLabelKey:			[HUDSpriteInfo states:GameStateMainMenu position:labelPosition],
-						GetReadyLabelKey:		[HUDSpriteInfo states:GameStateGetReady position:labelPosition],
-						GameOverLabelKey:		[HUDSpriteInfo states:GameStateGameOver position:labelPosition],
-						CopyrightLabelKey:		[HUDSpriteInfo states:GameStateMainMenu position:ccp(ScreenHalfWidth(), ScreenHeight() * 0.15f)],
-						ScoreBackgroundKey:		[HUDSpriteInfo states:GameStateGameOver position:ccp(ScreenHalfWidth(), scoreboardYPosition)],
+		_spriteInfo = @{TitleLabelKey:			[HUDSpriteInfo states:GStateMainMenu position:labelPosition],
+						GetReadyLabelKey:		[HUDSpriteInfo states:GStateGetReady position:labelPosition],
+						GameOverLabelKey:		[HUDSpriteInfo states:GStateGameOver position:labelPosition],
+						CopyrightLabelKey:		[HUDSpriteInfo states:GStateMainMenu position:ccp(ScreenHalfWidth(), ScreenHeight() * 0.15f)],
+						ScoreBackgroundKey:		[HUDSpriteInfo states:GStateGameOver position:ccp(ScreenHalfWidth(), scoreboardYPosition)],
 						PlayButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.25f, otherButtonsY)],
 						LeaderBoardButtonKey:	[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.75f, otherButtonsY)],
 						RateButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.5f, rateButtonY)]};
@@ -180,19 +180,19 @@ static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 		}
 	}
 	
-	if (GState() & GameState(GameStateMainMenu|GameStateGameOver)) {
+	if (GState() & GameState(GStateMainMenu|GStateGameOver)) {
 		// TODO -> move button back to appropriate location
 		
 		if (TouchOnSprite(PlayButtonKey)) {
-			SetGState(GameStateGetReady);
+			SetGState(GStateGetReady);
 		} else if (TouchOnSprite(RateButtonKey)) {
-			SetGState(GameStateMainMenu);
+			SetGState(GStateMainMenu);
 		} else if (TouchOnSprite(LeaderBoardButtonKey)) {
 		}
 		return;
 	}
 	if (GStateIsGetReady()) {
-		SetGState(GameStateActive);
+		SetGState(GStateActive);
 	}
 }
 

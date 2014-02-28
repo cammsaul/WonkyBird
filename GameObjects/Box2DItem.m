@@ -60,9 +60,9 @@
 		self.body->CreateFixture(self.fixtureDef.get());
 	}
 	
-	auto fixture = self.body->GetFixtureList()[0];
-	auto polygon = static_cast<b2PolygonShape *>(fixture.GetShape());
-	NSCParameterAssert(polygon->GetVertexCount());
+	if ([self.owner respondsToSelector:@selector(addedToWorld)]) {
+		[self.owner addedToWorld];
+	}
 }
 
 - (void)addToWorld:(shared_ptr<b2World>)world {

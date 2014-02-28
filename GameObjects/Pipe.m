@@ -13,6 +13,7 @@ static const int kTileSize = 32; ///< in points
 
 @interface Pipe ()
 @property (nonatomic, strong) CCTMXTiledMap *tileMap;
+@property (nonatomic) CGPoint startPosition;
 @property (nonatomic) NSUInteger numRows;
 @end
 
@@ -41,6 +42,10 @@ static const int kTileSize = 32; ///< in points
 	return p;
 }
 
+- (void)addedToWorld {
+	self.startPosition = self.position;
+}
+
 - (void)setPosition:(CGPoint)position {
 	_position = position;
 	self.layer.position = CGPointMake(position.x - kTileSize, position.y - self.contentSize.height / 2);
@@ -55,7 +60,7 @@ static const int kTileSize = 32; ///< in points
 
 - (void)updateStateWithDeltaTime:(ccTime)delta {
 	if (!self.cleared) {
-		if (self.position.x < ScreenHalfWidth()) {
+		if ((self.startPosition.x > ScreenHalfWidth() && self.position.x < ScreenHalfWidth()) || (self.startPosition.x < ScreenHalfWidth() && self.position.x > ScreenHalfWidth())) {
 			_cleared = YES;
 			if (!self.upsideDown) {
 				[GameManager sharedInstance].gameScore++;

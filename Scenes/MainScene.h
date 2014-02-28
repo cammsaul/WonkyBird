@@ -8,6 +8,12 @@
 
 #import "CCScene.h"
 
+@class Box2DLayer;
+
 @interface MainScene : CCScene
+
+@property (nonatomic, strong, readonly) Box2DLayer *box2DLayer;
+
++ (instancetype)mainScene;
 
 @end

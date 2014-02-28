@@ -56,8 +56,8 @@
 	auto bgToFadeOut = isDay ? self.nightBackground : self.dayBackground;
 	auto bgToFadeIn = isDay ? self.dayBackground : self.nightBackground;
 	
-	[bgToFadeOut runAction:[CCFadeOut actionWithDuration:1200.0f]];
-	[bgToFadeIn runAction:[CCFadeIn actionWithDuration:1200.0f]];
+	[bgToFadeOut runAction:[CCFadeOut actionWithDuration:10.0f]];
+	[bgToFadeIn runAction:[CCFadeIn actionWithDuration:10.0f]];
 }
 
 - (void)update:(ccTime)delta {
@@ -65,8 +65,12 @@
 	if ([GameManager sharedInstance].gameScore != gameScore) {
 		gameScore = [GameManager sharedInstance].gameScore;
 		
-		if (gameScore != 0 && gameScore % 5 == 0) { // flip day / night
+		if (gameScore != 0 && gameScore % CrazySwitchBackgroundsScore == 0) { // flip day / night
 			self.isDay = !self.isDay;
+		}
+		
+		if (gameScore > CrazyBackgroundSkewScore) {
+			[self.dayBackground runAction:[CCSkewBy actionWithDuration:1.0f skewX:gameScore skewY:0]];
 		}
 	}
 }

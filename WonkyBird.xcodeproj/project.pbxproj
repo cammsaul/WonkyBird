@@ -23,6 +23,8 @@
 		3224BC6218C093C200DDB6B5 /* ShapeDefs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3224BC6018C093C200DDB6B5 /* ShapeDefs.plist */; };
 		3224BC6B18C095AA00DDB6B5 /* GB2ShapeCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3224BC6A18C095AA00DDB6B5 /* GB2ShapeCache.mm */; };
 		3224BC6D18C0C34500DDB6B5 /* Background_Night@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3224BC6C18C0C34500DDB6B5 /* Background_Night@2x.png */; };
+		3224BC6F18C0CE6300DDB6B5 /* Grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 3224BC6E18C0CE6300DDB6B5 /* Grass.png */; };
+		3224BC7118C0CE6B00DDB6B5 /* Grass.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3224BC7018C0CE6B00DDB6B5 /* Grass.tmx */; };
 		3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16018BAD22C00542D7F /* AppDelegate.m */; };
 		3243C2D918BAD3B600542D7F /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16D18BAD3B500542D7F /* b2BroadPhase.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3243C2DA18BAD3B600542D7F /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16F18BAD3B500542D7F /* b2CollideCircle.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -147,6 +149,8 @@
 		3224BC6918C095AA00DDB6B5 /* GB2ShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GB2ShapeCache.h; sourceTree = "<group>"; };
 		3224BC6A18C095AA00DDB6B5 /* GB2ShapeCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GB2ShapeCache.mm; sourceTree = "<group>"; };
 		3224BC6C18C0C34500DDB6B5 /* Background_Night@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background_Night@2x.png"; sourceTree = "<group>"; };
+		3224BC6E18C0CE6300DDB6B5 /* Grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grass.png; sourceTree = "<group>"; };
+		3224BC7018C0CE6B00DDB6B5 /* Grass.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Grass.tmx; sourceTree = "<group>"; };
 		3243C15F18BAD22C00542D7F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3243C16018BAD22C00542D7F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3243C16B18BAD3B500542D7F /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
@@ -662,6 +666,8 @@
 		3243C70E18BB4B9500542D7F /* TileMaps */ = {
 			isa = PBXGroup;
 			children = (
+				3224BC7018C0CE6B00DDB6B5 /* Grass.tmx */,
+				3224BC6E18C0CE6300DDB6B5 /* Grass.png */,
 				3243C71918BB508300542D7F /* Pipe.png */,
 				3243C71018BB4B9500542D7F /* Pipe.tmx */,
 			);
@@ -766,6 +772,7 @@
 				3243C70218BB0A8C00542D7F /* Textures@2x.png in Resources */,
 				3243C70618BB2E5500542D7F /* Clouds@2x.png in Resources */,
 				3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */,
+				3224BC6F18C0CE6300DDB6B5 /* Grass.png in Resources */,
 				3243C70C18BB448700542D7F /* HUD@2x.plist in Resources */,
 				3224BC6218C093C200DDB6B5 /* ShapeDefs.plist in Resources */,
 				3224BC6D18C0C34500DDB6B5 /* Background_Night@2x.png in Resources */,
@@ -778,6 +785,7 @@
 				3243C39718BAD42500542D7F /* Default@2x.png in Resources */,
 				32A6D8C018BEEF180033786C /* AppIcon29x29@2x.png in Resources */,
 				32A6D8CA18BEF2B70033786C /* Font_Score_Large.png in Resources */,
+				3224BC7118C0CE6B00DDB6B5 /* Grass.tmx in Resources */,
 				32A6D8CE18BF02860033786C /* Font_Score_Small.png in Resources */,
 				32A6D8C818BEF2B70033786C /* Font_Score_Large.fnt in Resources */,
 				3243C39318BAD42500542D7F /* iTunesArtwork in Resources */,

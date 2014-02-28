@@ -46,5 +46,6 @@
 @optional
 
 - (void)createFixtures;
+- (void)addedToWorld;
 
 @end

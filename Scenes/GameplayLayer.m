@@ -122,12 +122,13 @@ float RandomPipeSize() {
 	
 	Pipe *p = [Pipe pipeOfSize:pipeSize upsideDown:upsideDown];
 	const float pipeHalfHeight = p.contentSize.height / 2;
-	p.position = CGPointMake(ScreenWidth(), (upsideDown ? (ScreenHeight() - pipeHalfHeight) : (pipeHalfHeight + GroundHeight)));
+	const float x = [GameManager sharedInstance].reverse ? (0 - p.contentSize.width) : (ScreenWidth() + p.contentSize.width / 2);
+	p.position = CGPointMake(x, (upsideDown ? (ScreenHeight() - pipeHalfHeight) : (pipeHalfHeight + GroundHeight)));
 	[self addChild:p.layer];
 	[p.item addToWorld:self.world];
 	[self.pipes addObject:p];
 	
-	p.item.body->SetLinearVelocity({PipeXVelocity, -kGravityVelocity});
+	p.item.body->SetLinearVelocity({PipeXVelocity * [GameManager sharedInstance].gameSpeed, -kGravityVelocity});
 	p.item.body->SetGravityScale(0.0f); // pipes unaffected by gravity !
 	
 	// call self recursively to add upside-down pipe if needed
@@ -139,7 +140,7 @@ float RandomPipeSize() {
 
 - (void)removeOldPipes {
 	Pipe *p = self.pipes.firstObject;
-	if (p.position.x < -p.contentSize.width / 2) {
+	if (p.position.x < -p.contentSize.width / 2 || (p.position.x > ScreenWidth() + p.contentSize.width)) {
 		[self.pipes removeObject:p];
 		[self removeChild:p.layer cleanup:YES];
 		[self removeOldPipes];
@@ -154,7 +155,8 @@ float RandomPipeSize() {
 	// how far was the most recent pipe?
 	Pipe *lastPipe = self.pipes.lastObject;
 	
-	if (lastPipe.layer.position.x > ScreenWidth() * NextPipeDistance) return; // too soon
+	if (([GameManager sharedInstance].reverse && lastPipe.layer && lastPipe.layer.position.x < (ScreenWidth() * (1 - NextPipeDistance)))
+	   || (![GameManager sharedInstance].reverse && lastPipe.layer.position.x > ScreenWidth() * NextPipeDistance)) return; // too soon
 
 	[self addPipeOfSize:RandomPipeSize() upsideDown:NO];
 }
@@ -164,20 +166,23 @@ float RandomPipeSize() {
 }
 
 - (void)update:(ccTime)delta {
-	static GameState lastState = GameStateMainMenu;
+	static GameState lastState = GStateMainMenu;
 		
 	if (GStateIsGetReady())
 	{
-		if (lastState != GameStateGetReady && lastState != GameStateMainMenu) {
-			for (Bird *b in self.birds) {
-				b.item.body->SetGravityScale(4.0f); // don't be obnoxious
-			}
-			
+		if (lastState != GStateGetReady && lastState != GStateMainMenu) {
 			// switch out the birds
 			if ([self.bird isKindOfClass:[Toucan class]]) {
 				self.bird = [[Pigeon alloc] init];
 			} else {
 				self.bird = [[Toucan alloc] init];
+			}
+		}
+		
+		for (Bird *b in self.birds) if (b != self.bird) {
+			b.xVelocity = PipeXVelocity * [GameManager sharedInstance].gameSpeed;
+			if (b.x < -(b.contentSize.width / 2)) {
+				[self removeBird:b];
 			}
 		}
 		
@@ -191,7 +196,7 @@ float RandomPipeSize() {
 		}
 		[self.pipes removeAllObjects];
 	}
-	if (GStateIsMainMenu() || GStateIsGetReady()) {
+	if (GStateIsMainMenu()) {
 		if (self.birds.count < 2) {
 			[self addExtraBirds];
 		}
@@ -210,7 +215,7 @@ float RandomPipeSize() {
 	}
 	else if (GStateIsActive())
 	{
-		if (lastState != GameStateActive) {
+		if (lastState != GStateActive) {
 			[self removeExtraBirds];
 			self.bird.x = ScreenHalfWidth();
 			self.bird.xVelocity = 0.0f;
@@ -222,13 +227,13 @@ float RandomPipeSize() {
 		}
 
 		if (self.bird.dead) {
-			SetGState(GameStateGameOver);
+			SetGState(GStateGameOver);
 		} else {
 			[self addRandomPipeIfNeeded];
 		}
 		
 		for (Pipe *p in self.pipes) {
-			const float pipeXVelocity = PipeXVelocity * (1.0f + ([GameManager sharedInstance].gameScore * ScorePipeXVelocityMultiplier));
+			const float pipeXVelocity = PipeXVelocity * [GameManager sharedInstance].gameSpeed;
 			p.item.body->SetLinearVelocity({pipeXVelocity, 0});
 			[p updateStateWithDeltaTime:delta];
 		}
