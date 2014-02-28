@@ -11,8 +11,10 @@
 #import "GameManager.h"
 
 @interface StaticBackgroundLayer ()
+@property (nonatomic, strong) CCSprite *currentBackground;
 @property (nonatomic, strong) CCSprite *dayBackground;
 @property (nonatomic, strong) CCSprite *nightBackground;
+@property (nonatomic, strong) CCSprite *toucanBackground;
 @property (nonatomic) BOOL isDay;
 @end
 
@@ -20,8 +22,7 @@
 
 - (instancetype)init {
 	if (self = [super init]) {
-		auto day = self.dayBackground; // force lazy load
-		day = day;
+		self.currentBackground = self.dayBackground;
 		[self scheduleUpdate];
 	}
 	return self;
@@ -37,7 +38,7 @@
 - (CCSprite *)dayBackground {
 	if (!_dayBackground) {
 		_dayBackground = [self addBackgroundNamed:@"Background.png"];
-		_dayBackground.zOrder = 1;
+		_dayBackground.zOrder = 2;
 	}
 	return _dayBackground;
 }
@@ -45,19 +46,31 @@
 - (CCSprite *)nightBackground {
 	if (!_nightBackground) {
 		_nightBackground = [self addBackgroundNamed:@"Background_Night.png"];
-		_dayBackground.zOrder = 0;
+		_nightBackground.zOrder = 1;
 		_nightBackground.opacity = 0;
 	}
 	return _nightBackground;
 }
 
+- (CCSprite *)toucanBackground {
+	if (!_toucanBackground) {
+		_toucanBackground = [self addBackgroundNamed:@"Background_Toucan.png"];
+		_toucanBackground.zOrder = 0;
+		_toucanBackground.opacity = 0;
+	}
+	return _toucanBackground;
+}
+
 - (void)setIsDay:(BOOL)isDay {
 	_isDay = isDay;
-	auto bgToFadeOut = isDay ? self.nightBackground : self.dayBackground;
-	auto bgToFadeIn = isDay ? self.dayBackground : self.nightBackground;
 	
-	[bgToFadeOut runAction:[CCFadeOut actionWithDuration:10.0f]];
-	[bgToFadeIn runAction:[CCFadeIn actionWithDuration:10.0f]];
+	self.currentBackground = isDay ? self.dayBackground : self.nightBackground;
+}
+
+- (void)setCurrentBackground:(CCSprite *)currentBackground {
+	[_currentBackground runAction:[CCFadeOut actionWithDuration:10.0f]];
+	_currentBackground = currentBackground;
+	[currentBackground runAction:[CCFadeIn actionWithDuration:10.0f]];
 }
 
 - (void)update:(ccTime)delta {
@@ -71,6 +84,10 @@
 		
 		if (gameScore > CrazyBackgroundSkewScore) {
 			[self.dayBackground runAction:[CCSkewBy actionWithDuration:1.0f skewX:gameScore skewY:0]];
+		}
+		
+		if (Rand() <= (1.0f / CrazyBackgroundToucanChance) + 0.00001f) {
+			[self setCurrentBackground:[self toucanBackground]];
 		}
 	}
 }

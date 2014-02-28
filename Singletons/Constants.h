@@ -60,5 +60,5 @@ static const int BirdTouchYVelocityRandom = 20; ///< random amount to add to Bir
 static const int CrazyBackwardsModeScore = 50;		///< game reverse when you pass this many points
 static const int CrazySwitchBackgroundsScore = 10;	///< switch background every time we pass 10
 static const int CrazyBackgroundSkewScore = 25;		///< apply skew transforms to BG every point after this
-
+static const int CrazyBackgroundToucanChance = 500; ///< approx every 500 points we will switch the BG to toucan for a lil bit
 #endif

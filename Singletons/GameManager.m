@@ -32,6 +32,7 @@
 - (instancetype)init {
 	if (self = [super init]) {
 		self.gameState = GStateMainMenu; // start in main menu
+		self.gameScore = 0;
 	}
 	return self;
 }
