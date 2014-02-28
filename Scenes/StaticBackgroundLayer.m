@@ -23,6 +23,8 @@
 - (instancetype)init {
 	if (self = [super init]) {
 		self.currentBackground = self.dayBackground;
+		[self.currentBackground stopAllActions];
+		self.currentBackground.opacity = 255;
 		[self scheduleUpdate];
 	}
 	return self;
