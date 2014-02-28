@@ -64,7 +64,7 @@ static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 		static const GameState ButtonStates = (GameState)(GameStateMainMenu|GameStateGameOver);
 		
 		self.scoreLabel = [CCLabelBMFont labelWithString:@"" fntFile:@"Font_Score_Large.fnt"];
-		self.scoreLabel.position = labelPosition;
+		self.scoreLabel.position = ccp(ScreenHalfWidth(), ScreenHeight() * 0.9f);
 		[self addChild:self.scoreLabel z:0];
 					
 		self.scoreBoardScoreLabel = [CCLabelBMFont labelWithString:@"10" fntFile:@"Font_Score_Small.fnt"];
