@@ -36,6 +36,8 @@ static const int kTileSize = 32; ///< in points
 	p.layer = [p.tileMap layerNamed:[NSString stringWithFormat:@"Pipe_%zu%@", p.numRows, (upsideDown ? @"R" : @"")]];
 	[p.layer removeFromParentAndCleanup:NO];
 	
+	p.item.fixtureDef->density = 10.0f;
+	
 	return p;
 }
 
@@ -47,6 +49,7 @@ static const int kTileSize = 32; ///< in points
 - (CGSize)contentSize {
 	CGSize size = self.layer.contentSize;
 	size.height = self.numRows * kTileSize;
+	size.width *= 0.9f;
 	return size;
 }
 

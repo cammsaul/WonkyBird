@@ -20,6 +20,8 @@
 @property (nonatomic) shared_ptr<b2PolygonShape> shape;			///< By default, just a box
 @property (nonatomic) shared_ptr<b2FixtureDef> fixtureDef;
 
+@property (nonatomic, readonly) b2Fixture& fixture;
+
 @property (nonatomic) b2Vec2 positionForBox2D;					///< magic getter/setter; converts self.position <-> Box2D
 @property (nonatomic, readonly) b2Vec2 contentSizeForBox2D;		///< magic getter converts self.contentSize -> Box2D
 
@@ -40,5 +42,9 @@
 
 @property (nonatomic) CGPoint position;
 @property (nonatomic) CGSize contentSize;
+
+@optional
+
+- (void)createFixtures;
 
 @end

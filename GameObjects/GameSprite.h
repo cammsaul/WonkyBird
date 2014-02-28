@@ -17,10 +17,17 @@
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects; ///< Default behavior does nothing
 
+@property (nonatomic, readonly) float rotationBox2D; ///< in radians
+@property (nonatomic, readonly) float rotationBox2DDegrees; ///< in degrees, for cocos2D
+
+@property (nonatomic) float angularVelocity;
+
 @property (nonatomic) b2Vec2 velocity;
 @property (nonatomic) float xVelocity;
 @property (nonatomic) float yVelocity;
 @property (nonatomic) float x;
 @property (nonatomic) float y;
 
+@property (nonatomic, readonly) float box2DX;
+@property (nonatomic, readonly) float box2DY;
 @end

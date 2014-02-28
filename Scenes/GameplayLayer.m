@@ -6,42 +6,34 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-#include <random>
-
+#import "Constants.h"
 #import "GameplayLayer.h"
 #import "GameSprite.h"
-#import "Toucan.h"
+#import "Bird.h"
 #import "Pipe.h"
 #import "GameManager.h"
+#import "Toucan.h"
+#import "Pigeon.h"
 
-static const float PipeXVelocity = -1.4f; ///< base x velocity for pipe movement
-static const float ScorePipeXVelocityMultiplier = 0.01f; ///< Amount each point should increase pipe velocity. e.g. if ScorePipeXVelocityMultiplier = 0.01f, 100 points means pipes move at double speed
 
-static const float kToucanMenuRandVelocity = 10.0f; ///< Apply +/- this amount to toucan's x velocity in main menu
-static auto Rand = std::bind (std::uniform_real_distribution<float>(0.0f, 1.0f), std::default_random_engine()); // nice random number between 0.0f and 1.0f
+float MaxTotalSize() {
+	return MIN((InitialMaxSize + (GameScore() / 2)), MaxMaxSize);
+}
 
-static float __lastTotalPipeSize = 0; // don't be too aggressive with adding new pipes if this is pretty big
-
-static const int MinPipeSize = 2;
-static const int MaxPipeSize = 8;
-static const int MaxTotalSize = MaxPipeSize + MinPipeSize;
 float RandomPipeSize() {
-	static const int SizeRange = MaxPipeSize - MinPipeSize;
+	const int SizeRange = MaxTotalSize() - (MinPipeSize * 2);
 	return (random() % SizeRange) + MinPipeSize;
 //	return MaxTotalSize - lastPipeSize;
 }
 
-static const int GroundHeight = 130;
-static const int kMaxNumPipes = 12;
-
-static const int ToucanTouchYVelocityBase = 100; ///< amount to add to toucan's Y velocity when screen is tapped
-static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to toucan's y velocity when screen is tapped
-
-@interface GameplayLayer ()
-@property (nonatomic, strong) Toucan *toucan;
+@interface GameplayLayer () {
+	NSMutableArray *_birds;
+}
+@property (nonatomic, strong) Bird *bird;
 @property (nonatomic, strong) GameSprite *ground;
 @property (nonatomic, strong) NSMutableArray *walls;
 @property (nonatomic, strong) NSMutableArray *pipes;
+@property (nonatomic, strong, readonly) NSMutableArray *birds;
 @end
 
 @implementation GameplayLayer
@@ -50,10 +42,7 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 	if (self = [super initWithTextureAtlasNamed:@"Textures"]) {
 		srandom((int)time(NULL));
 		
-		self.toucan = [[Toucan alloc] init];
-		self.toucan.position = ccp(ScreenHalfWidth(), ScreenHeight() * kToucanMenuHeight);
-		[self.spriteBatchNode addChild:self.toucan];
-		[self.toucan.item addToWorld:self.world];
+		self.bird = [[Toucan alloc] init];
 		
 		// add the ground
 		self.ground = [[GameSprite alloc] init];
@@ -61,6 +50,7 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 		self.ground.position = CGPointMake(ScreenHalfWidth(), GroundHeight / 2);
 		self.ground.contentSize = CGSizeMake(ScreenWidth() * 2 /* extend out past edges a bit */, GroundHeight);
 		self.ground.item.fixtureDef->density = 0.0f;
+		self.ground.item.fixtureDef->friction = 0.8f;
 		[self.ground.item addToWorld:self.world];
 		
 		// add the "walls"
@@ -87,9 +77,48 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 	return self;
 }
 
+- (NSMutableArray *)birds {
+	if (!_birds) {
+		_birds = [NSMutableArray array];
+	}
+	return _birds;
+}
+
+- (void)addBird:(Bird *)bird {
+	bird.position = ccp(ScreenHalfWidth(), ScreenHeight() * kBirdMenuHeight);
+	[self.spriteBatchNode addChild:bird];
+	[self.birds addObject:bird];
+	[bird.item addToWorld:self.world];
+}
+
+- (void)removeBird:(Bird *)bird {
+	[bird removeFromParentAndCleanup:YES];
+	[_birds removeObject:bird];
+}
+
+- (void)removeExtraBirds {
+	for (Bird *b in self.birds.copy) {
+		if (b != self.bird) {
+			[self removeBird:b];
+		}
+	}
+}
+
+- (void)addExtraBirds {
+	if (![self.bird isKindOfClass:Toucan.class]) [self addBird:[[Toucan alloc] init]];
+	if (![self.bird isKindOfClass:Pigeon.class]) [self addBird:[[Pigeon alloc] init]];
+}
+
+- (void)setBird:(Bird *)bird {
+	[self removeBird:_bird];
+	_bird = bird;
+	[self addBird:_bird];
+}
+
 - (void)addPipeOfSize:(int)pipeSize upsideDown:(BOOL)upsideDown {
 	NSParameterAssert(pipeSize >= MinPipeSize);
 	NSParameterAssert(pipeSize <= MaxPipeSize);
+	NSParameterAssert(pipeSize <= MaxTotalSize() - MinPipeSize);
 	
 	Pipe *p = [Pipe pipeOfSize:pipeSize upsideDown:upsideDown];
 	const float pipeHalfHeight = p.contentSize.height / 2;
@@ -103,8 +132,7 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 	
 	// call self recursively to add upside-down pipe if needed
 	if (!upsideDown) {
-		const auto newPipeSize = MaxTotalSize - pipeSize;
-		__lastTotalPipeSize = pipeSize + newPipeSize;
+		const auto newPipeSize = MaxTotalSize() - pipeSize;
 		[self addPipeOfSize:newPipeSize upsideDown:YES];
 	}
 }
@@ -122,26 +150,13 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 	[self removeOldPipes];
 	
 	if (self.pipes.count >= kMaxNumPipes) return;
-	static float nextPipeDistance = 0.3f;
 	
 	// how far was the most recent pipe?
 	Pipe *lastPipe = self.pipes.lastObject;
 	
-	if (lastPipe.layer.position.x > ScreenWidth() * nextPipeDistance) return; // too soon
-	
-//	const float totalPipeSizeModifier = (MaxTotalSize - __lastTotalPipeSize) * 0.1f; // 8 --> 0 : 0.8f --> (worst) 0 (best)
-//	static const float Aggression = 0.0f; // how aggresively we add new pipes
-//	static const float Range = 0.1f; // how much agression can differ, in terms of size of screen
-//	const float MinNextPipeDistance = Aggression + totalPipeSizeModifier; ///< LATEST point (lowest x) at which to add another pipe
-//	const float MaxNextPipeDistance = Aggression + Range + totalPipeSizeModifier; ///< EARLIEST point (highest x) at which to add another pipe
-//	const float NextPipeDistRange = MaxNextPipeDistance - MinNextPipeDistance;
-	
-//	NSLog(@"modifier: %.2f, min: %.2f, max: %.2f", totalPipeSizeModifier, MinNextPipeDistance, MaxNextPipeDistance);
-	
+	if (lastPipe.layer.position.x > ScreenWidth() * NextPipeDistance) return; // too soon
+
 	[self addPipeOfSize:RandomPipeSize() upsideDown:NO];
-//	nextPipeDistance = 0.8f;
-//	nextPipeDistance = ((random() % (int)(NextPipeDistRange * 1000)) / 1000.0f) + MinNextPipeDistance;
-//	const float nextPipeDist = 0.8f;
 }
 
 - (void)registerWithTouchDispatcher {
@@ -150,59 +165,63 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 
 - (void)update:(ccTime)delta {
 	static GameState lastState = GameStateMainMenu;
-	
-	if (GStateIsMainMenu()) {
-		auto RandTimes10 = []{ return Rand() * kToucanMenuRandVelocity; };
 		
-		if (ABS(self.toucan.yVelocity) < 2) {
-			const float toucanXDiff = (self.toucan.x - ScreenHalfWidth()) / ScreenHalfWidth(); /// < 1.0 = right edge, -1.0 = left
-			
-			static const float MinAntiGravityAmount = 0.0f;
-			static const float MaxAntiGravityAmount = 0.7f;
-			static const float AntiGravityRange = MaxAntiGravityAmount - MinAntiGravityAmount;
-			static const int NumAntiGravityTurnsBeforeChanging = 200;
-			static int NumAntiGravityTurns = NumAntiGravityTurnsBeforeChanging;
-			static float AntiGravityAmount = MinAntiGravityAmount; // amount of gravity to apply on home screen will be random
-			if (NumAntiGravityTurns > NumAntiGravityTurnsBeforeChanging) {
-				AntiGravityAmount = (Rand() / (1.0/AntiGravityRange)) + MinAntiGravityAmount;
-				NSLog(@"Today's random anti-gravity amount = %.02f", AntiGravityAmount);
-				NumAntiGravityTurns = 0;
-			}
-			NumAntiGravityTurns++;
-			
-			const float heightCorrectionVel = ((ScreenHeight() * kToucanMenuHeight) - self.toucan.y) * Rand() * AntiGravityAmount * 0.1f; ///< add neccessary velocity to keep toucan around the right y spot during flapping
-			
-			const float newYVel = (-kGravityVelocity * AntiGravityAmount) + heightCorrectionVel + RandTimes10();
-		
-			const float xVel = (Rand() > .5f) ? (RandTimes10() * -toucanXDiff) : ((RandTimes10() * 2) - kToucanMenuRandVelocity);
-			self.toucan.item.body->ApplyForceToCenter({xVel, newYVel}, true);
-		}
-	}
-	else if (GStateIsGetReady())
+	if (GStateIsGetReady())
 	{
-		self.toucan.state = ToucanStateFlapping;
-		const float toucanYDiff = (self.toucan.y - (ScreenHeight() * 0.60f)) / kPTMRatio;
-		const float toucanXDiff = (self.toucan.x - ScreenHalfWidth()) / kPTMRatio;
-		self.toucan.velocity =  b2Vec2{-toucanXDiff, -toucanYDiff};
+		if (lastState != GameStateGetReady && lastState != GameStateMainMenu) {
+			for (Bird *b in self.birds) {
+				b.item.body->SetGravityScale(4.0f); // don't be obnoxious
+			}
+			
+			// switch out the birds
+			if ([self.bird isKindOfClass:[Toucan class]]) {
+				self.bird = [[Pigeon alloc] init];
+			} else {
+				self.bird = [[Toucan alloc] init];
+			}
+		}
+		
+		self.bird.state = BirdStateFlapping;
+		const float BirdYDiff = ((self.bird.y - (ScreenHeight() * 0.60f)) / kPTMRatio) * 4;
+		const float BirdXDiff = ((self.bird.x - ScreenHalfWidth()) / kPTMRatio) * 4;
+		self.bird.velocity =  b2Vec2{-BirdXDiff, -BirdYDiff};
 		
 		for (Pipe *p in self.pipes) {
 			[self removeChild:p.layer cleanup:YES];
 		}
 		[self.pipes removeAllObjects];
 	}
+	if (GStateIsMainMenu() || GStateIsGetReady()) {
+		if (self.birds.count < 2) {
+			[self addExtraBirds];
+		}
+		if (GStateIsMainMenu()) {
+			for (Bird *b in self.birds) {
+				[b flapAroundOnMainScreen:self.birds];
+			}
+		} else {
+			for (Bird *b in self.birds) {
+				if (b != self.bird) {
+					b.state = BirdStateFalling;
+				}
+				b.rotation = 0;
+			}
+		}
+	}
 	else if (GStateIsActive())
 	{
 		if (lastState != GameStateActive) {
-			self.toucan.x = ScreenHalfWidth();
-			self.toucan.xVelocity = 0.0f;
+			[self removeExtraBirds];
+			self.bird.x = ScreenHalfWidth();
+			self.bird.xVelocity = 0.0f;
 		}
 		
-		if (ABS(self.toucan.xVelocity) >= 0.2f) {
-			NSLog(@"Toucan x: %.2f", self.toucan.xVelocity);
-			self.toucan.state = ToucanStateDead;
+		if (ABS(self.bird.xVelocity) >= 0.2f) {
+			NSLog(@"Bird x: %.2f", self.bird.xVelocity);
+			self.bird.state = BirdStateDead;
 		}
 
-		if (self.toucan.dead) {
+		if (self.bird.dead) {
 			SetGState(GameStateGameOver);
 		} else {
 			[self addRandomPipeIfNeeded];
@@ -216,8 +235,7 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 	}
 	else if (GStateIsGameOver()) {
 		for (Pipe *p in self.pipes) {
-			p.item.body->SetGravityScale(1.0f);
-			p.item.body->SetLinearVelocity({0.0f, kGravityVelocity});
+			p.item.body->SetLinearVelocity({0, 0});
 			[p updateStateWithDeltaTime:delta];
 		}
 	}
@@ -232,27 +250,34 @@ static const int ToucanTouchYVelocityRandom = 20; ///< random amount to add to t
 	lastState = GState();
 }
 
+static NSUInteger __touchBeginTime = 0;
+
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
 	if (!GStateIsActive()) {
 		return NO;
 	}
 	
-	if (self.toucan.state != ToucanStateDead) {
-		self.toucan.item.body->SetAwake(true);
-				
-//		self.toucan.yVelocity = 20;
-		
-		// move toucan towards horizontal center of screen if needed
-		auto linearVelocity = self.toucan.item.body->GetLinearVelocity();
-//		linearVelocity.x = (ScreenHalfWidth() / kPTMRatio) - self.toucan.item.positionForBox2D.x;
-		linearVelocity.y = 2; //-kGravityVelocity * 0.5f;
-		self.toucan.item.body->SetLinearVelocity(linearVelocity);
-	}
+	__touchBeginTime = [[CCDirector sharedDirector] totalFrames];
 	return YES;
 }
 
-- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
-	self.toucan.item.body->ApplyForceToCenter({0, 10}, true);
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+	const NSUInteger numFrames = [[CCDirector sharedDirector] totalFrames] - __touchBeginTime;
+	NSLog(@"num frames: %zd", numFrames);
+	
+	if (self.bird.state != BirdStateDead) {
+		self.bird.item.body->SetAwake(true);
+
+//		self.bird.yVelocity = 20;
+
+		// move Bird towards horizontal center of screen if needed
+		self.bird.xVelocity = (ScreenHalfWidth() / kPTMRatio) - self.bird.item.positionForBox2D.x;
+		[self.bird applyTouch:numFrames];
+	}
 }
+//
+//- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
+//	self.bird.item.body->ApplyForceToCenter({0, 10}, true);
+//}
 
 @end

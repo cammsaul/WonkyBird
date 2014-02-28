@@ -18,6 +18,10 @@
 		320C148318BAD06C000AE6A1 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C148218BAD06C000AE6A1 /* CoreText.framework */; };
 		320C148518BAD06C000AE6A1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C148418BAD06C000AE6A1 /* GameKit.framework */; };
 		32120FDC18BDAF36006C1026 /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32120FDB18BDAF36006C1026 /* GameManager.m */; };
+		3224BC5618C08D5500DDB6B5 /* Toucan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224BC5518C08D5500DDB6B5 /* Toucan.m */; };
+		3224BC5918C08EDC00DDB6B5 /* Pigeon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224BC5818C08EDC00DDB6B5 /* Pigeon.m */; };
+		3224BC6218C093C200DDB6B5 /* ShapeDefs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3224BC6018C093C200DDB6B5 /* ShapeDefs.plist */; };
+		3224BC6B18C095AA00DDB6B5 /* GB2ShapeCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3224BC6A18C095AA00DDB6B5 /* GB2ShapeCache.mm */; };
 		3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16018BAD22C00542D7F /* AppDelegate.m */; };
 		3243C2D918BAD3B600542D7F /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16D18BAD3B500542D7F /* b2BroadPhase.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3243C2DA18BAD3B600542D7F /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16F18BAD3B500542D7F /* b2CollideCircle.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -80,7 +84,7 @@
 		3243C3B718BADFE200542D7F /* Box2DLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C3B618BADFE200542D7F /* Box2DLayer.m */; };
 		3243C57318BAE69700542D7F /* libCocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3243C3F118BAE60900542D7F /* libCocos2d.a */; };
 		3243C6F118BAFA9B00542D7F /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C6F018BAFA9B00542D7F /* Background@2x.png */; };
-		3243C6F718BB03A000542D7F /* Toucan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C6F618BB03A000542D7F /* Toucan.m */; };
+		3243C6F718BB03A000542D7F /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C6F618BB03A000542D7F /* Bird.m */; };
 		3243C70118BB0A8C00542D7F /* Textures@2x.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C6FF18BB0A8C00542D7F /* Textures@2x.plist */; };
 		3243C70218BB0A8C00542D7F /* Textures@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70018BB0A8C00542D7F /* Textures@2x.png */; };
 		3243C70518BB2E5500542D7F /* Clouds@2x.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3243C70318BB2E5500542D7F /* Clouds@2x.plist */; };
@@ -134,6 +138,13 @@
 		320C161418BAD06E000AE6A1 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		32120FDA18BDAF36006C1026 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		32120FDB18BDAF36006C1026 /* GameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameManager.m; sourceTree = "<group>"; };
+		3224BC5418C08D5500DDB6B5 /* Toucan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toucan.h; sourceTree = "<group>"; };
+		3224BC5518C08D5500DDB6B5 /* Toucan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toucan.m; sourceTree = "<group>"; };
+		3224BC5718C08EDC00DDB6B5 /* Pigeon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pigeon.h; sourceTree = "<group>"; };
+		3224BC5818C08EDC00DDB6B5 /* Pigeon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pigeon.m; sourceTree = "<group>"; };
+		3224BC6018C093C200DDB6B5 /* ShapeDefs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShapeDefs.plist; sourceTree = "<group>"; };
+		3224BC6918C095AA00DDB6B5 /* GB2ShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GB2ShapeCache.h; sourceTree = "<group>"; };
+		3224BC6A18C095AA00DDB6B5 /* GB2ShapeCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GB2ShapeCache.mm; sourceTree = "<group>"; };
 		3243C15F18BAD22C00542D7F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3243C16018BAD22C00542D7F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3243C16B18BAD3B500542D7F /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
@@ -255,8 +266,8 @@
 		3243C3B818BAE00100542D7F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		3243C3EB18BAE60900542D7F /* Cocos2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cocos2d.xcodeproj; path = Cocos2d/Cocos2d.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3243C6F018BAFA9B00542D7F /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
-		3243C6F518BB03A000542D7F /* Toucan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toucan.h; sourceTree = "<group>"; };
-		3243C6F618BB03A000542D7F /* Toucan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toucan.m; sourceTree = "<group>"; };
+		3243C6F518BB03A000542D7F /* Bird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bird.h; sourceTree = "<group>"; };
+		3243C6F618BB03A000542D7F /* Bird.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bird.m; sourceTree = "<group>"; };
 		3243C6FF18BB0A8C00542D7F /* Textures@2x.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Textures@2x.plist"; sourceTree = "<group>"; };
 		3243C70018BB0A8C00542D7F /* Textures@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Textures@2x.png"; sourceTree = "<group>"; };
 		3243C70318BB2E5500542D7F /* Clouds@2x.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Clouds@2x.plist"; sourceTree = "<group>"; };
@@ -353,6 +364,23 @@
 			path = WonkyBird;
 			sourceTree = "<group>";
 		};
+		3224BC5E18C093C200DDB6B5 /* ShapeDefs */ = {
+			isa = PBXGroup;
+			children = (
+				3224BC6018C093C200DDB6B5 /* ShapeDefs.plist */,
+			);
+			path = ShapeDefs;
+			sourceTree = "<group>";
+		};
+		3224BC6818C095AA00DDB6B5 /* GB2ShapeCache */ = {
+			isa = PBXGroup;
+			children = (
+				3224BC6918C095AA00DDB6B5 /* GB2ShapeCache.h */,
+				3224BC6A18C095AA00DDB6B5 /* GB2ShapeCache.mm */,
+			);
+			path = GB2ShapeCache;
+			sourceTree = "<group>";
+		};
 		3243C15E18BAD22C00542D7F /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +396,7 @@
 		3243C16918BAD3B500542D7F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				3224BC6818C095AA00DDB6B5 /* GB2ShapeCache */,
 				3243C16A18BAD3B500542D7F /* Box2D */,
 			);
 			path = libs;
@@ -536,6 +565,7 @@
 		3243C37D18BAD42500542D7F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3224BC5E18C093C200DDB6B5 /* ShapeDefs */,
 				32A6D8C418BEF2B70033786C /* Fonts */,
 				3243C70E18BB4B9500542D7F /* TileMaps */,
 				3243C6F818BB04F000542D7F /* TextureAtlases */,
@@ -564,10 +594,14 @@
 				3243C71F18BB563400542D7F /* Box2DItem.m */,
 				3243C39918BAD49900542D7F /* GameSprite.h */,
 				3243C39A18BAD49900542D7F /* GameSprite.m */,
-				3243C6F518BB03A000542D7F /* Toucan.h */,
-				3243C6F618BB03A000542D7F /* Toucan.m */,
+				3243C6F518BB03A000542D7F /* Bird.h */,
+				3243C6F618BB03A000542D7F /* Bird.m */,
 				3243C71B18BB53FD00542D7F /* Pipe.h */,
 				3243C71C18BB53FD00542D7F /* Pipe.m */,
+				3224BC5418C08D5500DDB6B5 /* Toucan.h */,
+				3224BC5518C08D5500DDB6B5 /* Toucan.m */,
+				3224BC5718C08EDC00DDB6B5 /* Pigeon.h */,
+				3224BC5818C08EDC00DDB6B5 /* Pigeon.m */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -730,6 +764,7 @@
 				3243C70618BB2E5500542D7F /* Clouds@2x.png in Resources */,
 				3243C39418BAD42500542D7F /* Default-568h@2x.png in Resources */,
 				3243C70C18BB448700542D7F /* HUD@2x.plist in Resources */,
+				3224BC6218C093C200DDB6B5 /* ShapeDefs.plist in Resources */,
 				32A6D8D018BF02900033786C /* Font_Score_Small.fnt in Resources */,
 				3243C71218BB4B9500542D7F /* Pipe.tmx in Resources */,
 				32A6D8C118BEEF180033786C /* AppIcon40x40@2x.png in Resources */,
@@ -757,10 +792,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3243C3B418BADF0C00542D7F /* HUDLayer.m in Sources */,
+				3224BC6B18C095AA00DDB6B5 /* GB2ShapeCache.mm in Sources */,
 				3243C30718BAD3B600542D7F /* b2Rope.cpp in Sources */,
 				3243C2ED18BAD3B600542D7F /* b2Fixture.cpp in Sources */,
 				3243C2EB18BAD3B600542D7F /* b2Body.cpp in Sources */,
 				3243C72018BB563400542D7F /* Box2DItem.m in Sources */,
+				3224BC5918C08EDC00DDB6B5 /* Pigeon.m in Sources */,
 				3243C2E418BAD3B600542D7F /* b2PolygonShape.cpp in Sources */,
 				3243C2F618BAD3B600542D7F /* b2EdgeAndCircleContact.cpp in Sources */,
 				3243C2F218BAD3B600542D7F /* b2ChainAndPolygonContact.cpp in Sources */,
@@ -787,7 +824,7 @@
 				3243C3AE18BADEEA00542D7F /* ScrollingBackgroundLayer.m in Sources */,
 				3243C37C18BAD3D500542D7F /* main.m in Sources */,
 				3243C39B18BAD49900542D7F /* GameSprite.m in Sources */,
-				3243C6F718BB03A000542D7F /* Toucan.m in Sources */,
+				3243C6F718BB03A000542D7F /* Bird.m in Sources */,
 				3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */,
 				3243C2EF18BAD3B600542D7F /* b2World.cpp in Sources */,
 				3243C2DC18BAD3B600542D7F /* b2CollidePolygon.cpp in Sources */,
@@ -814,6 +851,7 @@
 				3243C2E618BAD3B600542D7F /* b2Draw.cpp in Sources */,
 				3243C30618BAD3B600542D7F /* GLES-Render.mm in Sources */,
 				3243C2FA18BAD3B600542D7F /* b2DistanceJoint.cpp in Sources */,
+				3224BC5618C08D5500DDB6B5 /* Toucan.m in Sources */,
 				3243C2E518BAD3B600542D7F /* b2BlockAllocator.cpp in Sources */,
 				3243C2F418BAD3B600542D7F /* b2Contact.cpp in Sources */,
 				3243C2E318BAD3B600542D7F /* b2EdgeShape.cpp in Sources */,

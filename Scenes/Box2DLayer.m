@@ -8,6 +8,7 @@
 
 #import "Box2DLayer.h"
 #import "GameSprite.h"
+#import "Constants.h"
 
 using namespace std;
 

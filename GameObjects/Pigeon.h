@@ -1,5 +1,5 @@
 //
-//  Toucan.h
+//  Pigeon.h
 //  WonkyBird
 //
 //  Created by Cam Saul on 2/28/14.
@@ -8,6 +8,6 @@
 
 #import "Bird.h"
 
-@interface Toucan : Bird
+@interface Pigeon : Bird
 
 @end

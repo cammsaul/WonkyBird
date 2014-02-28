@@ -4,10 +4,62 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>Pigeon_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{90,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{90,56}}</string>
+                <key>sourceSize</key>
+                <string>{90,56}</string>
+            </dict>
+            <key>Pigeon_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{94,2},{90,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{90,56}}</string>
+                <key>sourceSize</key>
+                <string>{90,56}</string>
+            </dict>
+            <key>Pigeon_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,60},{90,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{90,56}}</string>
+                <key>sourceSize</key>
+                <string>{90,56}</string>
+            </dict>
+            <key>Pigeon_Dead.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{94,60},{90,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{90,56}}</string>
+                <key>sourceSize</key>
+                <string>{90,56}</string>
+            </dict>
             <key>Toucan_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{117,72}}</string>
+                <string>{{2,118},{117,72}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +72,7 @@
             <key>Toucan_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{121,2},{117,72}}</string>
+                <string>{{121,118},{117,72}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +85,7 @@
             <key>Toucan_3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,76},{113,72}}</string>
+                <string>{{2,192},{113,72}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +98,7 @@
             <key>Toucan_Dead.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{117,76},{114,77}}</string>
+                <string>{{117,192},{114,77}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -64,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>Textures@2x.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f546fdd4be56f1d423c8b0cc4d471362:51767a5b5de282633bebac6e206e0c82:432b15258729bca49c4cf5458d86f740$</string>
+            <string>$TexturePacker:SmartUpdate:f0c735990453612f63a22a67d9bd622e:2a80b2e86201222f3eb92a06ef8677b9:432b15258729bca49c4cf5458d86f740$</string>
             <key>textureFileName</key>
             <string>Textures@2x.png</string>
         </dict>

@@ -2,110 +2,59 @@
 //  Toucan.m
 //  WonkyBird
 //
-//  Created by Cam Saul on 2/23/14.
+//  Created by Cam Saul on 2/28/14.
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
 #import "Toucan.h"
-#import "GameManager.h"
-
-@interface Toucan ()
-@property (nonatomic, strong) CCAnimation *flappingAnimation;
-@property (nonatomic, strong) CCAnimation *fallingAnimation;
-@end
+#import "Pigeon.h"
+#import "Constants.h"
 
 @implementation Toucan
 
-- (id)init {
-	if (self = [super initWithSpriteFrameName:@"Toucan_1.png"]) {
-		static const vector<unsigned> frameNums { 1, 2, 3, 2 };
-		NSMutableArray *frames = [NSMutableArray arrayWithCapacity:frameNums.size()];
-		for (auto frameNum : frameNums) {
-			[frames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"Toucan_%d.png", frameNum]]];
-		}
-		self.flappingAnimation = [CCAnimation animationWithSpriteFrames:frames delay:0.04f];
-		
-		static const vector<unsigned> frameNums2 { 1, 2 };
-		NSMutableArray *frames2 = [NSMutableArray arrayWithCapacity:frameNums.size()];
-		for (auto frameNum : frameNums2) {
-			[frames2 addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"Toucan_%d.png", frameNum]]];
-		}
-		self.fallingAnimation = [CCAnimation animationWithSpriteFrames:frames2 delay:0.10f];
-		
-		self.state = ToucanStateFlapping; // start out flapping on main menu
-	}
-	return self;
+- (void)applyTouch:(NSUInteger)numFrames {
+	self.yVelocity = -kGravityVelocity * (.0f + (.1f * numFrames)); // 0.3, .1 + (.05x)
 }
 
-//- (BOOL)idle		{ return self.state == ToucanStateIdle; }
-- (BOOL)dead		{ return self.state == ToucanStateDead; }
-- (BOOL)falling		{ return self.state == ToucanStateFalling; }
-- (BOOL)flapping	{ return self.state == ToucanStateFlapping; }
-
-
-- (void)setState:(ToucanState)state {
-	if (_state == state) return;
-	[self stopAllActions];
+- (void)flapAroundOnMainScreen:(NSArray *)birds {
+	auto RandTimes10 = []{ return Rand() * kBirdMenuRandVelocity; };
 	
-	_state = state;
-	switch (state) {
-		case ToucanStateDead: {
-			NSLog(@"Toucan -> dead.");
-			self.displayFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Toucan_Dead.png"];
-		} break;
-		case ToucanStateFlapping: {
-			[self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.flappingAnimation]]];
-		} break;
-		case ToucanStateFalling: {
-			[self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:self.fallingAnimation]]];
-		} break;
-		default: NSAssert(NO, @"Unhandled state for toucan: %d", state);
+	if (ABS(self.yVelocity) < 2) {
+		const float BirdXDiff = (self.x - ScreenHalfWidth()) / ScreenHalfWidth(); /// < 1.0 = right edge, -1.0 = left
+		
+		static const float MinAntiGravityAmount = 0.0f;
+		static const float MaxAntiGravityAmount = 0.7f;
+		static const float AntiGravityRange = MaxAntiGravityAmount - MinAntiGravityAmount;
+		static const int NumAntiGravityTurnsBeforeChanging = 200;
+		static int NumAntiGravityTurns = NumAntiGravityTurnsBeforeChanging;
+		static float AntiGravityAmount = MinAntiGravityAmount; // amount of gravity to apply on home screen will be random
+		if (NumAntiGravityTurns > NumAntiGravityTurnsBeforeChanging) {
+			AntiGravityAmount = (Rand() / (1.0/AntiGravityRange)) + MinAntiGravityAmount;
+			NSLog(@"Today's random anti-gravity amount = %.02f", AntiGravityAmount);
+			NumAntiGravityTurns = 0;
+		}
+		NumAntiGravityTurns++;
+		
+		const float heightCorrectionVel = ((ScreenHeight() * kBirdMenuHeight) - self.y) * Rand() * AntiGravityAmount * 0.1f; ///< add neccessary velocity to keep Bird around the right y spot during flapping
+		
+		const float newYVel = (-kGravityVelocity * AntiGravityAmount) + heightCorrectionVel + RandTimes10();
+		
+		const float xVel = (Rand() > .5f) ? (RandTimes10() * -BirdXDiff) : ((RandTimes10() * 2) - kBirdMenuRandVelocity);
+		self.item.body->ApplyForceToCenter({xVel, newYVel}, true);
+		
+		// move towards pigeons
+		for (Bird *b in birds) {
+			if (b == self) continue;
+			if ([b isKindOfClass:Pigeon.class]) {
+				self.item.body->ApplyForceToCenter({(b.box2DX - self.box2DX) * 0.5f, (b.box2DY - self.box2DY) * 0.5f}, true);
+			}
+		}
 	}
 }
 
-- (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
-	[super updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];
-	
-	if (self.dead) return;
-
-	// clamp to screen as needed
-	const float minX = 0;
-	const float maxX = ScreenWidth();
-	if (self.x < minX) {
-		self.xVelocity = 1;
-	} else if (self.x > maxX) {
-		self.xVelocity = -1;
-	}
-	if		(self.y < 0)				self.yVelocity = 1;
-	else if (self.y > ScreenHeight())	self.yVelocity = -1;
-	
-	float    rotation = self.yVelocity * 20;
-	if		(rotation > 90.0f)  rotation =  90.0f;
-	else if (rotation < -90.0f) rotation = -90.0f;
-	self.rotation = rotation * (self.flipX ? 1.0f : -1.0f);
-	
-	if (GStateIsMainMenu()) {
-		self.state = self.yVelocity < 0 ? ToucanStateFalling : ToucanStateFlapping;
-		
-		static const float MinXVelocityBeforeFlipping = 0.2f; ///< don't flipX until we're going at least this amount to prevent thrashing
-		if		(self.xVelocity < -MinXVelocityBeforeFlipping /* -1 */)	self.flipX = YES;
-		else if (self.xVelocity > MinXVelocityBeforeFlipping)			self.flipX = NO;
-	}
-	else if (GStateIsGetReady()) {
-		self.flipX = NO;
-		self.state = ToucanStateFlapping;
-	}
-	else if (GStateIsActive()) {
-		self.flipX = NO;
-		
-		if (self.isOffscreen || !self.item.body->IsAwake() || (self.yVelocity == 0 && self.falling)) {
-			self.state = ToucanStateDead;
-		} else if (self.yVelocity <= 0) {
-			self.state = ToucanStateFalling;
-		} else {
-			self.state = ToucanStateFlapping;
-		}
-	}
+- (void)createFixtures {
+	[super createFixtures];
+	self.item.body->SetGravityScale(1.2);
 }
 
 @end

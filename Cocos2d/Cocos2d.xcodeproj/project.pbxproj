@@ -1065,6 +1065,7 @@
 				3243C3E718BAE60900542D7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

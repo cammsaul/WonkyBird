@@ -66,5 +66,6 @@
 
 @end
 
+NSUInteger GameScore() { return [GameManager sharedInstance].gameScore; }
 GameState GState() { return [[GameManager sharedInstance] gameState]; }
 void SetGState(GameState gState) { [GameManager sharedInstance].gameState = gState; }

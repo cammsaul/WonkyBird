@@ -170,6 +170,10 @@
             <filename>../../../Downloads/wonky 2x/Toucan_2.png</filename>
             <filename>../../../Downloads/wonky 2x/Toucan_3.png</filename>
             <filename>../../../Downloads/wonky 2x/Toucan_Dead.png</filename>
+            <filename>../../../Downloads/Pigeon_1.png</filename>
+            <filename>../../../Downloads/Pigeon_2.png</filename>
+            <filename>../../../Downloads/Pigeon_3.png</filename>
+            <filename>../../../Downloads/Pigeon_Dead.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

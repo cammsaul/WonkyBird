@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CBEF95B2-56F1-4E03-8458-F4F6E5E538B2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WonkyBird</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3BA58743-0617-4928-985E-9669BF01BBE5</key>
+		<string>https://github.com/cammsaul/WonkyBird.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>WonkyBird.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3BA58743-0617-4928-985E-9669BF01BBE5</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/cammsaul/WonkyBird.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3BA58743-0617-4928-985E-9669BF01BBE5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3BA58743-0617-4928-985E-9669BF01BBE5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WonkyBird</string>
+		</dict>
+	</array>
+</dict>
+</plist>

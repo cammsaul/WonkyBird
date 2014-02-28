@@ -7,6 +7,7 @@
 //
 
 #import "Box2DItem.h"
+#import "Constants.h"
 
 @interface Box2DItem ()
 @property (nonatomic) b2Body *body;
@@ -42,13 +43,26 @@
 	[self removeFromWorld];
 }
 
+- (b2Fixture &)fixture {
+	return self.body->GetFixtureList()[0];
+}
+
 - (void)addToWorldPtr:(b2World*)world {
 	self.bodyDef->position = self.positionForBox2D;
 	[self updateShape];
 	self.body = world->CreateBody(self.bodyDef.get());
 	self.body->SetUserData((__bridge void *)self.owner);
 	self.body->SetActive(true);
-	self.body->CreateFixture(self.fixtureDef.get());
+	
+	if ([self.owner respondsToSelector:@selector(createFixtures)]) {
+		[self.owner createFixtures];
+	} else {
+		self.body->CreateFixture(self.fixtureDef.get());
+	}
+	
+	auto fixture = self.body->GetFixtureList()[0];
+	auto polygon = static_cast<b2PolygonShape *>(fixture.GetShape());
+	NSCParameterAssert(polygon->GetVertexCount());
 }
 
 - (void)addToWorld:(shared_ptr<b2World>)world {

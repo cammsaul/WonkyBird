@@ -7,6 +7,7 @@
 //
 
 #import "StaticBackgroundLayer.h"
+#import "Constants.h"
 
 @implementation StaticBackgroundLayer
 

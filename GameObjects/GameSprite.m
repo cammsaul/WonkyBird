@@ -23,8 +23,16 @@
 	return self.x < -(self.contentSize.width / 2);
 }
 
+- (float)rotationBox2DDegrees { return self.rotationBox2D * (-90.0f / M_PI_2); }
+- (float)rotationBox2D { return self.item.body->GetAngle(); }
+
+- (float)angularVelocity { return self.item.body->GetAngularVelocity(); }
+- (void)setAngularVelocity:(float)angularVelocity { self.item.body->SetAngularVelocity(angularVelocity); }
+
 - (float)x { return self.position.x; }
 - (float)y { return self.position.y; }
+- (float)box2DX { return self.item.positionForBox2D.x; }
+- (float)box2DY { return self.item.positionForBox2D.y; }
 - (void)setX:(float)x { self.position = ccp(x, self.y); }
 - (void)setY:(float)y { self.position = ccp(self.x, y); }
 
@@ -36,6 +44,8 @@
 - (void)setXVelocity:(float)xVelocity {	self.velocity = b2Vec2 {xVelocity, self.yVelocity}; }
 - (void)setYVelocity:(float)yVelocity { self.velocity = b2Vec2 {self.xVelocity, yVelocity}; }
 
-- (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {}
+- (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
+//	self.item.body->SetTransform(self.item.positionForBox2D, self.rotation / M_PI_2);
+}
 
 @end

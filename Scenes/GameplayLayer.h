@@ -8,10 +8,10 @@
 
 #import "Box2DLayer.h"
 
-@class Toucan;
+@class Bird;
 
 @interface GameplayLayer : Box2DLayer
 
-@property (nonatomic, strong, readonly) Toucan *toucan;
+@property (nonatomic, strong, readonly) Bird *bird;
 
 @end

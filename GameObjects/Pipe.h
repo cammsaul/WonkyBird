@@ -18,7 +18,7 @@
 
 @property (nonatomic, readonly) BOOL upsideDown;
 
-@property (nonatomic, readonly) BOOL cleared; ///< whether the toucan has 'cleared' this pipe (right edge of pipe == half screen size).
+@property (nonatomic, readonly) BOOL cleared; ///< whether the Bird has 'cleared' this pipe (right edge of pipe == half screen size).
 
 - (void)updateStateWithDeltaTime:(ccTime)delta;
 
