@@ -30,6 +30,7 @@
 		
 		// add an iad view
 		auto adBanner = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+		adBanner.backgroundColor = [UIColor clearColor];
 		adBanner.translatesAutoresizingMaskIntoConstraints = NO;
 		[self.view addSubview:adBanner];
 		
