@@ -109,6 +109,7 @@
 		32A6D8CE18BF02860033786C /* Font_Score_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8CC18BF02860033786C /* Font_Score_Small.png */; };
 		32A6D8D018BF02900033786C /* Font_Score_Small.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8CF18BF02900033786C /* Font_Score_Small.fnt */; };
 		D1AE797A18C15D0000891FAE /* NavController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AE797918C15D0000891FAE /* NavController.m */; };
+		D1AE797C18C15FAE00891FAE /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AE797B18C15FAE00891FAE /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +302,7 @@
 		32A6D8CF18BF02900033786C /* Font_Score_Small.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Font_Score_Small.fnt; sourceTree = "<group>"; };
 		D1AE797818C15D0000891FAE /* NavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavController.h; sourceTree = "<group>"; };
 		D1AE797918C15D0000891FAE /* NavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavController.m; sourceTree = "<group>"; };
+		D1AE797B18C15FAE00891FAE /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1AE797C18C15FAE00891FAE /* iAd.framework in Frameworks */,
 				3243C57318BAE69700542D7F /* libCocos2d.a in Frameworks */,
 				320C147718BAD06C000AE6A1 /* OpenAL.framework in Frameworks */,
 				320C147D18BAD06C000AE6A1 /* UIKit.framework in Frameworks */,
@@ -351,6 +354,7 @@
 		320C147118BAD06C000AE6A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1AE797B18C15FAE00891FAE /* iAd.framework */,
 				320C147218BAD06C000AE6A1 /* QuartzCore.framework */,
 				320C147418BAD06C000AE6A1 /* OpenGLES.framework */,
 				320C147618BAD06C000AE6A1 /* OpenAL.framework */,
