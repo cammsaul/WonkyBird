@@ -108,6 +108,7 @@
 		32A6D8CA18BEF2B70033786C /* Font_Score_Large.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8C718BEF2B70033786C /* Font_Score_Large.png */; };
 		32A6D8CE18BF02860033786C /* Font_Score_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8CC18BF02860033786C /* Font_Score_Small.png */; };
 		32A6D8D018BF02900033786C /* Font_Score_Small.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8CF18BF02900033786C /* Font_Score_Small.fnt */; };
+		D1AE797A18C15D0000891FAE /* NavController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AE797918C15D0000891FAE /* NavController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,6 +299,8 @@
 		32A6D8C718BEF2B70033786C /* Font_Score_Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Font_Score_Large.png; sourceTree = "<group>"; };
 		32A6D8CC18BF02860033786C /* Font_Score_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Font_Score_Small.png; sourceTree = "<group>"; };
 		32A6D8CF18BF02900033786C /* Font_Score_Small.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Font_Score_Small.fnt; sourceTree = "<group>"; };
+		D1AE797818C15D0000891FAE /* NavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavController.h; sourceTree = "<group>"; };
+		D1AE797918C15D0000891FAE /* NavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +400,8 @@
 				3243C3B818BAE00100542D7F /* Constants.h */,
 				32120FDA18BDAF36006C1026 /* GameManager.h */,
 				32120FDB18BDAF36006C1026 /* GameManager.m */,
+				D1AE797818C15D0000891FAE /* NavController.h */,
+				D1AE797918C15D0000891FAE /* NavController.m */,
 			);
 			path = Singletons;
 			sourceTree = SOURCE_ROOT;
@@ -834,6 +839,7 @@
 				3243C2E718BAD3B600542D7F /* b2Math.cpp in Sources */,
 				3243C2D918BAD3B600542D7F /* b2BroadPhase.cpp in Sources */,
 				3243C2FF18BAD3B600542D7F /* b2MouseJoint.cpp in Sources */,
+				D1AE797A18C15D0000891FAE /* NavController.m in Sources */,
 				3243C2F018BAD3B600542D7F /* b2WorldCallbacks.cpp in Sources */,
 				3243C71D18BB53FD00542D7F /* Pipe.m in Sources */,
 				3243C3A818BAD87500542D7F /* StaticBackgroundLayer.m in Sources */,

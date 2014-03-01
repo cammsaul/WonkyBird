@@ -6,20 +6,18 @@
 //  Copyright LuckyBird, Inc. 2014. All rights reserved.
 //
 
-// Added only for iOS 6 support
-@interface MyNavigationController : UINavigationController <CCDirectorDelegate>
-@end
+@class NavController;
 
 @interface AppController : NSObject <UIApplicationDelegate>
 {
 	UIWindow *window_;
-	MyNavigationController *navController_;
+	NavController *navController_;
 
 	CCDirectorIOS	*__weak director_;							// weak ref
 }
 
 @property (nonatomic, strong) UIWindow *window;
-@property (readonly) MyNavigationController *navController;
+@property (readonly) NavController *navController;
 @property (weak, readonly) CCDirectorIOS *director;
 
 @end
