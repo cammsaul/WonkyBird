@@ -42,11 +42,11 @@
 }
 
 - (float)gameSpeed {
-	return (GState() & (GStateActive|GStateGetReady)) ? ((1.0f + (ScorePipeXVelocityMultiplier * CurrentRoundScore())) * (CurrentRoundScore() > CrazyBackwardsModeScore ? -1.0f : 1.0f)) : 0;
+	return (GState() & (GStateActive|GStateGetReady)) ? ((1.0f + (ScorePipeXVelocityMultiplier * CurrentRoundScore())) * (self.reverse ? -1.0f : 1.0f)) : 0;
 }
 
 - (BOOL)reverse {
-	return [self gameSpeed] < 0.0f;
+	return (self.currentRoundScore / CrazyBackwardsModeScore) % 2 != 0;
 }
 
 - (void)setGameState:(GameState)gameState {

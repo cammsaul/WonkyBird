@@ -85,7 +85,9 @@
 		}
 		
 		if (gameScore > CrazyBackgroundSkewScore) {
-			[self.dayBackground runAction:[CCSkewBy actionWithDuration:1.0f skewX:gameScore skewY:0]];
+			[self.currentBackground runAction:[CCSkewBy actionWithDuration:1.0f skewX:gameScore skewY:0]];
+		} else {
+			[self.currentBackground runAction:[CCSkewTo actionWithDuration:1.0f skewX:0 skewY:0]];
 		}
 		
 		if ((random() % CrazyBackgroundToucanChance) == 0) {

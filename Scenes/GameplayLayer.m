@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
+#import <CocosDenshion/CocosDenshion.h>
+#import <CocosDenshion/SimpleAudioEngine.h>
+
 #import "Constants.h"
 #import "GameplayLayer.h"
 #import "GameSprite.h"
@@ -14,7 +17,6 @@
 #import "GameManager.h"
 #import "Toucan.h"
 #import "Pigeon.h"
-
 
 float MaxTotalSize() {
 	return MIN((InitialMaxSize + (CurrentRoundScore() / 2)), MaxMaxSize);
@@ -229,7 +231,7 @@ float RandomPipeSize() {
 		}
 
 		if (self.bird.dead) {
-			SetGState(GStateGameOver);
+			SetGState(GStateGameOver);			
 		} else {
 			[self addRandomPipeIfNeeded];
 		}
@@ -275,11 +277,11 @@ static NSUInteger __touchBeginTime = 0;
 	if (self.bird.state != BirdStateDead) {
 		self.bird.item.body->SetAwake(true);
 
-//		self.bird.yVelocity = 20;
-
 		// move Bird towards horizontal center of screen if needed
 		self.bird.xVelocity = (ScreenHalfWidth() / kPTMRatio) - self.bird.item.positionForBox2D.x;
 		[self.bird applyTouch:numFrames];
+		
+		[[SimpleAudioEngine sharedEngine] playEffect:@"Shaker_2.wav"];
 	}
 }
 //

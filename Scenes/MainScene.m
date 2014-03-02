@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
+#import <CocosDenshion/CocosDenshion.h>
+#import <CocosDenshion/SimpleAudioEngine.h>
+
 #import "MainScene.h"
 #import "StaticBackgroundLayer.h"
 #import "ScrollingBackgroundLayer.h"
@@ -49,12 +52,21 @@ static MainScene *__mainScene;
 		self.hudLayer = [[HUDLayer alloc] init];
 		[self addChild:self.hudLayer z:300];
 		
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+			[CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_HIGH];
+			[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"Return_to_Earth.mp3"];
+			[[SimpleAudioEngine sharedEngine] preloadEffect:@"Shaker_2.wav"];
+			[[SimpleAudioEngine sharedEngine] preloadEffect:@"Perc_2.wav"];
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Return_to_Earth.mp3"];
+		});
+				
 		[self scheduleUpdate];
 	}
 	return self;
 }
 
 - (void)update:(ccTime)delta {
+	static GameState lastState = (GameState)-1;
 	if (!GStateIsMainMenu()) {
 		self.hudLayer.zOrder = 300;
 		self.gameplayLayer.zOrder = 200;
@@ -70,5 +82,15 @@ static MainScene *__mainScene;
 			lockToggle = false;
 		}
 	}
+	if (GState() != lastState) {
+		if (GStateIsGameOver()) {
+			[[SimpleAudioEngine sharedEngine] playEffect:@"Perc_2.wav"];
+			[[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+		} else if (lastState != GStateMainMenu && GStateIsGetReady()) {
+			[[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
+		}
+	}
+	
+	lastState = GState();
 }
 @end

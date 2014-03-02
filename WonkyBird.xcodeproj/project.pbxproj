@@ -32,6 +32,9 @@
 		3234421D18C39A0D00450916 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234421618C39A0D00450916 /* GameLayer.m */; };
 		3234421E18C39A0D00450916 /* GameSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234421818C39A0D00450916 /* GameSprite.m */; };
 		3234421F18C39A0D00450916 /* GB2ShapeCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3234421A18C39A0D00450916 /* GB2ShapeCache.mm */; };
+		3234422418C3A4AA00450916 /* Return_to_Earth.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3234422218C3A4AA00450916 /* Return_to_Earth.mp3 */; };
+		3234422718C3A66C00450916 /* Perc_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3234422518C3A66C00450916 /* Perc_2.wav */; };
+		3234422A18C3A9DA00450916 /* Shaker_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3234422918C3A9DA00450916 /* Shaker_2.wav */; };
 		3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16018BAD22C00542D7F /* AppDelegate.m */; };
 		3243C37C18BAD3D500542D7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C37B18BAD3D500542D7F /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3243C39318BAD42500542D7F /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38618BAD42500542D7F /* iTunesArtwork */; };
@@ -134,6 +137,9 @@
 		3234421818C39A0D00450916 /* GameSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSprite.m; sourceTree = "<group>"; };
 		3234421918C39A0D00450916 /* GB2ShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GB2ShapeCache.h; sourceTree = "<group>"; };
 		3234421A18C39A0D00450916 /* GB2ShapeCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GB2ShapeCache.mm; sourceTree = "<group>"; };
+		3234422218C3A4AA00450916 /* Return_to_Earth.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Return_to_Earth.mp3; sourceTree = "<group>"; };
+		3234422518C3A66C00450916 /* Perc_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Perc_2.wav; sourceTree = "<group>"; };
+		3234422918C3A9DA00450916 /* Shaker_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Shaker_2.wav; sourceTree = "<group>"; };
 		3243C15F18BAD22C00542D7F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3243C16018BAD22C00542D7F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3243C37B18BAD3D500542D7F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
@@ -271,6 +277,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3234422018C3A4AA00450916 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3234422918C3A9DA00450916 /* Shaker_2.wav */,
+				3234422518C3A66C00450916 /* Perc_2.wav */,
+				3234422218C3A4AA00450916 /* Return_to_Earth.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		3243C15E18BAD22C00542D7F /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +323,7 @@
 		3243C37D18BAD42500542D7F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3234422018C3A4AA00450916 /* Sounds */,
 				3224BC5E18C093C200DDB6B5 /* ShapeDefs */,
 				32A6D8C418BEF2B70033786C /* Fonts */,
 				3243C70E18BB4B9500542D7F /* TileMaps */,
@@ -522,6 +539,9 @@
 				3243C71218BB4B9500542D7F /* Pipe.tmx in Resources */,
 				32A6D8C118BEEF180033786C /* AppIcon40x40@2x.png in Resources */,
 				3243C70D18BB448700542D7F /* HUD@2x.png in Resources */,
+				3234422718C3A66C00450916 /* Perc_2.wav in Resources */,
+				3234422A18C3A9DA00450916 /* Shaker_2.wav in Resources */,
+				3234422418C3A4AA00450916 /* Return_to_Earth.mp3 in Resources */,
 				3243C70518BB2E5500542D7F /* Clouds@2x.plist in Resources */,
 				3243C6F118BAFA9B00542D7F /* Background@2x.png in Resources */,
 				3243C39718BAD42500542D7F /* Default@2x.png in Resources */,
