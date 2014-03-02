@@ -8,6 +8,10 @@
 
 #import "GameManager.h"
 
+@interface GameManager ()
+@property (nonatomic, strong, readonly) NSMutableDictionary *gameScores;
+@end
+
 @implementation GameManager
 
 + (id)alloc {
@@ -32,13 +36,13 @@
 - (instancetype)init {
 	if (self = [super init]) {
 		self.gameState = GStateMainMenu; // start in main menu
-		self.gameScore = 0;
+		_gameScores = [NSMutableDictionary dictionary];
 	}
 	return self;
 }
 
 - (float)gameSpeed {
-	return (GState() & (GStateActive|GStateGetReady)) ? ((1.0f + (ScorePipeXVelocityMultiplier * GameScore())) * (GameScore() > CrazyBackwardsModeScore ? -1.0f : 1.0f)) : 0;
+	return (GState() & (GStateActive|GStateGetReady)) ? ((1.0f + (ScorePipeXVelocityMultiplier * CurrentRoundScore())) * (CurrentRoundScore() > CrazyBackwardsModeScore ? -1.0f : 1.0f)) : 0;
 }
 
 - (BOOL)reverse {
@@ -52,7 +56,7 @@
 			case GStateGetReady: NSLog(@"GameState -> GStateGetReady");	break;
 			case GStateActive: {
 				NSLog(@"GameState -> GStateActive");
-				self.gameScore = 0;
+				[self setScore:0 forGameRound:self.gameRound];
 			} break;
 			case GStateGameOver: NSLog(@"GameState -> GStateGameOver");	break;
 		}
@@ -60,21 +64,46 @@
 	_gameState = gameState;
 }
 
-- (NSUInteger)bestScore {
-	static NSString * const BestScoreKey = @"BestScore";
+- (NSInteger)scoreForGameRound:(GameRound)gameRound {
+	return [self.gameScores[@(gameRound)] intValue];
+}
+
+- (void)setScore:(NSInteger)score forGameRound:(GameRound)gameRound {
+	self.gameScores[@(gameRound)] = @(score);
+}
+
+- (NSInteger)currentRoundScore {
+	return [self scoreForGameRound:self.gameRound];
+}
+
+- (void)setCurrentRoundScore:(NSInteger)currentRoundScore {
+	[self setScore:currentRoundScore forGameRound:self.gameRound];
+}
+
+
+- (NSInteger)totalScore {
+	int total = 0;
+	for (int i = 0; i < countGameRound; i++) {
+		total += [self.gameScores[@(i)] intValue];
+	}
+	return total;
+}
+
+- (NSUInteger)bestTotalScore {
+	static NSString * const BestScoreKey = @"BestTotalScore";
 	static NSInteger bestScore = -1;
 	if (bestScore == -1) bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:BestScoreKey];
-	if (bestScore < self.gameScore) {
-		[[NSUserDefaults standardUserDefaults] setInteger:self.gameScore forKey:BestScoreKey];
+	if (bestScore < self.totalScore) {
+		[[NSUserDefaults standardUserDefaults] setInteger:self.totalScore forKey:BestScoreKey];
 		[[NSUserDefaults standardUserDefaults] synchronize];
-		NSLog(@"Updated best score: %zd --> %zd", bestScore, self.gameScore);
-		bestScore = self.gameScore;
+		NSLog(@"Updated best score: %zd --> %zd", bestScore, self.totalScore);
+		bestScore = self.totalScore;
 	}
 	return bestScore;
 }
 
 @end
 
-NSUInteger GameScore() { return [GameManager sharedInstance].gameScore; }
+NSUInteger CurrentRoundScore() { return [GameManager sharedInstance].currentRoundScore; }
 GameState GState() { return [[GameManager sharedInstance] gameState]; }
 void SetGState(GameState gState) { [GameManager sharedInstance].gameState = gState; }

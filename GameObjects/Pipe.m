@@ -63,7 +63,7 @@ static const int kTileSize = 32; ///< in points
 		if ((self.startPosition.x > ScreenHalfWidth() && self.position.x < ScreenHalfWidth()) || (self.startPosition.x < ScreenHalfWidth() && self.position.x > ScreenHalfWidth())) {
 			_cleared = YES;
 			if (!self.upsideDown) {
-				[GameManager sharedInstance].gameScore++;
+				[GameManager sharedInstance].currentRoundScore++;
 			}
 		}
 	}

@@ -77,8 +77,8 @@
 
 - (void)update:(ccTime)delta {
 	static NSUInteger gameScore = 0;
-	if ([GameManager sharedInstance].gameScore != gameScore) {
-		gameScore = [GameManager sharedInstance].gameScore;
+	if (CurrentRoundScore() != gameScore) {
+		gameScore = CurrentRoundScore();
 		
 		if (gameScore != 0 && gameScore % CrazySwitchBackgroundsScore == 0) { // flip day / night
 			self.isDay = !self.isDay;

@@ -17,7 +17,7 @@
 
 
 float MaxTotalSize() {
-	return MIN((InitialMaxSize + (GameScore() / 2)), MaxMaxSize);
+	return MIN((InitialMaxSize + (CurrentRoundScore() / 2)), MaxMaxSize);
 }
 
 float RandomPipeSize() {

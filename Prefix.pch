@@ -20,7 +20,7 @@
 	#ifdef __cplusplus
 		}
 
-		#include <Box2D/GLES-Render.h>
+		#include <GLES-Render.h>
 	#endif
 #endif
 

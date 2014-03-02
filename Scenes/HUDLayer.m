@@ -143,10 +143,10 @@ static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 	self.scoreBoardScoreLabel.visible = GStateIsGameOver();
 	self.scoreBoardBestLabel.visible = GStateIsGameOver();
 	if (GStateIsActive()) {
-		self.scoreLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].gameScore];
+		self.scoreLabel.string = [NSString stringWithFormat:@"%zd", CurrentRoundScore()];
 	} else if (GStateIsGameOver()) {
-		self.scoreBoardScoreLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].gameScore];
-		self.scoreBoardBestLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].bestScore];
+		self.scoreBoardScoreLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].totalScore];
+		self.scoreBoardBestLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].bestTotalScore];
 	}
 
 	// TODO -> show copyright notice if needed (start screen)

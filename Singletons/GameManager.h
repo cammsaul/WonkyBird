@@ -8,17 +8,31 @@
 
 #import "Constants.h"
 
+typedef enum : NSInteger {
+	GameRound1,
+	GameRound2,
+	countGameRound
+} GameRound;
+
+
 @interface GameManager : NSObject
 
 + (GameManager *)sharedInstance;
 
 @property (nonatomic) GameState gameState;
 
-@property (nonatomic) NSUInteger gameScore;
+@property (nonatomic) GameRound gameRound;
+
+@property (nonatomic) NSInteger currentRoundScore;
+
+- (NSInteger)scoreForGameRound:(GameRound)gameRound;
+- (void)setScore:(NSInteger)score forGameRound:(GameRound)gameRound;
+
+@property (nonatomic, readonly) NSInteger totalScore;
 
 @property (nonatomic, readonly) BOOL reverse;
 
-@property (nonatomic, readonly) NSUInteger bestScore;
+@property (nonatomic, readonly) NSUInteger bestTotalScore;
 
 @property (nonatomic, readonly) float gameSpeed;
 

@@ -34,7 +34,7 @@ static inline bool GStateIsGetReady()	{ return GState() == GStateGetReady; }
 static inline bool GStateIsMainMenu()	{ return GState() == GStateMainMenu; }
 static inline bool GStateIsGameOver()	{ return GState() == GStateGameOver; }
 
-NSUInteger GameScore();
+NSUInteger CurrentRoundScore(); ///< Returns the score for the current game round.
 
 static auto Rand = std::bind (std::uniform_real_distribution<float>(0.0f, 1.0f), std::default_random_engine()); // nice random number between 0.0f and 1.0f
 
