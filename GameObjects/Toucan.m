@@ -12,8 +12,18 @@
 
 @implementation Toucan
 
+#define NOAH_PHYSICS 0
+#define CAM_PHYSICS 0
+#define COMPROMISE_PHYSICS 1
+
 - (void)applyTouch:(NSUInteger)numFrames {
-	self.yVelocity = -kGravityVelocity * (.0f + (.1f * numFrames)); // 0.3, .1 + (.05x)
+	#if NOAH_PHYSICS
+		self.yVelocity = -kGravityVelocity * (.1f + (.05f * numFrames));
+	#elif CAM_PHYSICS
+		self.yVelocity = -kGravityVelocity * (.0f + (.1f * numFrames));
+	#elif COMPROMISE_PHYSICS
+		self.yVelocity = -kGravityVelocity * (.05f + (.075f * numFrames));
+	#endif
 }
 
 - (void)flapAroundOnMainScreen:(NSArray *)birds {
