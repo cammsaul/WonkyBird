@@ -56,7 +56,10 @@
 			case GStateGetReady: NSLog(@"GameState -> GStateGetReady");	break;
 			case GStateActive: {
 				NSLog(@"GameState -> GStateActive");
-				[self setScore:0 forGameRound:self.gameRound];
+				// set score for this round and all subsequent rounds to zero
+				for (GameRound i = self.gameRound; i < countGameRound; i++) {
+					[self setScore:0 forGameRound:i];
+				}
 			} break;
 			case GStateGameOver: NSLog(@"GameState -> GStateGameOver");	break;
 		}

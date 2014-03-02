@@ -174,8 +174,10 @@ float RandomPipeSize() {
 			// switch out the birds
 			if ([self.bird isKindOfClass:[Toucan class]]) {
 				self.bird = [[Pigeon alloc] init];
+				[GameManager sharedInstance].gameRound = GameRound2;
 			} else {
 				self.bird = [[Toucan alloc] init];
+				[GameManager sharedInstance].gameRound = GameRound1;
 			}
 		}
 		

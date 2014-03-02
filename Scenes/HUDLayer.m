@@ -143,7 +143,7 @@ static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 	self.scoreBoardScoreLabel.visible = GStateIsGameOver();
 	self.scoreBoardBestLabel.visible = GStateIsGameOver();
 	if (GStateIsActive()) {
-		self.scoreLabel.string = [NSString stringWithFormat:@"%zd", CurrentRoundScore()];
+		self.scoreLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].totalScore];
 	} else if (GStateIsGameOver()) {
 		self.scoreBoardScoreLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].totalScore];
 		self.scoreBoardBestLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].bestTotalScore];
