@@ -313,9 +313,9 @@
 				3243C6F818BB04F000542D7F /* TextureAtlases */,
 				3243C6EF18BAFA9700542D7F /* Images */,
 				32A6D8B118BEEEB20033786C /* Icons */,
+				3243C38718BAD42500542D7F /* SplashScreens */,
 				3243C38518BAD42500542D7F /* Info.plist */,
 				3243C38618BAD42500542D7F /* iTunesArtwork */,
-				3243C38718BAD42500542D7F /* SplashScreens */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

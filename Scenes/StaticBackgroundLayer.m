@@ -22,6 +22,7 @@
 
 - (instancetype)init {
 	if (self = [super init]) {
+		_isDay = YES;
 		self.currentBackground = self.dayBackground;
 		[self.currentBackground stopAllActions];
 		self.currentBackground.opacity = 255;
@@ -33,6 +34,7 @@
 - (CCSprite *)addBackgroundNamed:(NSString *)name {
 	CCSprite *background = [CCSprite spriteWithFile:name];
 	background.position = ccp(ScreenHalfWidth(), ScreenHalfHeight() + (IsIphone5() ? 0 : 44)); // cut off the top part of the sky on iPhone 4
+	background.opacity = 0;
 	[self addChild:background];
 	return background;
 }
@@ -49,7 +51,6 @@
 	if (!_nightBackground) {
 		_nightBackground = [self addBackgroundNamed:@"Background_Night.png"];
 		_nightBackground.zOrder = 1;
-		_nightBackground.opacity = 0;
 	}
 	return _nightBackground;
 }
@@ -58,7 +59,6 @@
 	if (!_toucanBackground) {
 		_toucanBackground = [self addBackgroundNamed:@"Background_Toucan.png"];
 		_toucanBackground.zOrder = 0;
-		_toucanBackground.opacity = 0;
 	}
 	return _toucanBackground;
 }
