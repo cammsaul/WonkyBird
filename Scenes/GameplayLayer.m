@@ -189,7 +189,7 @@ float RandomPipeSize() {
 		}
 		
 		self.bird.state = BirdStateFlapping;
-		const float BirdYDiff = ((self.bird.y - (ScreenHeight() * 0.60f)) / kPTMRatio) * 4;
+		const float BirdYDiff = ((self.bird.y - (ScreenHeight() * BirdGetReadyHeight)) / kPTMRatio) * 4;
 		const float BirdXDiff = ((self.bird.x - ScreenHalfWidth()) / kPTMRatio) * 4;
 		self.bird.velocity =  b2Vec2{-BirdXDiff, -BirdYDiff};
 		
@@ -223,7 +223,7 @@ float RandomPipeSize() {
 			self.bird.xVelocity = 0.0f;
 		}
 		
-		if (ABS(self.bird.xVelocity) >= 0.2f) {
+		if (ABS(self.bird.xVelocity) >= BirdXVelocityDeathThreshold) {
 			NSLog(@"Bird x: %.2f", self.bird.xVelocity);
 			self.bird.state = BirdStateDead;
 		}

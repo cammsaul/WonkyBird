@@ -17,6 +17,9 @@ static NSString * const RateButtonKey			= @"Button_Rate.png";
 static NSString * const LeaderBoardButtonKey	= @"Button_Leader_Board.png";
 static NSString * const ScoreBackgroundKey		= @"Score_Background.png";
 static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
+static NSString * const TapLeftKey				= @"Button_Tap_Left.png";
+static NSString * const TapRightKey				= @"Button_Tap_Right.png";
+static NSString * const TapFingerKey			= @"Finger.png";
 
 @interface HUDSpriteInfo : NSObject
 @property (nonatomic, readonly) GameState states;
@@ -83,7 +86,11 @@ static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 						ScoreBackgroundKey:		[HUDSpriteInfo states:GStateGameOver position:ccp(ScreenHalfWidth(), scoreboardYPosition)],
 						PlayButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.25f, otherButtonsY)],
 						LeaderBoardButtonKey:	[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.75f, otherButtonsY)],
-						RateButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.5f, rateButtonY)]};
+						RateButtonKey:			[HUDSpriteInfo states:ButtonStates position:ccp(ScreenWidth() * 0.5f, rateButtonY)],
+						TapLeftKey:				[HUDSpriteInfo states:GStateGetReady position:ccp(ScreenWidth() * 0.3f, ScreenHeight() * BirdGetReadyHeight)],
+						TapRightKey:			[HUDSpriteInfo states:GStateGetReady position:ccp(ScreenWidth() * 0.7f, ScreenHeight() * BirdGetReadyHeight)],
+						TapFingerKey:			[HUDSpriteInfo states:GStateGetReady position:ccp(ScreenHalfWidth(), ScreenHeight() * (BirdGetReadyHeight - 0.08f))],
+						};
 		
 	}
 	return self;
@@ -142,6 +149,17 @@ static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 	self.scoreLabel.visible = GStateIsActive();
 	self.scoreBoardScoreLabel.visible = GStateIsGameOver();
 	self.scoreBoardBestLabel.visible = GStateIsGameOver();
+	
+	if (GStateIsGetReady()) {
+		static float timeSinceLastTap = 0;
+		timeSinceLastTap += delta;
+		if (timeSinceLastTap > 0.8f) {
+			timeSinceLastTap = 0;
+			CCSprite *tapSprite = self.sprites[TapFingerKey];
+			tapSprite.scale = 0.8f;
+			[tapSprite runAction:[CCScaleTo actionWithDuration:0.25f scale:1.0f]];
+		}
+	}
 	if (GStateIsActive()) {
 		self.scoreLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].totalScore];
 	} else if (GStateIsGameOver()) {

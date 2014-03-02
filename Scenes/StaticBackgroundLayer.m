@@ -88,7 +88,7 @@
 			[self.dayBackground runAction:[CCSkewBy actionWithDuration:1.0f skewX:gameScore skewY:0]];
 		}
 		
-		if ((random() % 1000) == 0) {
+		if ((random() % CrazyBackgroundToucanChance) == 0) {
 			[self setCurrentBackground:[self toucanBackground]];
 		}
 	}

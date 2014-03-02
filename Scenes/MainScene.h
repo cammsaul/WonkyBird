@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong, readonly) Box2DLayer *box2DLayer;
 
-+ (instancetype)mainScene;
++ (instancetype)mainScene; ///< returns singleton instance
 
 @end
