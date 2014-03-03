@@ -1011,7 +1011,6 @@
 		3243C3E618BAE60900542D7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Cocos2d.dst;
 				GCC_FAST_MATH = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
@@ -1035,7 +1034,6 @@
 		3243C3E718BAE60900542D7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Cocos2d.dst;
 				GCC_FAST_MATH = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;

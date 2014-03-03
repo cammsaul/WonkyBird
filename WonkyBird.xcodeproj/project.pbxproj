@@ -828,14 +828,21 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-lz",
 					"-lsqlite3",
-					"-ObjC",
 					"-all_load",
+					"$(inherited)",
+				);
+				"OTHER_LDFLAGS[arch=armv7]" = (
+					"-u",
+					"___udivmodsi4",
+					"-u",
+					"___divsi3",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "21E00663-0080-4DB7-A86C-3BAF77095DA6";
+				WARNING_LDFLAGS = "-fatal_warnings";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -872,15 +879,22 @@
 				LLVM_VECTORIZE_LOOPS = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-lz",
 					"-lsqlite3",
-					"-ObjC",
 					"-all_load",
+					"$(inherited)",
+				);
+				"OTHER_LDFLAGS[arch=armv7]" = (
+					"-u",
+					"___udivmodsi4",
+					"-u",
+					"___divsi3",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "94842170-0869-4B83-91AF-D2CE708EABFF";
 				VALIDATE_PRODUCT = YES;
+				WARNING_LDFLAGS = "-fatal_warnings";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -244,10 +244,14 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				DSTROOT = /tmp/Vendor.dst;
 				GCC_C_LANGUAGE_STANDARD = c11;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../Box2D $(SRCROOT)/../Cocos2d/** $(SRCROOT)/../Singletons/";
+				WARNING_LDFLAGS = "-fatal_warnings";
 			};
 			name = Debug;
 		};
@@ -257,10 +261,14 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				DSTROOT = /tmp/Vendor.dst;
 				GCC_C_LANGUAGE_STANDARD = c11;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../Box2D $(SRCROOT)/../Cocos2d/** $(SRCROOT)/../Singletons/";
+				WARNING_LDFLAGS = "-fatal_warnings";
 			};
 			name = Release;
 		};
