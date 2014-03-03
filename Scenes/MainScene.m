@@ -16,6 +16,7 @@
 #import "HUDLayer.h"
 #import "GameManager.h"
 #import "Bird.h"
+#import "GameKitManager.h"
 
 @interface MainScene ()
 @property (nonatomic, strong) StaticBackgroundLayer *staticBackgroundLayer;
@@ -52,13 +53,15 @@ static MainScene *__mainScene;
 		self.hudLayer = [[HUDLayer alloc] init];
 		[self addChild:self.hudLayer z:300];
 		
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-			[CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_HIGH];
-			[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"Return_to_Earth.mp3"];
-			[[SimpleAudioEngine sharedEngine] preloadEffect:@"Shaker_2.wav"];
-			[[SimpleAudioEngine sharedEngine] preloadEffect:@"Perc_2.wav"];
-			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Return_to_Earth.mp3"];
-		});
+		#if !TARGET_IPHONE_SIMULATOR
+			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+				[CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_HIGH];
+				[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"Return_to_Earth.mp3"];
+				[[SimpleAudioEngine sharedEngine] preloadEffect:@"Shaker_2.wav"];
+				[[SimpleAudioEngine sharedEngine] preloadEffect:@"Perc_2.wav"];
+				[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Return_to_Earth.mp3"];
+			});
+		#endif
 				
 		[self scheduleUpdate];
 	}

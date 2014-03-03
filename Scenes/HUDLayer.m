@@ -8,6 +8,7 @@
 
 #import "HUDLayer.h"
 #import "GameManager.h"
+#import "GameKitManager.h"
 
 static NSString * const TitleLabelKey			= @"Title.png";
 static NSString * const GetReadyLabelKey		= @"Get_Ready.png";
@@ -204,8 +205,9 @@ static NSString * const TapFingerKey			= @"Finger.png";
 		if (TouchOnSprite(PlayButtonKey)) {
 			SetGState(GStateGetReady);
 		} else if (TouchOnSprite(RateButtonKey)) {
-			SetGState(GStateMainMenu);
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", 526969058]]]; // 833047305
 		} else if (TouchOnSprite(LeaderBoardButtonKey)) {
+			[[GameKitManager sharedInstance] showLeaderboard];
 		}
 		return;
 	}

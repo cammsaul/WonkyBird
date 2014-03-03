@@ -12,6 +12,8 @@
 	<dict>
 		<key>3BA58743-0617-4928-985E-9669BF01BBE5</key>
 		<string>https://github.com/cammsaul/WonkyBird.git</string>
+		<key>5EC76853-795D-4141-96FA-B44B79821C14</key>
+		<string>https://github.com/expa/ios-platform.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>WonkyBird.xcodeproj/project.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>3BA58743-0617-4928-985E-9669BF01BBE5</key>
 		<string>../..</string>
+		<key>5EC76853-795D-4141-96FA-B44B79821C14</key>
+		<string>../../ios-platform</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/cammsaul/WonkyBird.git</string>
@@ -28,6 +32,14 @@
 	<string>3BA58743-0617-4928-985E-9669BF01BBE5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5EC76853-795D-4141-96FA-B44B79821C14</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios-platform</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

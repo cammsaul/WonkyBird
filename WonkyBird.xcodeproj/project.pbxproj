@@ -35,6 +35,8 @@
 		3234422418C3A4AA00450916 /* Return_to_Earth.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3234422218C3A4AA00450916 /* Return_to_Earth.mp3 */; };
 		3234422718C3A66C00450916 /* Perc_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3234422518C3A66C00450916 /* Perc_2.wav */; };
 		3234422A18C3A9DA00450916 /* Shaker_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3234422918C3A9DA00450916 /* Shaker_2.wav */; };
+		3234422F18C4328E00450916 /* GameKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234422E18C4328E00450916 /* GameKitManager.m */; };
+		3234423E18C435D900450916 /* libExpaPlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3234423618C4344700450916 /* libExpaPlatform.a */; };
 		3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16018BAD22C00542D7F /* AppDelegate.m */; };
 		3243C37C18BAD3D500542D7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C37B18BAD3D500542D7F /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3243C39318BAD42500542D7F /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38618BAD42500542D7F /* iTunesArtwork */; };
@@ -83,6 +85,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3234413F18C394B600450916;
 			remoteInfo = Box2D;
+		};
+		3234423518C4344700450916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3234423018C4344700450916 /* ExpaPlatform.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7E255BF818171DEC008FD59D;
+			remoteInfo = ExpaPlatform;
+		};
+		3234423718C4344700450916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3234423018C4344700450916 /* ExpaPlatform.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7E255C0818171DEC008FD59D;
+			remoteInfo = ExpaPlatformTests;
+		};
+		3234423C18C435C700450916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3234423018C4344700450916 /* ExpaPlatform.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E255BF718171DEC008FD59D;
+			remoteInfo = ExpaPlatform;
 		};
 		3243C3F018BAE60900542D7F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -140,6 +163,9 @@
 		3234422218C3A4AA00450916 /* Return_to_Earth.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Return_to_Earth.mp3; sourceTree = "<group>"; };
 		3234422518C3A66C00450916 /* Perc_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Perc_2.wav; sourceTree = "<group>"; };
 		3234422918C3A9DA00450916 /* Shaker_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Shaker_2.wav; sourceTree = "<group>"; };
+		3234422D18C4328E00450916 /* GameKitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitManager.h; sourceTree = "<group>"; };
+		3234422E18C4328E00450916 /* GameKitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitManager.m; sourceTree = "<group>"; };
+		3234423018C4344700450916 /* ExpaPlatform.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ExpaPlatform.xcodeproj; path = "ios-platform/ExpaPlatform.xcodeproj"; sourceTree = "<group>"; };
 		3243C15F18BAD22C00542D7F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3243C16018BAD22C00542D7F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3243C37B18BAD3D500542D7F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
@@ -190,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3234423E18C435D900450916 /* libExpaPlatform.a in Frameworks */,
 				D1AE797C18C15FAE00891FAE /* iAd.framework in Frameworks */,
 				3234421018C395F800450916 /* libBox2D.a in Frameworks */,
 				3243C57318BAE69700542D7F /* libCocos2d.a in Frameworks */,
@@ -222,6 +249,7 @@
 				320C147018BAD06C000AE6A1 /* Products */,
 				3234416918C394B600450916 /* Box2D.xcodeproj */,
 				3243C3EB18BAE60900542D7F /* Cocos2d.xcodeproj */,
+				3234423018C4344700450916 /* ExpaPlatform.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -287,6 +315,15 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		3234423118C4344700450916 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3234423618C4344700450916 /* libExpaPlatform.a */,
+				3234423818C4344700450916 /* ExpaPlatformTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3243C15E18BAD22C00542D7F /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +334,8 @@
 				32120FDB18BDAF36006C1026 /* GameManager.m */,
 				D1AE797818C15D0000891FAE /* NavController.h */,
 				D1AE797918C15D0000891FAE /* NavController.m */,
+				3234422D18C4328E00450916 /* GameKitManager.h */,
+				3234422E18C4328E00450916 /* GameKitManager.m */,
 			);
 			path = Singletons;
 			sourceTree = SOURCE_ROOT;
@@ -456,6 +495,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3234423D18C435C700450916 /* PBXTargetDependency */,
 				3234420F18C395F100450916 /* PBXTargetDependency */,
 				3243C57218BAE68500542D7F /* PBXTargetDependency */,
 			);
@@ -497,6 +537,10 @@
 					ProductGroup = 3243C3EC18BAE60900542D7F /* Products */;
 					ProjectRef = 3243C3EB18BAE60900542D7F /* Cocos2d.xcodeproj */;
 				},
+				{
+					ProductGroup = 3234423118C4344700450916 /* Products */;
+					ProjectRef = 3234423018C4344700450916 /* ExpaPlatform.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -511,6 +555,20 @@
 			fileType = archive.ar;
 			path = libBox2D.a;
 			remoteRef = 3234416E18C394B700450916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3234423618C4344700450916 /* libExpaPlatform.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libExpaPlatform.a;
+			remoteRef = 3234423518C4344700450916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3234423818C4344700450916 /* ExpaPlatformTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ExpaPlatformTests.xctest;
+			remoteRef = 3234423718C4344700450916 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3243C3F118BAE60900542D7F /* libCocos2d.a */ = {
@@ -581,6 +639,7 @@
 				3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */,
 				3234421C18C39A0D00450916 /* Box2DLayer.m in Sources */,
 				3234421D18C39A0D00450916 /* GameLayer.m in Sources */,
+				3234422F18C4328E00450916 /* GameKitManager.m in Sources */,
 				3243C3B118BADEFB00542D7F /* GameplayLayer.m in Sources */,
 				32120FDC18BDAF36006C1026 /* GameManager.m in Sources */,
 				3224BC5618C08D5500DDB6B5 /* Toucan.m in Sources */,
@@ -594,6 +653,11 @@
 			isa = PBXTargetDependency;
 			name = Box2D;
 			targetProxy = 3234420E18C395F100450916 /* PBXContainerItemProxy */;
+		};
+		3234423D18C435C700450916 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ExpaPlatform;
+			targetProxy = 3234423C18C435C700450916 /* PBXContainerItemProxy */;
 		};
 		3243C57218BAE68500542D7F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -674,10 +738,19 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
+				DEAD_CODE_STRIPPING = NO;
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_FAST_MATH = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					"COCOS2D_DEBUG=1",
+					"CRASHLYTICS_INTEGRATION=0",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -696,9 +769,21 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: LuckyBird, Inc. (9W9RBME6M2)";
 				COPY_PHASE_STRIP = YES;
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_FAST_MATH = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NDEBUG,
+					"NS_BLOCK_ASSERTIONS=1",
+					"CRASHLYTICS_INTEGRATION=0",
+				);
+				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				LINKER_DISPLAYS_MANGLED_NAMES = YES;
+				LLVM_LTO = YES;
+				LLVM_VECTORIZE_LOOPS = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lz",

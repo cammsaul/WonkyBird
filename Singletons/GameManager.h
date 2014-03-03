@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
+#import "XSingleton.h"
 #import "Constants.h"
 
 typedef enum : NSInteger {
@@ -15,9 +16,7 @@ typedef enum : NSInteger {
 } GameRound;
 
 
-@interface GameManager : NSObject
-
-+ (GameManager *)sharedInstance;
+@interface GameManager : XSingleton
 
 @property (nonatomic) GameState gameState;
 
@@ -33,6 +32,9 @@ typedef enum : NSInteger {
 @property (nonatomic, readonly) BOOL reverse;
 
 @property (nonatomic, readonly) NSUInteger bestTotalScore;
+
+@property (nonatomic, readonly) NSUInteger lifetimeTotalPoints;
+- (NSUInteger)lifetimePointsForRound:(GameRound)gameRound;
 
 @property (nonatomic, readonly) float gameSpeed;
 
