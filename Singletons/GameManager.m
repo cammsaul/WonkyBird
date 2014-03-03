@@ -100,7 +100,7 @@ static NSString * const LifetimeRounds_Lucky_Key	= @"lftm_rnds_Lucky";
 					
 					if ([GameManager sharedInstance].totalScore == [GameManager sharedInstance].bestTotalScore) {
 						const BOOL enableShareToTwitter = [TwitterManager canShareToTwitter] && [TwitterManager sharedInstance].enableShareToTwitter;
-						const BOOL enableShareToFB = [FacebookShare sharedInstance].isAuthenticated;
+						const BOOL enableShareToFB = [FacebookShare sharedInstance].isAuthenticated && [FacebookShare sharedInstance].enableShareToFB;
 						
 						[[Mixpanel sharedInstance].people set:@"enbl_twitter" to:@(enableShareToTwitter)];
 						[[Mixpanel sharedInstance].people set:@"enbl_fb" to:@(enableShareToFB)];
@@ -111,6 +111,11 @@ static NSString * const LifetimeRounds_Lucky_Key	= @"lftm_rnds_Lucky";
 						if (enableShareToFB) {
 							[self shareHighScoreToFB];
 						}
+					}
+					
+					// don't bother people with asking about push notifications until they've used the app for a minute
+					if (self[LifetimePoints_Total_Key].intValue > 50 || [TwitterManager sharedInstance].enableShareToTwitter || [FacebookShare sharedInstance].enableShareToFB) {
+						[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge];
 					}
 				}
 			} break;

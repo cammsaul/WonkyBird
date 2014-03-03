@@ -103,6 +103,8 @@
 	[[Mixpanel sharedInstance] identify:[Mixpanel sharedInstance].distinctId]; // use default key to identify users (iAD token for advertising)
 	[[Mixpanel sharedInstance].people increment:@"app_launches" by:@1];
 	
+	[[Mixpanel sharedInstance] showNotification];
+	
 	[Crashlytics startWithAPIKey:@"1a89bc9628b15b8fb66f916f16968364b3b98174"];
 	
 	return YES;
