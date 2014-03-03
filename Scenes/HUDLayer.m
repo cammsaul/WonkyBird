@@ -6,9 +6,12 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
+#import <UIAlertView+Expa.h>
+
 #import "HUDLayer.h"
 #import "GameManager.h"
 #import "GameKitManager.h"
+#import "TwitterManager.h"
 
 static NSString * const TitleLabelKey			= @"Title.png";
 static NSString * const GetReadyLabelKey		= @"Get_Ready.png";
@@ -21,6 +24,10 @@ static NSString * const CopyrightLabelKey		= @"LuckyBird_2014.png";
 static NSString * const TapLeftKey				= @"Button_Tap_Left.png";
 static NSString * const TapRightKey				= @"Button_Tap_Right.png";
 static NSString * const TapFingerKey			= @"Finger.png";
+static NSString * const TwitterButtonKey		= @"Button_Twitter.png";
+static NSString * const FacebookButtonKey		= @"Button_Facebook.png";
+static NSString * const TwitterGrayButtonKey	= @"Button_Twitter_Gray.png";
+static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 
 @interface HUDSpriteInfo : NSObject
 @property (nonatomic, readonly) GameState states;
@@ -91,6 +98,10 @@ static NSString * const TapFingerKey			= @"Finger.png";
 						TapLeftKey:				[HUDSpriteInfo states:GStateGetReady position:ccp(ScreenWidth() * 0.3f, ScreenHeight() * BirdGetReadyHeight)],
 						TapRightKey:			[HUDSpriteInfo states:GStateGetReady position:ccp(ScreenWidth() * 0.7f, ScreenHeight() * BirdGetReadyHeight)],
 						TapFingerKey:			[HUDSpriteInfo states:GStateGetReady position:ccp(ScreenHalfWidth(), ScreenHeight() * (BirdGetReadyHeight - 0.08f))],
+						TwitterButtonKey:		[HUDSpriteInfo states:GStateGameOver position:ccp(ScreenWidth() * 0.3f, scoreboardYPosition)],
+						FacebookButtonKey:		[HUDSpriteInfo states:GStateGameOver position:ccp(ScreenWidth() * 0.7f, scoreboardYPosition)],
+						TwitterGrayButtonKey:	[HUDSpriteInfo states:GStateGameOver position:ccp(ScreenWidth() * 0.3f, scoreboardYPosition)],
+						FacebookGrayButtonKey:	[HUDSpriteInfo states:GStateGameOver position:ccp(ScreenWidth() * 0.7f, scoreboardYPosition)],
 						};
 		
 	}
@@ -143,6 +154,8 @@ static NSString * const TapFingerKey			= @"Finger.png";
 }
 
 - (void)update:(ccTime)delta {
+	static GameState lastState = (GameState)-1;
+	
 	[self.spriteInfo enumerateKeysAndObjectsUsingBlock:^(NSString *spriteKey, HUDSpriteInfo *info, BOOL *stop) {
 		[self addOrRemoveSpriteWithKey:spriteKey states:info.states];
 	}];
@@ -168,7 +181,30 @@ static NSString * const TapFingerKey			= @"Finger.png";
 		self.scoreBoardBestLabel.string = [NSString stringWithFormat:@"%zd", [GameManager sharedInstance].bestTotalScore];
 	}
 
-	// TODO -> show copyright notice if needed (start screen)
+	if (GStateIsGameOver() && lastState != GStateGameOver) {
+		const BOOL enableShareToTwitter = [TwitterManager canShareToTwitter] && [TwitterManager sharedInstance].enableShareToTwitter;
+		self[TwitterGrayButtonKey].visible = !enableShareToTwitter;
+		self[TwitterButtonKey].visible = enableShareToTwitter;
+		
+		/// show in front of score board
+		[@[TwitterButtonKey, TwitterGrayButtonKey, FacebookButtonKey, FacebookGrayButtonKey] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			if ([GameManager sharedInstance].gameRound != GameRound2) {
+				self[obj].visible = NO;
+			} else {
+				self[obj].zOrder = 5;
+			}
+		}];
+		
+		if ([GameManager sharedInstance].gameRound == GameRound2) {
+			if ([GameManager sharedInstance].totalScore == [GameManager sharedInstance].bestTotalScore) {
+				if (enableShareToTwitter) {
+					[self shareHighScoreToTwitter];
+				}
+			}
+		}
+	}
+	
+	lastState = GState();
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -190,7 +226,7 @@ static NSString * const TapFingerKey			= @"Finger.png";
 	if (GStateIsActive()) return;
 	
 	auto TouchOnSprite = [=](NSString *spriteKey) -> bool {
-		return CGRectContainsPoint([self.sprites[spriteKey] boundingBox], [self convertTouchToNodeSpace:touch]);
+		return CGRectContainsPoint([self.sprites[spriteKey] boundingBox], [self convertTouchToNodeSpace:touch]) && self[spriteKey].visible;
 	};
 	
 	for (id spriteKey in @[PlayButtonKey, RateButtonKey, LeaderBoardButtonKey]) {
@@ -210,12 +246,47 @@ static NSString * const TapFingerKey			= @"Finger.png";
 			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appID]]];
 		} else if (TouchOnSprite(LeaderBoardButtonKey)) {
 			[[GameKitManager sharedInstance] showLeaderboard];
+		} else if (TouchOnSprite(FacebookButtonKey)) {
+			
+		} else if (TouchOnSprite(TwitterGrayButtonKey)) {
+			// log user in to twitter if needed
+			auto postUpdate = ^{
+				[TwitterManager sharedInstance].enableShareToTwitter = YES;
+				[self shareToTwitter];
+				self[TwitterButtonKey].visible = YES;
+				self[TwitterGrayButtonKey].visible = NO;
+				[UIAlertView showAlertWithTitle:@"Success!" message:@"Your score has been posted to Twitter!" cancelButtonTitle:@"Ok"];
+			};
+			if (![TwitterManager canShareToTwitter]) {
+				[TwitterManager loginWithTwitterSuccess:^{
+					postUpdate();
+				} error:^(NSError *error) {
+					NSLog(@"Error logging into Twitter: %@", error);
+				}];
+			} else {
+				postUpdate();
+			}
+		} else if (TouchOnSprite(TwitterButtonKey)) {
+			[TwitterManager sharedInstance].enableShareToTwitter = NO;
+			self[TwitterButtonKey].visible = NO;
+			self[TwitterGrayButtonKey].visible = YES;
 		}
 		return;
 	}
 	if (GStateIsGetReady()) {
 		SetGState(GStateActive);
 	}
+}
+
+- (void)shareToTwitter {
+	NSNumber *appID = [NSBundle mainBundle].infoDictionary[@"LBAppID"];
+	[TwitterManager postStatusUpdate:[NSString stringWithFormat:@"Just scored %zd on #wonkybird https://itunes.apple.com/us/app/id%@", [GameManager sharedInstance].totalScore, appID]];
+}
+
+- (void)shareHighScoreToTwitter {
+	NSNumber *appID = [NSBundle mainBundle].infoDictionary[@"LBAppID"];
+	[TwitterManager postStatusUpdate:[NSString stringWithFormat:@"New high score: %zd on #wonkybird https://itunes.apple.com/us/app/id%@", [GameManager sharedInstance].totalScore, appID]];
+	
 }
 
 @end

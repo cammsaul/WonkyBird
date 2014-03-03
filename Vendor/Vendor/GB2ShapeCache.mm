@@ -31,21 +31,8 @@
 //  THE SOFTWARE.
 //
 
+#import <UIKit/UIKit.h>
 #import "GB2ShapeCache.h"
-
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-#   define CGPointFromString_ CGPointFromString
-#else
-// well - not nice but works for now
-static CGPoint CGPointFromString_(NSString* str)
-{
-    NSString* theString = str;
-    theString = [theString stringByReplacingOccurrencesOfString:@"{ " withString:@""];
-    theString = [theString stringByReplacingOccurrencesOfString:@" }" withString:@""];
-    NSArray *array = [theString componentsSeparatedByString:@","];
-    return CGPointMake([[array objectAtIndex:0] floatValue], [[array objectAtIndex:1] floatValue]);
-}
-#endif
 
 /**
  * Internal class to hold the fixtures
@@ -170,7 +157,7 @@ public:
         // create body object
         BodyDef *bodyDef = [[BodyDef alloc] init];
 
-        bodyDef->anchorPoint = CGPointFromString_([bodyData objectForKey:@"anchorpoint"]);
+        bodyDef->anchorPoint = CGPointFromString([bodyData objectForKey:@"anchorpoint"]);
         
         // iterate through the fixtures
         NSArray *fixtureList = [bodyData objectForKey:@"fixtures"];
@@ -208,7 +195,7 @@ public:
                     assert([polygonArray count] <= b2_maxPolygonVertices);
                     for(NSString *pointString in polygonArray)
                     {
-                        CGPoint offset = CGPointFromString_(pointString);
+                        CGPoint offset = CGPointFromString(pointString);
                         vertices[vindex].x = (offset.x / ptmRatio) ; 
                         vertices[vindex].y = (offset.y / ptmRatio) ; 
                         vindex++;

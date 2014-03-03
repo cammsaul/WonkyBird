@@ -32,7 +32,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Box2D.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <Box2D/Box2D.h>
 
 /**
  * Shape cache 

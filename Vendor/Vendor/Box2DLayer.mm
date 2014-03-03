@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
+#import <CoreGraphics/CoreGraphics.h>
 #import "Box2DLayer.h"
 #import "GameSprite.h"
 #import "Constants.h"

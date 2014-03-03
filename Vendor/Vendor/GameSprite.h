@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
+#import <CoreGraphics/CoreGraphics.h>
+
 #import "CCSprite.h"
 #import "Box2DItem.h"
 

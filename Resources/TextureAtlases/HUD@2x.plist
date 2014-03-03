@@ -4,10 +4,36 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>Button_Facebook.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>Button_Facebook_Gray.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{64,2},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
             <key>Button_Leader_Board.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{200,114}}</string>
+                <string>{{126,2},{200,114}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +46,7 @@
             <key>Button_Play.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{204,2},{200,114}}</string>
+                <string>{{328,2},{200,114}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +59,7 @@
             <key>Button_Rate.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{406,2},{139,82}}</string>
+                <string>{{530,2},{139,82}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +72,7 @@
             <key>Button_Tap_Left.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{547,2},{81,36}}</string>
+                <string>{{671,2},{81,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +85,7 @@
             <key>Button_Tap_Right.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{630,2},{81,36}}</string>
+                <string>{{754,2},{81,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -69,10 +95,36 @@
                 <key>sourceSize</key>
                 <string>{81,36}</string>
             </dict>
+            <key>Button_Twitter.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{837,2},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>Button_Twitter_Gray.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{899,2},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
             <key>Finger.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{713,2},{44,97}}</string>
+                <string>{{961,2},{44,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -170,7 +222,7 @@
             <key>size</key>
             <string>{1024,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3875970dad348e9b4949b52292c2cd9c:db10f0bf9a3092730223b01c6d3390a6:222dffc7200ef8c17495695a87596627$</string>
+            <string>$TexturePacker:SmartUpdate:45b953ca2b331c49795920cf16683285:eebd859c1a43f3c90f18cbb9d982c453:222dffc7200ef8c17495695a87596627$</string>
             <key>textureFileName</key>
             <string>HUD@2x.png</string>
         </dict>

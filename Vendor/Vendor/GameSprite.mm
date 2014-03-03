@@ -33,8 +33,8 @@
 - (float)y { return self.position.y; }
 - (float)box2DX { return self.item.positionForBox2D.x; }
 - (float)box2DY { return self.item.positionForBox2D.y; }
-- (void)setX:(float)x { self.position = ccp(x, self.y); }
-- (void)setY:(float)y { self.position = ccp(self.x, y); }
+- (void)setX:(float)x { self.position = CGPointMake(x, self.y); }
+- (void)setY:(float)y { self.position = CGPointMake(self.x, y); }
 
 - (b2Vec2)velocity { return self.item.body->GetLinearVelocity(); }
 - (float)xVelocity { return self.velocity.x; }

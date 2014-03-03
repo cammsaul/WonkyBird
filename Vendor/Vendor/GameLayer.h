@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-#import "CCLayer.h"
+#import <CoreGraphics/CoreGraphics.h>
+#import <cocos2d.h>
 
 @interface GameLayer : CCLayer
 

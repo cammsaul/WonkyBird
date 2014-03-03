@@ -9,6 +9,8 @@
 #import "Box2DItem.h"
 #import "Constants.h"
 
+using namespace std;
+
 @interface Box2DItem ()
 @property (nonatomic) b2Body *body;
 @property (nonatomic) shared_ptr<b2BodyDef> bodyDef;
@@ -85,12 +87,13 @@
 - (void)updateShape {
 	self.shape->SetAsBox(self.contentSizeForBox2D.x / 2, self.contentSizeForBox2D.y / 2);
 }
+
 - (b2Vec2)positionForBox2D {
 	return {self.owner.position.x / kPTMRatio, self.owner.position.y / kPTMRatio};
 }
 
 - (void)setPositionForBox2D:(b2Vec2)positionForBox2D {
-	self.owner.position = ccp(positionForBox2D.x * kPTMRatio, positionForBox2D.y * kPTMRatio);
+	self.owner.position = CGPointMake(positionForBox2D.x * kPTMRatio, positionForBox2D.y * kPTMRatio);
 }
 
 - (b2Vec2)contentSizeForBox2D {

@@ -178,6 +178,10 @@
             <filename>../../../Downloads/wonky 2x/Title.png</filename>
             <filename>../../../Downloads/wonky 2x/Up_Arrow.png</filename>
             <filename>../../../Downloads/LuckyBird_2014.png</filename>
+            <filename>../../../Downloads/Button_Facebook_Gray.png</filename>
+            <filename>../../../Downloads/Button_Facebook.png</filename>
+            <filename>../../../Downloads/Button_Twitter_Gray.png</filename>
+            <filename>../../../Downloads/Button_Twitter.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

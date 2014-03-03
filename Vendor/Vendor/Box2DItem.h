@@ -6,7 +6,13 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
+#ifdef __cplusplus
+	#include <memory>
+#endif
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
+
+#import <Box2D/Box2D.h>
 
 @protocol Box2DItemOwner;
 
@@ -15,10 +21,10 @@
 @property (nonatomic, weak, readonly) id<Box2DItemOwner> owner; ///< Sprite that 'owns' this item.
 
 @property (nonatomic, readonly) b2Body *body;					///< nullptr until [GameSprite addToWorld:] is called
-@property (nonatomic, readonly) shared_ptr<b2BodyDef> bodyDef;
+@property (nonatomic, readonly) std::shared_ptr<b2BodyDef> bodyDef;
 
-@property (nonatomic) shared_ptr<b2PolygonShape> shape;			///< By default, just a box
-@property (nonatomic) shared_ptr<b2FixtureDef> fixtureDef;
+@property (nonatomic) std::shared_ptr<b2PolygonShape> shape;			///< By default, just a box
+@property (nonatomic) std::shared_ptr<b2FixtureDef> fixtureDef;
 
 @property (nonatomic, readonly) b2Fixture& fixture;
 
@@ -27,7 +33,7 @@
 
 - (instancetype)initWithOwner:(id<Box2DItemOwner>)owner;		///< Designated initializer
 
-- (void)addToWorld:(shared_ptr<b2World>)world;
+- (void)addToWorld:(std::shared_ptr<b2World>)world;
 
 - (void)removeFromWorld;										///< Remove this item's body from world.
 - (void)moveToNewPosition;										///< 'Teleport' the item (remove from world and add back to world

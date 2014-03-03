@@ -23,9 +23,10 @@
 // http://www.cocos2d-iphone.org
 //
 
+#import <CoreGraphics/CoreGraphics.h>
+
 #import "cocos2d.h"
 #include "GLES-Render.h"
-
 
 #include <cstdio>
 #include <cstdarg>

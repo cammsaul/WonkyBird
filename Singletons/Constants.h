@@ -9,6 +9,12 @@
 #ifndef WonkyBird_Constants_h
 #define WonkyBird_Constants_h
 
+#include <functional>
+#include <random>
+#import <CoreGraphics/CoreGraphics.h>
+
+#import <cocos2d.h>
+
 static const float kPTMRatio = 100.0f;
 
 static const float kGravityVelocity = -(kPTMRatio / 10.0f);
