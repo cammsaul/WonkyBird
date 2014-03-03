@@ -59,6 +59,7 @@
 		3243C71218BB4B9500542D7F /* Pipe.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3243C71018BB4B9500542D7F /* Pipe.tmx */; };
 		3243C71A18BB508300542D7F /* Pipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 3243C71918BB508300542D7F /* Pipe.png */; };
 		3243C71D18BB53FD00542D7F /* Pipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C71C18BB53FD00542D7F /* Pipe.m */; };
+		32769D3C18C4907500A6DA5F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32769D3B18C4907500A6DA5F /* Crashlytics.framework */; };
 		32A6D8C018BEEF180033786C /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8BC18BEEF180033786C /* AppIcon29x29@2x.png */; };
 		32A6D8C118BEEF180033786C /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8BD18BEEF180033786C /* AppIcon40x40@2x.png */; };
 		32A6D8C218BEEF180033786C /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8BE18BEEF180033786C /* AppIcon60x60@2x.png */; };
@@ -208,6 +209,7 @@
 		3243C71918BB508300542D7F /* Pipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pipe.png; sourceTree = "<group>"; };
 		3243C71B18BB53FD00542D7F /* Pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pipe.h; sourceTree = "<group>"; };
 		3243C71C18BB53FD00542D7F /* Pipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pipe.m; sourceTree = "<group>"; };
+		32769D3B18C4907500A6DA5F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		32A6D8BC18BEEF180033786C /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		32A6D8BD18BEEF180033786C /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
 		32A6D8BE18BEEF180033786C /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			files = (
 				323442A818C45F9000450916 /* libVendor.a in Frameworks */,
 				3234424518C458DA00450916 /* Social.framework in Frameworks */,
+				32769D3C18C4907500A6DA5F /* Crashlytics.framework in Frameworks */,
 				3234424318C458D500450916 /* Accounts.framework in Frameworks */,
 				3234423E18C435D900450916 /* libExpaPlatform.a in Frameworks */,
 				D1AE797C18C15FAE00891FAE /* iAd.framework in Frameworks */,
@@ -278,6 +281,7 @@
 		320C147118BAD06C000AE6A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32769D3B18C4907500A6DA5F /* Crashlytics.framework */,
 				323442AC18C46BDD00450916 /* FacebookSDK.framework */,
 				3234424418C458DA00450916 /* Social.framework */,
 				3234424218C458D500450916 /* Accounts.framework */,
@@ -501,6 +505,7 @@
 				320C146B18BAD06C000AE6A1 /* Sources */,
 				320C146C18BAD06C000AE6A1 /* Frameworks */,
 				320C146D18BAD06C000AE6A1 /* Resources */,
+				32769D3918C4904200A6DA5F /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -639,6 +644,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32769D3918C4904200A6DA5F /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 1a89bc9628b15b8fb66f916f16968364b3b98174 d1e2e605e04fd5dfda5959dec432bf2810a3ddad54e28f91a01cd3bb128c57d6";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		320C146B18BAD06C000AE6A1 /* Sources */ = {

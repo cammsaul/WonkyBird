@@ -42,17 +42,22 @@
 }
 
 + (void)authenticateSessionOnCompletion:(void(^)(BOOL))completionBlock {
-    [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
-									   defaultAudience:FBSessionDefaultAudienceFriends
-										  allowLoginUI:YES
-									 completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-         if (!error && status == FBSessionStateOpen) {
-			 if (completionBlock) completionBlock(YES);
-		 } else {
-			 NSLog(@"error logging in to Facebook: %@", error.localizedDescription);
-			 if (completionBlock) completionBlock(NO);
-		 }
-     }];
+	[FBSession openActiveSessionWithReadPermissions:@[@"basic_info"] allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+		if (error || status != FBSessionStateOpen) {
+			NSLog(@"Error logging into facebook: %@", error.localizedDescription);
+			if (completionBlock) completionBlock(NO);
+			return;
+		}
+		[FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+			if (!error && status == FBSessionStateOpen) {
+				if (completionBlock) completionBlock(YES);
+			} else {
+				[[FBSession activeSession] closeAndClearTokenInformation];
+				NSLog(@"error logging in to Facebook: %@", error.localizedDescription);
+				if (completionBlock) completionBlock(NO);
+			}
+		}];
+	}];
 }
 
 + (void)requestPublishPermissionOnCompletion:(void (^)(BOOL))completionBlock {

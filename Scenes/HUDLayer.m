@@ -314,7 +314,7 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 			[FacebookShare sharedInstance].enableShareToFB = YES;
 			self[FacebookButtonKey].visible = YES;
 			self[FacebookGrayButtonKey].visible = NO;
-			NSLog(@"FB Share successful.");
+			NSLog(@"FB Share (score) successful.");
 		}
 	}];
 }
@@ -325,7 +325,7 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 			[FacebookShare sharedInstance].enableShareToFB = YES;
 			self[FacebookButtonKey].visible = YES;
 			self[FacebookGrayButtonKey].visible = NO;
-			NSLog(@"FB Share successful.");
+			NSLog(@"FB Share (high score) successful.");
 		}
 	}];
 }

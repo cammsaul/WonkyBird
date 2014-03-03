@@ -7,6 +7,7 @@
 //
 
 #import <FacebookSDK/FacebookSDK.h>
+#import <Crashlytics/Crashlytics.h>
 
 #import "AppDelegate.h"
 #import "MainScene.h"
@@ -96,6 +97,8 @@
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
+	
+	[Crashlytics startWithAPIKey:@"1a89bc9628b15b8fb66f916f16968364b3b98174"];
 	
 	return YES;
 }
