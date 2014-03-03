@@ -7,6 +7,7 @@
 //
 
 #import <GameKit/GameKit.h>
+#import <Mixpanel/Mixpanel.h>
 extern "C" {
 	#import <ExpaPlatform/Utilities/XGCDUtilites.h>
 }
@@ -182,6 +183,13 @@ extern "C" {
 	NSLog(@"GameKit Authenticated? %d", self.userIsAuthenticated);
 	if (self.authenticationCompletionBlock) self.authenticationCompletionBlock(self.userIsAuthenticated);
 	self.authenticationCompletionBlock = nil;
+	
+	if (self.userIsAuthenticated) {
+		[[Mixpanel sharedInstance] track:@"gamekit_authenticated"];
+		[[Mixpanel sharedInstance].people set:@"gamekit_underage" to:@([GKLocalPlayer localPlayer].isUnderage)];
+		[[Mixpanel sharedInstance].people set:@"gamekit_alias" to:[GKLocalPlayer localPlayer].alias];
+		[[Mixpanel sharedInstance].people set:@"gamekit_displayname" to:[GKLocalPlayer localPlayer].alias];
+	}
 }
 
 
