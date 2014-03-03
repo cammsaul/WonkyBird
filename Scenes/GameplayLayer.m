@@ -279,7 +279,6 @@ static NSUInteger __touchBeginTime = 0;
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
 	const NSUInteger numFrames = [[CCDirector sharedDirector] totalFrames] - __touchBeginTime;
-	NSLog(@"num frames: %zd", numFrames);
 	
 	if (self.bird.state != BirdStateDead) {
 		self.bird.item.body->SetAwake(true);

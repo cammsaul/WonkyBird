@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-#import <UIAlertView+Expa.h>
+#import <Mixpanel/Mixpanel.h>
+#import <ExpaPlatform/Categories/UIKit/UIAlertView+Expa.h>
 
 #import "HUDLayer.h"
 #import "GameManager.h"
@@ -200,17 +201,6 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 				self[obj].zOrder = 5;
 			}
 		}];
-		
-		if ([GameManager sharedInstance].gameRound == GameRound2) {
-			if ([GameManager sharedInstance].totalScore == [GameManager sharedInstance].bestTotalScore) {
-				if (enableShareToTwitter) {
-					[self shareHighScoreToTwitter];
-				}
-				if (enableShareToFB) {
-					[self shareHighScoreToFB];
-				}
-			}
-		}
 	}
 	
 	lastState = GState();
@@ -235,7 +225,11 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 	if (GStateIsActive()) return;
 	
 	auto TouchOnSprite = [=](NSString *spriteKey) -> bool {
-		return CGRectContainsPoint([self.sprites[spriteKey] boundingBox], [self convertTouchToNodeSpace:touch]) && self[spriteKey].visible;
+		const bool touched = CGRectContainsPoint([self.sprites[spriteKey] boundingBox], [self convertTouchToNodeSpace:touch]) && self[spriteKey].visible;
+		if (touched) {
+			[[Mixpanel sharedInstance] track:[NSString stringWithFormat:@"button_touch_%@", spriteKey]];
+		}
+		return touched;
 	};
 	
 	for (id spriteKey in @[PlayButtonKey, RateButtonKey, LeaderBoardButtonKey]) {
@@ -247,37 +241,33 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 	if (GState() & GameState(GStateMainMenu|GStateGameOver)) {
 		if (TouchOnSprite(PlayButtonKey)) {
 			SetGState(GStateGetReady);
-		} else if (TouchOnSprite(RateButtonKey)) {
+		}
+		else if (TouchOnSprite(RateButtonKey))
+		{
 			NSNumber *appID = [NSBundle mainBundle].infoDictionary[@"LBAppID"];
 			NSAssert([appID intValue], @"Set the key 'LBAppID' in the app's info.plist!");
 			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appID]]];
-		} else if (TouchOnSprite(LeaderBoardButtonKey)) {
+		}
+		else if (TouchOnSprite(LeaderBoardButtonKey))
+		{
 			[[GameKitManager sharedInstance] showLeaderboard];
-		} else if (TouchOnSprite(TwitterGrayButtonKey)) {
-			// log user in to twitter if needed
-			auto postUpdate = ^{
-				[TwitterManager sharedInstance].enableShareToTwitter = YES;
-				[self shareToTwitter];
-				self[TwitterButtonKey].visible = YES;
-				self[TwitterGrayButtonKey].visible = NO;
-				[UIAlertView showAlertWithTitle:@"Success!" message:@"Your score has been posted to Twitter!" cancelButtonTitle:@"Ok"];
-			};
-			if (![TwitterManager canShareToTwitter]) {
-				[TwitterManager loginWithTwitterSuccess:^{
-					postUpdate();
-				} error:^(NSError *error) {
-					NSLog(@"Error logging into Twitter: %@", error);
-				}];
-			} else {
-				postUpdate();
-			}
-		} else if (TouchOnSprite(TwitterButtonKey)) {
+		}
+		else if (TouchOnSprite(TwitterGrayButtonKey))
+		{
+			[self shareToTwitter];
+		}
+		else if (TouchOnSprite(TwitterButtonKey))
+		{
 			[TwitterManager sharedInstance].enableShareToTwitter = NO;
 			self[TwitterButtonKey].visible = NO;
 			self[TwitterGrayButtonKey].visible = YES;
-		} else if (TouchOnSprite(FacebookGrayButtonKey)) {
+		}
+		else if (TouchOnSprite(FacebookGrayButtonKey))
+		{
 			[self shareToFB];
-		} else if (TouchOnSprite(FacebookButtonKey)) {
+		}
+		else if (TouchOnSprite(FacebookButtonKey))
+		{
 			[FacebookShare sharedInstance].enableShareToFB = NO;
 			self[FacebookButtonKey].visible = NO;
 			self[FacebookGrayButtonKey].visible = YES;
@@ -289,44 +279,21 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 	}
 }
 
-- (NSString *)scoreShareMessage {
-	NSNumber *appID = [NSBundle mainBundle].infoDictionary[@"LBAppID"];
-	return [NSString stringWithFormat:@"Just scored %zd on #wonkybird https://itunes.apple.com/us/app/id%@", [GameManager sharedInstance].totalScore, appID];
-}
-
-- (NSString *)highScoreShareMessage {
-	NSNumber *appID = [NSBundle mainBundle].infoDictionary[@"LBAppID"];
-	return [NSString stringWithFormat:@"New high score: %zd on #wonkybird https://itunes.apple.com/us/app/id%@", [GameManager sharedInstance].totalScore, appID];
-}
-
 - (void)shareToTwitter {
-	[TwitterManager postStatusUpdate:[self scoreShareMessage]];
-}
-
-- (void)shareHighScoreToTwitter {
-	[TwitterManager postStatusUpdate:[self highScoreShareMessage]];
-	
-}
-
-- (void)shareToFB {
-	[FacebookShare authWithGraphAPIAndPostStatusMessage:[self scoreShareMessage] completion:^(BOOL success){
-		if (success) {
-			[FacebookShare sharedInstance].enableShareToFB = YES;
-			self[FacebookButtonKey].visible = YES;
-			self[FacebookGrayButtonKey].visible = NO;
-			NSLog(@"FB Share (score) successful.");
-		}
+	const BOOL wasLoggedIn = [TwitterManager sharedInstance].enableShareToTwitter;
+	[[GameManager sharedInstance] shareToTwitter:^(BOOL success) {
+		self[TwitterButtonKey].visible = success;
+		self[TwitterGrayButtonKey].visible = !success;
+		if (!wasLoggedIn && success) [UIAlertView showAlertWithTitle:@"Success!" message:@"Your score has been posted to Twitter!" cancelButtonTitle:@"Ok"];
 	}];
 }
 
-- (void)shareHighScoreToFB {
-	[FacebookShare authWithGraphAPIAndPostStatusMessage:[self highScoreShareMessage] completion:^(BOOL success){
-		if (success) {
-			[FacebookShare sharedInstance].enableShareToFB = YES;
-			self[FacebookButtonKey].visible = YES;
-			self[FacebookGrayButtonKey].visible = NO;
-			NSLog(@"FB Share (high score) successful.");
-		}
+- (void)shareToFB {
+	const BOOL wasLoggedIn = [TwitterManager sharedInstance].enableShareToTwitter;
+	[[GameManager sharedInstance] shareToFB:^(BOOL success) {
+		self[FacebookButtonKey].visible = success;
+		self[FacebookGrayButtonKey].visible = !success;
+		if (!wasLoggedIn && success) [UIAlertView showAlertWithTitle:@"Success!" message:@"Your score has been posted to Facebook!" cancelButtonTitle:@"Ok"];
 	}];
 }
 

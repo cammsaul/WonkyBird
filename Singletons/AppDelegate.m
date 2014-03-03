@@ -8,6 +8,7 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import <Crashlytics/Crashlytics.h>
+#import <Mixpanel/Mixpanel.h>
 
 #import "AppDelegate.h"
 #import "MainScene.h"
@@ -98,6 +99,10 @@
 	// make main window visible
 	[window_ makeKeyAndVisible];
 	
+	[Mixpanel sharedInstanceWithToken:@"e6081b19cb0ec65796ebaadec7224a63"];
+	[[Mixpanel sharedInstance] identify:[Mixpanel sharedInstance].distinctId]; // use default key to identify users (iAD token for advertising)
+	[[Mixpanel sharedInstance].people increment:@"app_launches" by:@1];
+	
 	[Crashlytics startWithAPIKey:@"1a89bc9628b15b8fb66f916f16968364b3b98174"];
 	
 	return YES;
@@ -149,6 +154,28 @@
 -(void) applicationSignificantTimeChange:(UIApplication *)application
 {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+
+#pragma mark - Push Notifications
+
+//- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+//	NSLog(@"Recieved local notification: %@", notification);
+//}
+//
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//	NSLog(@"Recieved remote notification: %@", userInfo);
+//}
+//
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+//	NSLog(@"Recieved background fetch remote notification: %@", userInfo);
+//}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+	NSLog(@"registered for remote notifications.");
+	auto mixpanel = [Mixpanel sharedInstance];
+	[mixpanel identify:mixpanel.distinctId]; // make sure ID is set before calling mixpanel.people
+	[mixpanel.people addPushDeviceToken:deviceToken];
 }
 
 

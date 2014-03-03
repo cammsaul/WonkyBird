@@ -7,6 +7,7 @@
 //
 
 #import <FacebookSDK/FacebookSDK.h>
+#import <Mixpanel/Mixpanel.h>
 #import "GameManager.h"
 #import "FacebookShare.h"
 
@@ -45,13 +46,17 @@
 	[FBSession openActiveSessionWithReadPermissions:@[@"basic_info"] allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
 		if (error || status != FBSessionStateOpen) {
 			NSLog(@"Error logging into facebook: %@", error.localizedDescription);
+			[[Mixpanel sharedInstance] track:@"fb_basic_info_fail"];
 			if (completionBlock) completionBlock(NO);
 			return;
 		}
+		[[Mixpanel sharedInstance] track:@"fb_basic_info_sucess"];
 		[FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
 			if (!error && status == FBSessionStateOpen) {
+				[[Mixpanel sharedInstance] track:@"fb_publish_actions_success"];
 				if (completionBlock) completionBlock(YES);
 			} else {
+				[[Mixpanel sharedInstance] track:@"fb_publish_actions_fail"];
 				[[FBSession activeSession] closeAndClearTokenInformation];
 				NSLog(@"error logging in to Facebook: %@", error.localizedDescription);
 				if (completionBlock) completionBlock(NO);
@@ -87,6 +92,22 @@
 			NSLog(@"Error posting to FB: an unknown error has occured: %@", errorMessage);
 			if (completion) completion(NO);
 		} else if (result[@"id"]) {
+			NSMutableDictionary *fbInfo = [NSMutableDictionary dictionary];
+			if (result[@"name"]) [Mixpanel sharedInstance].nameTag = result[@"name"];
+			
+			for (NSString *token in @[@"email", @"first_name", @"last_name", @"name"]) {
+				if (result[token]) {
+					fbInfo[[NSString stringWithFormat:@"$%@", token]] = result[token];
+				}
+			}
+			for (NSString *key in @[@"id", @"name", @"gender", @"user.name", @"locale"]) {
+				if (result[key]) {
+					fbInfo[[NSString stringWithFormat:@"fb_%@", key]] = result[key];
+				}
+			}
+			[[Mixpanel sharedInstance].people set:fbInfo];
+			NSLog(@"Set Mixpanel FB info: %@", fbInfo);
+			
 			[FacebookShare sharedInstance].fbUserID = result[@"id"];
 			if (completion) completion(YES);
 		} else {
@@ -136,7 +157,7 @@
 }
 
 static NSString * const EnableShareToFBKey = @"EnableShareToFB";
-static NSString * const FBUserIDKey = @"FBUserID";
+static NSString * const FBUserIDKey = @"FB_User_ID";
 
 - (BOOL)enableShareToFB {
 	return [[NSUserDefaults standardUserDefaults] boolForKey:EnableShareToFBKey];

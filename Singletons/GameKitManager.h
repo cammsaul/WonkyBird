@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-#import "XSingleton.h"
+#import <ExpaPlatform/Components/XSingleton.h>
 
 @interface GameKitManager : XSingleton
 

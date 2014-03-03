@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 LuckyBird, Inc. All rights reserved.
 //
 
-#import "XSingleton.h"
+#import <ExpaPlatform/Components/XSingleton.h>
 #import "Constants.h"
 
 typedef enum : NSInteger {
@@ -37,5 +37,11 @@ typedef enum : NSInteger {
 - (NSUInteger)lifetimePointsForRound:(GameRound)gameRound;
 
 @property (nonatomic, readonly) float gameSpeed;
+
+
+#pragma mark  - Sharing
+
+- (void)shareToTwitter:(void(^)(BOOL success))completion;
+- (void)shareToFB:(void(^)(BOOL success))completion;
 
 @end

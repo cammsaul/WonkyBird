@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 GeoTip Technologies, Inc. All rights reserved.
 //
 
-#import "XSingleton.h"
+#import <ExpaPlatform/Components/XSingleton.h>
 
 typedef void(^TwitterLoginErrorBlock)(NSError *error);
 
@@ -19,7 +19,7 @@ typedef void(^TwitterLoginErrorBlock)(NSError *error);
 + (BOOL)canShareToTwitter;
 
 /// Posts status update to Twitter if the possible. Check [TwitterManager canShareToTwitter] to see if we can post a status update.
-+ (void)postStatusUpdate:(NSString *)status;
++ (void)postStatusUpdate:(NSString *)status completion:(void(^)(BOOL success))completion;
 
 @property (nonatomic) BOOL enableShareToTwitter; ///< user defaults-backed property to keep track of whether user WANTS to share to twitter
 

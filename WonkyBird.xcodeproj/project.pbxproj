@@ -36,7 +36,6 @@
 		3234424518C458DA00450916 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3234424418C458DA00450916 /* Social.framework */; };
 		323442A818C45F9000450916 /* libVendor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3234428718C45B8300450916 /* libVendor.a */; };
 		323442AB18C46B9A00450916 /* FacebookShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 323442AA18C46B9A00450916 /* FacebookShare.m */; };
-		323442AD18C46BDD00450916 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323442AC18C46BDD00450916 /* FacebookSDK.framework */; };
 		3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16018BAD22C00542D7F /* AppDelegate.m */; };
 		3243C37C18BAD3D500542D7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C37B18BAD3D500542D7F /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3243C39318BAD42500542D7F /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38618BAD42500542D7F /* iTunesArtwork */; };
@@ -68,6 +67,7 @@
 		32A6D8CA18BEF2B70033786C /* Font_Score_Large.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8C718BEF2B70033786C /* Font_Score_Large.png */; };
 		32A6D8CE18BF02860033786C /* Font_Score_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8CC18BF02860033786C /* Font_Score_Small.png */; };
 		32A6D8D018BF02900033786C /* Font_Score_Small.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 32A6D8CF18BF02900033786C /* Font_Score_Small.fnt */; };
+		B6935BB2A20142DA98139C4C /* libPods-WonkyBird.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35D6F7CC92D4EB5B2226513 /* libPods-WonkyBird.a */; };
 		D1AE797A18C15D0000891FAE /* NavController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AE797918C15D0000891FAE /* NavController.m */; };
 		D1AE797C18C15FAE00891FAE /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AE797B18C15FAE00891FAE /* iAd.framework */; };
 /* End PBXBuildFile section */
@@ -176,7 +176,6 @@
 		3234428118C45B8200450916 /* Vendor.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Vendor.xcodeproj; path = Vendor/Vendor.xcodeproj; sourceTree = "<group>"; };
 		323442A918C46B9A00450916 /* FacebookShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookShare.h; sourceTree = "<group>"; };
 		323442AA18C46B9A00450916 /* FacebookShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookShare.m; sourceTree = "<group>"; };
-		323442AC18C46BDD00450916 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3243C15F18BAD22C00542D7F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3243C16018BAD22C00542D7F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3243C37B18BAD3D500542D7F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
@@ -218,6 +217,8 @@
 		32A6D8C718BEF2B70033786C /* Font_Score_Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Font_Score_Large.png; sourceTree = "<group>"; };
 		32A6D8CC18BF02860033786C /* Font_Score_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Font_Score_Small.png; sourceTree = "<group>"; };
 		32A6D8CF18BF02900033786C /* Font_Score_Small.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Font_Score_Small.fnt; sourceTree = "<group>"; };
+		601FDC2A2FF74D09B0A693A1 /* Pods-WonkyBird.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonkyBird.xcconfig"; path = "Pods/Pods-WonkyBird.xcconfig"; sourceTree = "<group>"; };
+		B35D6F7CC92D4EB5B2226513 /* libPods-WonkyBird.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WonkyBird.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1AE797818C15D0000891FAE /* NavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavController.h; sourceTree = "<group>"; };
 		D1AE797918C15D0000891FAE /* NavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavController.m; sourceTree = "<group>"; };
 		D1AE797B18C15FAE00891FAE /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -234,7 +235,6 @@
 				3234424318C458D500450916 /* Accounts.framework in Frameworks */,
 				3234423E18C435D900450916 /* libExpaPlatform.a in Frameworks */,
 				D1AE797C18C15FAE00891FAE /* iAd.framework in Frameworks */,
-				323442AD18C46BDD00450916 /* FacebookSDK.framework in Frameworks */,
 				3234421018C395F800450916 /* libBox2D.a in Frameworks */,
 				3243C57318BAE69700542D7F /* libCocos2d.a in Frameworks */,
 				320C147718BAD06C000AE6A1 /* OpenAL.framework in Frameworks */,
@@ -247,6 +247,7 @@
 				320C147F18BAD06C000AE6A1 /* Foundation.framework in Frameworks */,
 				320C147918BAD06C000AE6A1 /* AudioToolbox.framework in Frameworks */,
 				320C148518BAD06C000AE6A1 /* GameKit.framework in Frameworks */,
+				B6935BB2A20142DA98139C4C /* libPods-WonkyBird.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +268,7 @@
 				3234416918C394B600450916 /* Box2D.xcodeproj */,
 				3243C3EB18BAE60900542D7F /* Cocos2d.xcodeproj */,
 				3234423018C4344700450916 /* ExpaPlatform.xcodeproj */,
+				601FDC2A2FF74D09B0A693A1 /* Pods-WonkyBird.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -282,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				32769D3B18C4907500A6DA5F /* Crashlytics.framework */,
-				323442AC18C46BDD00450916 /* FacebookSDK.framework */,
 				3234424418C458DA00450916 /* Social.framework */,
 				3234424218C458D500450916 /* Accounts.framework */,
 				D1AE797B18C15FAE00891FAE /* iAd.framework */,
@@ -296,6 +297,7 @@
 				320C148018BAD06C000AE6A1 /* CoreGraphics.framework */,
 				320C148218BAD06C000AE6A1 /* CoreText.framework */,
 				320C148418BAD06C000AE6A1 /* GameKit.framework */,
+				B35D6F7CC92D4EB5B2226513 /* libPods-WonkyBird.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -502,10 +504,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 320C162218BAD06E000AE6A1 /* Build configuration list for PBXNativeTarget "WonkyBird" */;
 			buildPhases = (
+				13A38FF972A64713B2D3DBFF /* Check Pods Manifest.lock */,
 				320C146B18BAD06C000AE6A1 /* Sources */,
 				320C146C18BAD06C000AE6A1 /* Frameworks */,
 				320C146D18BAD06C000AE6A1 /* Resources */,
 				32769D3918C4904200A6DA5F /* Crashlytics */,
+				AC033A17646141BBA3E38EBB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -646,6 +650,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		13A38FF972A64713B2D3DBFF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		32769D3918C4904200A6DA5F /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -659,6 +678,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Crashlytics.framework/run 1a89bc9628b15b8fb66f916f16968364b3b98174 d1e2e605e04fd5dfda5959dec432bf2810a3ddad54e28f91a01cd3bb128c57d6";
+		};
+		AC033A17646141BBA3E38EBB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-WonkyBird-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -730,17 +764,11 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/libs",
-					"$(SRCROOT)/**",
-					"$(SRCROOT)/Box2D/",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Cocos2d/** $(SRCROOT)/Box2D $(SRCROOT)/Vendor/Vendor $(SRCROOT)/ios-platform/";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WARNING_CFLAGS = "-Wno-lambda-extensions";
 			};
@@ -762,17 +790,11 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/libs",
-					"$(SRCROOT)/**",
-					"$(SRCROOT)/Box2D/",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Cocos2d/** $(SRCROOT)/Box2D $(SRCROOT)/Vendor/Vendor $(SRCROOT)/ios-platform/";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WARNING_CFLAGS = "-Wno-lambda-extensions";
 			};
@@ -780,6 +802,7 @@
 		};
 		320C162318BAD06E000AE6A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 601FDC2A2FF74D09B0A693A1 /* Pods-WonkyBird.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
@@ -793,14 +816,19 @@
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					"COCOS2D_DEBUG=1",
-					"CRASHLYTICS_INTEGRATION=0",
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK\"",
+					"\"${PODS_ROOT}/Headers/Mixpanel\"",
+					"\"${PODS_ROOT}/Headers/NSData+Base64\"",
+					"\"${PODS_ROOT}/Headers/OAuthCore\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",
@@ -814,6 +842,7 @@
 		};
 		320C162418BAD06E000AE6A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 601FDC2A2FF74D09B0A693A1 /* Pods-WonkyBird.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: LuckyBird, Inc. (9W9RBME6M2)";
@@ -827,18 +856,23 @@
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					NDEBUG,
-					"NS_BLOCK_ASSERTIONS=1",
-					"CRASHLYTICS_INTEGRATION=0",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_UNROLL_LOOPS = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK\"",
+					"\"${PODS_ROOT}/Headers/Mixpanel\"",
+					"\"${PODS_ROOT}/Headers/NSData+Base64\"",
+					"\"${PODS_ROOT}/Headers/OAuthCore\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				LLVM_LTO = YES;
 				LLVM_VECTORIZE_LOOPS = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",

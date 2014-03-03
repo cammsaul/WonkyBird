@@ -8,7 +8,7 @@
 
 #import <GameKit/GameKit.h>
 extern "C" {
-	#import <XGCDUtilites.h>
+	#import <ExpaPlatform/Utilities/XGCDUtilites.h>
 }
 
 #import "GameManager.h"

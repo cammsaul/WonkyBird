@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <XSingleton.h>
+#import <ExpaPlatform/Components/XSingleton.h>
 
 @interface FacebookShare : XSingleton
 

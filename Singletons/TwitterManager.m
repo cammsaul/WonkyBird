@@ -8,13 +8,14 @@
 
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
+#import <Mixpanel/Mixpanel.h>
 
 extern "C" {
 	#import <OAuthCore.h>
-	#import "XLogging.h"
-	#import "XGCDUtilites.h"
+	#import <ExpaPlatform/Components/Logging/XLogging.h>
+	#import <ExpaPlatform/Utilities/XGCDUtilites.h>
 }
-#import "NSString+Expa.h"
+#import <ExpaPlatform/Categories/Foundation/NSString+Expa.h>
 
 #import "TwitterManager.h"
 
@@ -34,7 +35,6 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 @property (nonatomic, copy, readwrite) void(^successBlock)();
 @property (nonatomic, copy, readwrite) TwitterLoginErrorBlock errorBlock;
 
-+ (TwitterManager *)sharedInstance;
 @end
 
 @implementation TwitterManager
@@ -44,6 +44,7 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 	
 	BOOL userHasAccessToTwitter = [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
 	if (!userHasAccessToTwitter) {
+		[[Mixpanel sharedInstance] track:@"twitter_login_fail_no_access"];
 		__accountStore = nil;
 		NSError *error = [[NSError alloc] initWithDomain:NSStringFromClass(self) code:0 userInfo:@{NSLocalizedDescriptionKey: @"Please log in to your Twitter account in iOS Settings to log in to WonkyBird with Twitter." }];
 		XLog(self, LogFlagError, @"User not logged into Twitter: %@", error);
@@ -54,6 +55,7 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 	ACAccountType *twitterAccountType = [__accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
 	[__accountStore requestAccessToAccountsWithType:twitterAccountType options:nil completion:^(BOOL granted, NSError *error) {
 		if (!granted || error) {
+			[[Mixpanel sharedInstance] track:@"twitter_login_fail_permission_denied"];
 			__accountStore = nil;
 			if (!error) error = [[NSError alloc] initWithDomain:NSStringFromClass(self) code:0 userInfo:@{NSLocalizedDescriptionKey: @"You must grant access to WonkyBird to access your Twitter account to log in with Twitter." }];
 			XLog(self, LogFlagError, @"Error getting Twitter account access: %@", error);
@@ -63,17 +65,17 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 		
 		// Step 2: create a request
 		
-		[self sharedInstance].accounts = [__accountStore accountsWithAccountType:twitterAccountType];
-		[self sharedInstance].successBlock = ^{
+		[TwitterManager sharedInstance].accounts = [__accountStore accountsWithAccountType:twitterAccountType];
+		[TwitterManager sharedInstance].successBlock = ^{
 			if (successBlock) successBlock();
 		};
-		[self sharedInstance].errorBlock = ^(NSError *error2){
+		[TwitterManager sharedInstance].errorBlock = ^(NSError *error2){
 			if (errorBlock) errorBlock(error2);
 		};
 		
 		dispatch_async_main(^{
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Account" delegate:[self sharedInstance] cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
-			for (ACAccount *account in [self sharedInstance].accounts) [actionSheet addButtonWithTitle:account.username];
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Account" delegate:[TwitterManager sharedInstance] cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
+			for (ACAccount *account in [TwitterManager sharedInstance].accounts) [actionSheet addButtonWithTitle:account.username];
 			[actionSheet showInView:[CCDirector sharedDirector].view];
 		});
 		return;
@@ -82,14 +84,17 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 
 + (void)loginWithTwitterAccount:(ACAccount *)twitterAccount {
 	XLog(self, LogFlagInfo, @"Twitter account: %@", twitterAccount);
-	
-	void(^successBlock)() = [self sharedInstance].successBlock;
-	[self sharedInstance].successBlock = nil;
-	TwitterLoginErrorBlock errorBlock = [self sharedInstance].errorBlock;
-	[self sharedInstance].errorBlock = nil;
-	[self sharedInstance].accounts = nil;
+	if (twitterAccount) {
+		if (twitterAccount.username) [[Mixpanel sharedInstance].people set:@"twitter_username" to:twitterAccount.username];
+	}
+	void(^successBlock)() = [TwitterManager sharedInstance].successBlock;
+	[TwitterManager sharedInstance].successBlock = nil;
+	TwitterLoginErrorBlock errorBlock = [TwitterManager sharedInstance].errorBlock;
+	[TwitterManager sharedInstance].errorBlock = nil;
+	[TwitterManager sharedInstance].accounts = nil;
 	
 	if (!twitterAccount) {
+		[[Mixpanel sharedInstance] track:@"twitter_login_fail_cancel_on_select_account"];
 		errorBlock([NSError errorWithDomain:NSStringFromClass([TwitterManager class]) code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Please select a twitter account."}]);
 		return;
 	}
@@ -99,6 +104,7 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 	[NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 		NSString *authenticationHeader = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		if (connectionError) {
+			[[Mixpanel sharedInstance] track:@"twitter_login_fail_step_2_oauth"];
 			__accountStore = nil;
 			XLog(self, LogFlagError, @"Error making Step 2 Request Token Request: %@", authenticationHeader);
 			NSError *error = [[NSError alloc] initWithDomain:NSStringFromClass([TwitterManager class]) code:2 userInfo:@{NSLocalizedDescriptionKey: authenticationHeader}];
@@ -116,6 +122,7 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 		[accessTokenRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
 			__accountStore = nil;
 			if (error) {
+				[[Mixpanel sharedInstance] track:@"twitter_login_fail_step_3_access_token"];
 				NSString *twitterErrorStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 				XLog(self, LogFlagError, @"Error making Step 3 Access Token Request: %@", twitterErrorStr);
 				NSError *nsError = [[NSError alloc] initWithDomain:NSStringFromClass([TwitterManager class]) code:3 userInfo:@{NSLocalizedDescriptionKey: @"Couldn't log into Twitter. Go to Settings and making sure your passwords for all of your Twitter accounts are entered correctly. They may have been reset if you updated or restored your phone recently."}];
@@ -132,6 +139,7 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 			}
 			XLog(self, LogFlagInfo, @"Got credentials: %@", credentials);
 			if (!credentials[@"oauth_token"]) {
+				[[Mixpanel sharedInstance] track:@"twitter_login_fail_step_3_access_token_invalid"];
 				XLog(self, LogFlagInfo, @"Invalid response for Step 3: %@", responseStr);
 				NSError *nsError = [[NSError alloc] initWithDomain:NSStringFromClass([TwitterManager class]) code:3 userInfo:@{NSLocalizedDescriptionKey: responseStr}];
 				errorBlock(nsError);
@@ -144,8 +152,8 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 			[[NSUserDefaults standardUserDefaults] synchronize];
 			
 			successBlock();
-			[self sharedInstance].successBlock = nil;
-			[self sharedInstance].errorBlock = nil;
+			[TwitterManager sharedInstance].successBlock = nil;
+			[TwitterManager sharedInstance].errorBlock = nil;
 		}];
 	}];
 }
@@ -202,9 +210,18 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 	return oauthToken.length && oauthTokenSecret.length;
 }
 
-+ (void)postStatusUpdate:(NSString *)status {
++ (void)postStatusUpdate:(NSString *)status completion:(void(^)(BOOL success))_completion {
+	auto completion = ^(BOOL success) {
+		if (_completion) {
+			dispatch_async_main(^{
+				_completion(success);
+			});
+		}
+	};
+	
 	if (![self canShareToTwitter]) {
 		XLog(self, LogFlagError, @"Error posting status update: user is not logged in.");
+		completion(NO);
 		return;
 	}
 	
@@ -218,9 +235,11 @@ static NSString * const UserDefaultsOAuthTokenSecretKey = @"com.luckybird.wonkyb
 		NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
 		if (jsonError) {
 			XLog(self, LogFlagError, @"Error parsing JSON: %@", jsonError);
+			completion(NO);
 			return;
 		}
 		XLog(self, LogFlagInfo, @"Posted a tweet: %@", jsonDict);
+		completion(YES);
 	}];
 }
 

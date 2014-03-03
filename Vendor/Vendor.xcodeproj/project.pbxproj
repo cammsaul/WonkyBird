@@ -14,9 +14,6 @@
 		323442A018C45BC300450916 /* GameSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3234429218C45BC300450916 /* GameSprite.mm */; };
 		323442A118C45BC300450916 /* GB2ShapeCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3234429418C45BC300450916 /* GB2ShapeCache.mm */; };
 		323442A218C45BC300450916 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3234429618C45BC300450916 /* GLES-Render.mm */; };
-		323442A318C45BC300450916 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234429818C45BC300450916 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		323442A418C45BC300450916 /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234429A18C45BC300450916 /* OAuth+Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		323442A518C45BC300450916 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3234429C18C45BC300450916 /* OAuthCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,12 +45,6 @@
 		3234429418C45BC300450916 /* GB2ShapeCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GB2ShapeCache.mm; sourceTree = "<group>"; };
 		3234429518C45BC300450916 /* GLES-Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		3234429618C45BC300450916 /* GLES-Render.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
-		3234429718C45BC300450916 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		3234429818C45BC300450916 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		3234429918C45BC300450916 /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
-		3234429A18C45BC300450916 /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
-		3234429B18C45BC300450916 /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
-		3234429C18C45BC300450916 /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,12 +101,6 @@
 				3234429418C45BC300450916 /* GB2ShapeCache.mm */,
 				3234429518C45BC300450916 /* GLES-Render.h */,
 				3234429618C45BC300450916 /* GLES-Render.mm */,
-				3234429718C45BC300450916 /* NSData+Base64.h */,
-				3234429818C45BC300450916 /* NSData+Base64.m */,
-				3234429918C45BC300450916 /* OAuth+Additions.h */,
-				3234429A18C45BC300450916 /* OAuth+Additions.m */,
-				3234429B18C45BC300450916 /* OAuthCore.h */,
-				3234429C18C45BC300450916 /* OAuthCore.m */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -174,12 +159,9 @@
 				323442A018C45BC300450916 /* GameSprite.mm in Sources */,
 				323442A118C45BC300450916 /* GB2ShapeCache.mm in Sources */,
 				323442A218C45BC300450916 /* GLES-Render.mm in Sources */,
-				323442A318C45BC300450916 /* NSData+Base64.m in Sources */,
 				3234429D18C45BC300450916 /* Box2DItem.mm in Sources */,
 				3234429F18C45BC300450916 /* GameLayer.m in Sources */,
-				323442A518C45BC300450916 /* OAuthCore.m in Sources */,
 				3234429E18C45BC300450916 /* Box2DLayer.mm in Sources */,
-				323442A418C45BC300450916 /* OAuth+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +283,7 @@
 				3234427D18C45B8200450916 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
