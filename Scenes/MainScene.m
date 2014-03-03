@@ -86,12 +86,14 @@ static MainScene *__mainScene;
 		}
 	}
 	if (GState() != lastState) {
-		if (GStateIsGameOver()) {
-			[[SimpleAudioEngine sharedEngine] playEffect:@"Perc_2.wav"];
-			[[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
-		} else if (lastState != GStateMainMenu && GStateIsGetReady()) {
-			[[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
-		}
+		#if !TARGET_IPHONE_SIMULATOR
+			if (GStateIsGameOver()) {
+				[[SimpleAudioEngine sharedEngine] playEffect:@"Perc_2.wav"];
+				[[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+			} else if (lastState != GStateMainMenu && GStateIsGetReady()) {
+				[[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
+			}
+		#endif
 	}
 	
 	lastState = GState();

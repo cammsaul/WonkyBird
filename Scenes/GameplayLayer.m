@@ -68,7 +68,7 @@ float RandomPipeSize() {
 			[wall.item addToWorld:self.world];
 			[self.walls addObject:wall];
 		};
-		makeWall(ScreenHalfWidth(), ScreenHeight() + 2, ScreenWidth() * 2, 4); // roof
+		makeWall(ScreenHalfWidth(), ScreenHeight() + 5, ScreenWidth() * 2, 4); // roof
 //		makeWall(-70 /* enough to move pipe offscreen */, ScreenHeight() / 2, 4, ScreenHeight()); // left wall
 //		makeWall(ScreenWidth() + 2, ScreenHeight() / 2, 4, ScreenHeight()); // right wall
 								
@@ -125,7 +125,8 @@ float RandomPipeSize() {
 	Pipe *p = [Pipe pipeOfSize:pipeSize upsideDown:upsideDown];
 	const float pipeHalfHeight = p.contentSize.height / 2;
 	const float x = [GameManager sharedInstance].reverse ? (0 - p.contentSize.width) : (ScreenWidth() + p.contentSize.width / 2);
-	p.position = CGPointMake(x, (upsideDown ? (ScreenHeight() - pipeHalfHeight) : (pipeHalfHeight + GroundHeight)));
+	const float y = upsideDown ? (ScreenHeight() - pipeHalfHeight + 2) : (pipeHalfHeight + GroundHeight + 2);
+	p.position = ccp(x, y);
 	[self addChild:p.layer];
 	[p.item addToWorld:self.world];
 	[self.pipes addObject:p];
@@ -287,7 +288,9 @@ static NSUInteger __touchBeginTime = 0;
 		self.bird.xVelocity = (ScreenHalfWidth() / kPTMRatio) - self.bird.item.positionForBox2D.x;
 		[self.bird applyTouch:numFrames];
 		
-		[[SimpleAudioEngine sharedEngine] playEffect:@"Shaker_2.wav"];
+		#if !TARGET_IPHONE_SIMULATOR
+			[[SimpleAudioEngine sharedEngine] playEffect:@"Shaker_2.wav"];
+		#endif
 	}
 }
 //
