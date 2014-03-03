@@ -46,7 +46,9 @@
 	director_.wantsFullScreenLayout = YES;
 	
 	// Display FSP and SPF
-	[director_ setDisplayStats:YES];
+//	#if DEBUG
+//		[director_ setDisplayStats:YES];
+//	#endif
 	
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60];
