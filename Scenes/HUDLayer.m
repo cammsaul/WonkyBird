@@ -205,7 +205,9 @@ static NSString * const TapFingerKey			= @"Finger.png";
 		if (TouchOnSprite(PlayButtonKey)) {
 			SetGState(GStateGetReady);
 		} else if (TouchOnSprite(RateButtonKey)) {
-			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", 526969058]]]; // 833047305
+			NSNumber *appID = [NSBundle mainBundle].infoDictionary[@"LBAppID"];
+			NSAssert([appID intValue], @"Set the key 'LBAppID' in the app's info.plist!");
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appID]]];
 		} else if (TouchOnSprite(LeaderBoardButtonKey)) {
 			[[GameKitManager sharedInstance] showLeaderboard];
 		}
