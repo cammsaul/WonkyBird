@@ -39,14 +39,10 @@ static const int MaxNumClouds = 6;
 		
 		self.grass.item = [[Box2DItem alloc] initWithOwner:self.grass];
 		self.grass.item.bodyDef->type = b2_dynamicBody;
-//		self.grass.item.fixtureDef->isSensor = true;
 		self.grass.item.fixtureDef->filter.categoryBits = 0;
 		self.grass.item.bodyDef->gravityScale = 0;
 		self.contentSize = self.grass.contentSize;
-		
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[self.grass.item addToWorld:[MainScene mainScene].box2DLayer.world];
-		});
+		[self.grass.item addToWorld:[MainScene mainScene].box2DLayer.world];
 		
 		[self scheduleUpdate];
 	}

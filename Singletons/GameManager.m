@@ -37,6 +37,7 @@
 	if (self = [super init]) {
 		self.gameState = GStateMainMenu; // start in main menu
 		_gameScores = [NSMutableDictionary dictionary];
+		self.currentRoundScore = 0;
 	}
 	return self;
 }
