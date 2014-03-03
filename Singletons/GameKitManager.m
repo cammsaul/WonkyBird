@@ -7,6 +7,9 @@
 //
 
 #import <GameKit/GameKit.h>
+extern "C" {
+	#import <XGCDUtilites.h>
+}
 
 #import "GameManager.h"
 #import "GameKitManager.h"
@@ -35,39 +38,52 @@
 		return;
 	}
 	
-	static NSError *__authenticationError = nil;
-	if (__authenticationError) {
-		NSLog(@"GameKit authentication Error: %@", __authenticationError);
-		if (completion) completion(NO);
-		return;
-	}
+	auto completionOnMain = ^(BOOL success){
+		dispatch_async_main(^{
+			if (completion) completion(success);
+		});
+	};
 	
-	self.authenticationCompletionBlock = completion;
-	[[GKLocalPlayer localPlayer] setAuthenticateHandler:^(UIViewController *viewController, NSError *error) {
-		if (error) {
-			__authenticationError = error;
-			NSLog(@"GameKit authentication Error: %@", error);
-			if (self.authenticationCompletionBlock) self.authenticationCompletionBlock(NO);
-			self.authenticationCompletionBlock = nil;
-		} else {
-			if (viewController) {
-				[[CCDirector sharedDirector] presentViewController:viewController animated:YES completion:nil];
-			} else {
+	dispatch_async_default_priority(^{
+		static NSError *__authenticationError = nil;
+		if (__authenticationError) {
+			NSLog(@"GameKit authentication Error: %@", __authenticationError);
+			completionOnMain(NO);
+			return;
+		}
+		
+		self.authenticationCompletionBlock = completionOnMain;
+		[[GKLocalPlayer localPlayer] setAuthenticateHandler:^(UIViewController *viewController, NSError *error) {
+			if (error) {
+				__authenticationError = error;
+				NSLog(@"GameKit authentication Error: %@", error);
 				if (self.authenticationCompletionBlock) self.authenticationCompletionBlock(NO);
 				self.authenticationCompletionBlock = nil;
+			} else {
+				if (viewController) {
+					[[CCDirector sharedDirector] presentViewController:viewController animated:YES completion:nil];
+				} else {
+					if (self.authenticationCompletionBlock) self.authenticationCompletionBlock(NO);
+					self.authenticationCompletionBlock = nil;
+				}
 			}
-		}
-	}];
+		}];
+	});
 }
 
 - (void)showLeaderboard {
 	[self authenticateUser:^(BOOL success) {
 		if (success) {
-			GKGameCenterViewController *gameCenterVC = [[GKGameCenterViewController alloc] init];
-			if (gameCenterVC) {
-				[[CCDirector sharedDirector] presentViewController:gameCenterVC animated:YES completion:nil];
-				gameCenterVC.gameCenterDelegate = self;
-			}
+			dispatch_async_background_priority(^{
+				GKGameCenterViewController *gameCenterVC = [[GKGameCenterViewController alloc] init];
+				dispatch_async_main(^{
+					if (gameCenterVC) {
+						[[CCDirector sharedDirector] presentViewController:gameCenterVC animated:YES completion:nil];
+						gameCenterVC.gameCenterDelegate = self;
+					}
+
+				});
+			});
 		}
 	}];
 }

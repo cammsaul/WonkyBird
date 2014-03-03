@@ -78,7 +78,9 @@ static NSString * const LifetimePoints_Lucky_Key	= @"LifetimePoints_Lucky";
 					self[LifetimePoints_Total_Key] = @([self[LifetimePoints_Total_Key] intValue] + round1Score + round2Score);
 					[[NSUserDefaults standardUserDefaults] synchronize];
 					
-					[[GameKitManager sharedInstance] reportScoresForGameOver];
+					if ([GameKitManager sharedInstance].userIsAuthenticated) {
+						[[GameKitManager sharedInstance] reportScoresForGameOver];
+					}
 				}
 			} break;
 		}
