@@ -154,7 +154,7 @@
 
 - (void)setAuthenticationCompletionBlock:(void (^)(BOOL))authenticationCompletionBlock {
 	if (authenticationCompletionBlock) {
-		NSAssert(!_authenticationCompletionBlock, @"Attempt to set duplicate authentication completion block!!!!");
+		NSLog(@"Uh oh: Attempt to set duplicate authentication completion block!!!!");
 	}
 	
 	_authenticationCompletionBlock = [authenticationCompletionBlock copy];

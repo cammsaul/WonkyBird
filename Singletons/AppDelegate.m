@@ -6,6 +6,8 @@
 //  Copyright LuckyBird, Inc. 2014. All rights reserved.
 //
 
+#import <FacebookSDK/FacebookSDK.h>
+
 #import "AppDelegate.h"
 #import "MainScene.h"
 #import "NavController.h"
@@ -111,6 +113,8 @@
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];	
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
+		
+	[FBSession.activeSession handleDidBecomeActive];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
@@ -129,6 +133,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	CC_DIRECTOR_END();
+	[[FBSession activeSession] close];
 }
 
 // purge memory
@@ -141,6 +146,13 @@
 -(void) applicationSignificantTimeChange:(UIApplication *)application
 {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+
+#pragma mark - FB Login Crap
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+	return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 @end

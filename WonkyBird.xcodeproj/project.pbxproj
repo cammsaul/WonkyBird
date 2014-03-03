@@ -35,6 +35,8 @@
 		3234424318C458D500450916 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3234424218C458D500450916 /* Accounts.framework */; };
 		3234424518C458DA00450916 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3234424418C458DA00450916 /* Social.framework */; };
 		323442A818C45F9000450916 /* libVendor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3234428718C45B8300450916 /* libVendor.a */; };
+		323442AB18C46B9A00450916 /* FacebookShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 323442AA18C46B9A00450916 /* FacebookShare.m */; };
+		323442AD18C46BDD00450916 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323442AC18C46BDD00450916 /* FacebookSDK.framework */; };
 		3243C16118BAD22C00542D7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C16018BAD22C00542D7F /* AppDelegate.m */; };
 		3243C37C18BAD3D500542D7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3243C37B18BAD3D500542D7F /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3243C39318BAD42500542D7F /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 3243C38618BAD42500542D7F /* iTunesArtwork */; };
@@ -171,6 +173,9 @@
 		3234424218C458D500450916 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3234424418C458DA00450916 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3234428118C45B8200450916 /* Vendor.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Vendor.xcodeproj; path = Vendor/Vendor.xcodeproj; sourceTree = "<group>"; };
+		323442A918C46B9A00450916 /* FacebookShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookShare.h; sourceTree = "<group>"; };
+		323442AA18C46B9A00450916 /* FacebookShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookShare.m; sourceTree = "<group>"; };
+		323442AC18C46BDD00450916 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3243C15F18BAD22C00542D7F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3243C16018BAD22C00542D7F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3243C37B18BAD3D500542D7F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
@@ -226,6 +231,7 @@
 				3234424318C458D500450916 /* Accounts.framework in Frameworks */,
 				3234423E18C435D900450916 /* libExpaPlatform.a in Frameworks */,
 				D1AE797C18C15FAE00891FAE /* iAd.framework in Frameworks */,
+				323442AD18C46BDD00450916 /* FacebookSDK.framework in Frameworks */,
 				3234421018C395F800450916 /* libBox2D.a in Frameworks */,
 				3243C57318BAE69700542D7F /* libCocos2d.a in Frameworks */,
 				320C147718BAD06C000AE6A1 /* OpenAL.framework in Frameworks */,
@@ -272,6 +278,7 @@
 		320C147118BAD06C000AE6A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				323442AC18C46BDD00450916 /* FacebookSDK.framework */,
 				3234424418C458DA00450916 /* Social.framework */,
 				3234424218C458D500450916 /* Accounts.framework */,
 				D1AE797B18C15FAE00891FAE /* iAd.framework */,
@@ -345,6 +352,8 @@
 		3243C15E18BAD22C00542D7F /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
+				323442A918C46B9A00450916 /* FacebookShare.h */,
+				323442AA18C46B9A00450916 /* FacebookShare.m */,
 				3234423F18C4586A00450916 /* TwitterManager.h */,
 				3234424018C4586A00450916 /* TwitterManager.m */,
 				3243C15F18BAD22C00542D7F /* AppDelegate.h */,
@@ -643,6 +652,7 @@
 				D1AE797A18C15D0000891FAE /* NavController.m in Sources */,
 				3243C71D18BB53FD00542D7F /* Pipe.m in Sources */,
 				3243C3A818BAD87500542D7F /* StaticBackgroundLayer.m in Sources */,
+				323442AB18C46B9A00450916 /* FacebookShare.m in Sources */,
 				3243C3AE18BADEEA00542D7F /* ScrollingBackgroundLayer.m in Sources */,
 				3243C37C18BAD3D500542D7F /* main.m in Sources */,
 				3243C6F718BB03A000542D7F /* Bird.m in Sources */,
@@ -752,6 +762,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/cam/WonkyBird,
+				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_FAST_MATH = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -782,6 +796,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: LuckyBird, Inc. (9W9RBME6M2)";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/cam/WonkyBird,
+				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_FAST_MATH = YES;
 				GCC_OPTIMIZATION_LEVEL = fast;

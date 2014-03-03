@@ -9,7 +9,7 @@
 #import "GameManager.h"
 #import "GameKitManager.h"
 
-static NSString * const BestScore_Total_Key			= @"BestScore_Total";
+static NSString * const BestScore_Total_Key			= @"HighScore_Total";
 static NSString * const BestScore_Rasta_Key			= @"BestScore_Rasta";
 static NSString * const BestScore_Lucky_Key			= @"BestScore_Lucky";
 static NSString * const LifetimePoints_Total_Key	= @"LifetimePoints_Total";

@@ -226,8 +226,14 @@ float RandomPipeSize() {
 		}
 		
 		if (ABS(self.bird.xVelocity) >= BirdXVelocityDeathThreshold) {
-			NSLog(@"Bird x: %.2f", self.bird.xVelocity);
-			self.bird.state = BirdStateDead;
+			BOOL shouldDie = YES;
+			if ([[GameManager sharedInstance] currentRoundScore] == 0 && ABS(self.bird.xVelocity) <= 0.8f) {
+				shouldDie = NO; // be a little more forgiving when the round is just starting
+			}
+			if (shouldDie) {
+				NSLog(@"Bird x: %.2f", self.bird.xVelocity);
+				self.bird.state = BirdStateDead;
+			}
 		}
 
 		if (self.bird.dead) {

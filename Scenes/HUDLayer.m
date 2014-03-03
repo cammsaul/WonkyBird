@@ -12,6 +12,7 @@
 #import "GameManager.h"
 #import "GameKitManager.h"
 #import "TwitterManager.h"
+#import "FacebookShare.h"
 
 static NSString * const TitleLabelKey			= @"Title.png";
 static NSString * const GetReadyLabelKey		= @"Get_Ready.png";
@@ -183,8 +184,13 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 
 	if (GStateIsGameOver() && lastState != GStateGameOver) {
 		const BOOL enableShareToTwitter = [TwitterManager canShareToTwitter] && [TwitterManager sharedInstance].enableShareToTwitter;
+		const BOOL enableShareToFB = [FacebookShare sharedInstance].isAuthenticated;
+		
 		self[TwitterGrayButtonKey].visible = !enableShareToTwitter;
 		self[TwitterButtonKey].visible = enableShareToTwitter;
+		
+		self[FacebookButtonKey].visible = enableShareToFB;
+		self[FacebookGrayButtonKey].visible = !enableShareToFB;
 		
 		/// show in front of score board
 		[@[TwitterButtonKey, TwitterGrayButtonKey, FacebookButtonKey, FacebookGrayButtonKey] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -199,6 +205,9 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 			if ([GameManager sharedInstance].totalScore == [GameManager sharedInstance].bestTotalScore) {
 				if (enableShareToTwitter) {
 					[self shareHighScoreToTwitter];
+				}
+				if (enableShareToFB) {
+					[self shareHighScoreToFB];
 				}
 			}
 		}
@@ -236,8 +245,6 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 	}
 	
 	if (GState() & GameState(GStateMainMenu|GStateGameOver)) {
-		// TODO -> move button back to appropriate location
-		
 		if (TouchOnSprite(PlayButtonKey)) {
 			SetGState(GStateGetReady);
 		} else if (TouchOnSprite(RateButtonKey)) {
@@ -246,8 +253,6 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appID]]];
 		} else if (TouchOnSprite(LeaderBoardButtonKey)) {
 			[[GameKitManager sharedInstance] showLeaderboard];
-		} else if (TouchOnSprite(FacebookButtonKey)) {
-			
 		} else if (TouchOnSprite(TwitterGrayButtonKey)) {
 			// log user in to twitter if needed
 			auto postUpdate = ^{
@@ -270,6 +275,12 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 			[TwitterManager sharedInstance].enableShareToTwitter = NO;
 			self[TwitterButtonKey].visible = NO;
 			self[TwitterGrayButtonKey].visible = YES;
+		} else if (TouchOnSprite(FacebookGrayButtonKey)) {
+			[self shareToFB];
+		} else if (TouchOnSprite(FacebookButtonKey)) {
+			[FacebookShare sharedInstance].enableShareToFB = NO;
+			self[FacebookButtonKey].visible = NO;
+			self[FacebookGrayButtonKey].visible = YES;
 		}
 		return;
 	}
@@ -278,15 +289,45 @@ static NSString * const FacebookGrayButtonKey	= @"Button_Facebook_Gray.png";
 	}
 }
 
-- (void)shareToTwitter {
+- (NSString *)scoreShareMessage {
 	NSNumber *appID = [NSBundle mainBundle].infoDictionary[@"LBAppID"];
-	[TwitterManager postStatusUpdate:[NSString stringWithFormat:@"Just scored %zd on #wonkybird https://itunes.apple.com/us/app/id%@", [GameManager sharedInstance].totalScore, appID]];
+	return [NSString stringWithFormat:@"Just scored %zd on #wonkybird https://itunes.apple.com/us/app/id%@", [GameManager sharedInstance].totalScore, appID];
+}
+
+- (NSString *)highScoreShareMessage {
+	NSNumber *appID = [NSBundle mainBundle].infoDictionary[@"LBAppID"];
+	return [NSString stringWithFormat:@"New high score: %zd on #wonkybird https://itunes.apple.com/us/app/id%@", [GameManager sharedInstance].totalScore, appID];
+}
+
+- (void)shareToTwitter {
+	[TwitterManager postStatusUpdate:[self scoreShareMessage]];
 }
 
 - (void)shareHighScoreToTwitter {
-	NSNumber *appID = [NSBundle mainBundle].infoDictionary[@"LBAppID"];
-	[TwitterManager postStatusUpdate:[NSString stringWithFormat:@"New high score: %zd on #wonkybird https://itunes.apple.com/us/app/id%@", [GameManager sharedInstance].totalScore, appID]];
+	[TwitterManager postStatusUpdate:[self highScoreShareMessage]];
 	
+}
+
+- (void)shareToFB {
+	[FacebookShare authWithGraphAPIAndPostStatusMessage:[self scoreShareMessage] completion:^(BOOL success){
+		if (success) {
+			[FacebookShare sharedInstance].enableShareToFB = YES;
+			self[FacebookButtonKey].visible = YES;
+			self[FacebookGrayButtonKey].visible = NO;
+			NSLog(@"FB Share successful.");
+		}
+	}];
+}
+
+- (void)shareHighScoreToFB {
+	[FacebookShare authWithGraphAPIAndPostStatusMessage:[self highScoreShareMessage] completion:^(BOOL success){
+		if (success) {
+			[FacebookShare sharedInstance].enableShareToFB = YES;
+			self[FacebookButtonKey].visible = YES;
+			self[FacebookGrayButtonKey].visible = NO;
+			NSLog(@"FB Share successful.");
+		}
+	}];
 }
 
 @end
