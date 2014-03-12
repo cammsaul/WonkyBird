@@ -805,11 +805,12 @@
 			baseConfigurationReference = 601FDC2A2FF74D09B0A693A1 /* Pods-WonkyBird.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cameron Saul (MCA3HZPG8Z)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/cam/WonkyBird,
+					"$(SRCROOT)",
 				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_FAST_MATH = YES;
@@ -849,7 +850,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/cam/WonkyBird,
+					"$(SRCROOT)",
 				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_FAST_MATH = YES;
